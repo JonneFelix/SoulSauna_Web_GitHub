@@ -36,12 +36,23 @@
 
   /* Kopfzeile des Chat-Fensters */
 #chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   padding: 15px;
   background-color: #C19A6B;
   color: white;
-  text-align: center;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+}
+
+#finn-profile-pic {
+  border-radius: 50%;
+  width: 40px; /* Oder eine andere Größe, die passt */
+  margin-right: 10px;
+}
+
+#chat-title {
+  flex-grow: 1;
+  text-align: right;
 }
 
 /* Chat-Nachrichten-Bereich */
