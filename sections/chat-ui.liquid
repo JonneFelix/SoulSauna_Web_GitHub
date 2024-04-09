@@ -15,17 +15,21 @@
 <!-- Styles für die Chat-UI -->
 <style>
     /* Chat-Container-Positionierung und Styling */
+  #chat-container * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
   #chat-container {
   max-width: 1600px;
   margin: 0 auto; /* Zentriert den Container */
   padding: 50px;
-  box-sizing: border-box;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  overflow: hidden; /* Verhindert, dass Kinder-Elemente die Rundung durchbrechen */
 }
 
   /* Kopfzeile des Chat-Fensters */
