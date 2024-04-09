@@ -1,1 +1,21 @@
-{"sections":{"main":{"type":"main-page","settings":{"padding_top":28,"padding_bottom":28}},"chat-ui":{"type":"chat-ui","settings":{}}},"order":["main","chat-ui"]}
+{
+  "sections": {
+    "chat-ui": {
+      "type": "chat-ui",
+      "settings": {
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "chat-ui",
+    "main"
+  ]
+}
