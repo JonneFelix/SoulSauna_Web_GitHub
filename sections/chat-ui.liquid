@@ -7,54 +7,56 @@
 
 <!-- Styles für die Chat-UI -->
 <style>
-  /* Chat-Container-Positionierung und Styling */
-#chat-container {
-  position: fixed;
-  bottom: 0;
-  right: 20px;
-  width: 350px;
-  height: 400px;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 10px;
-  box-sizing: border-box;
-  z-index: 1000; /* um sicherzustellen, dass es über anderen Elementen schwebt */
-}
+    /* Chat-Container-Positionierung und Styling */
+  #chat-container {
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    width: 350px;
+    height: 400px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 1000; /* um sicherzustellen, dass es über anderen Elementen schwebt */
+  }
 
-/* Chat-Nachrichten-Bereich */
-#chat-messages {
-  height: 340px;
-  overflow-y: auto;
-  margin-bottom: 10px;
-  padding: 5px;
-  border: 1px solid #eaeaea;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-}
+  /* Chat-Nachrichten-Bereich */
+  #chat-messages {
+    height: 340px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
 
-/* Eingabebereich */
-#chat-input {
-  padding: 10px;
-  border: 1px solid #eaeaea;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
+  /* Eingabebereich */
+  #chat-input {
+    padding: 10px;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
 
-/* Senden-Button */
-#chat-send {
-  background-color: #5c6ac4;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
+  /* Senden-Button */
+  #chat-send {
+    background-color: #5c6ac4;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  #chat-wrapper {
+    padding: 0 20px; /* Oder welcher Abstand auch immer benötigt wird */
+  }
 </style>
 
 <!-- JavaScript, um die Nachrichten zu verwalten und mit dem Backend zu kommunizieren -->
