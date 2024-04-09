@@ -87,42 +87,46 @@
 }
 
 /* Eingabebereich */
-#chat-input {
-  border: none;
-  padding: 15px;
-  border-top: 1px solid #ddd;
+#chat-input-container {
+  position: relative;
+  margin-bottom: 10px;
 }
 
-/* Senden-Button */
-#chat-send {
-  background-color: #5c6ac4;
-  color: white;
-  padding: 12px 20px;
-  text-align: center;
-  border: none;
-  border-radius: 0 0 8px 8px;
-  cursor: pointer;
+#chat-input {
+  width: calc(100% - 40px); /* Platz für den Senden-Button */
+  padding: 10px;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  padding-right: 40px; /* Zusätzlicher Platz für den Senden-Button */
 }
+
+#chat-send {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  background-color: transparent;
+  border: none;
+  color: #5c6ac4;
+  cursor: pointer;
+  width: 30px;
+  height: calc(100% - 10px); /* Die Höhe des Textbereichs minus Padding */
+}
+
 </style>
 
 <!-- JavaScript, um die Nachrichten zu verwalten und mit dem Backend zu kommunizieren -->
 <script>
-  document.getElementById('chat-send').addEventListener('click', function() {
+  function sendMessage() {
   var input = document.getElementById('chat-input');
   var message = input.value.trim();
   
-  if (message !== "") {
+  if (message) {
     displayMessage(message, 'outgoing');
     input.value = ''; // Clear the input field
     
-    // Simuliere eine eingehende Nachricht nach einer kurzen Verzögerung
-    setTimeout(function() {
-      displayMessage("Das ist eine automatisierte Antwort.", 'incoming');
-    }, 1500);
-
-    // Hier würdest du den Fetch-Aufruf hinzufügen ...
+    // Hier kommt der Fetch-Aufruf ...
   }
-});
+}
 
   function displayMessage(text, type) {
   var messagesContainer = document.getElementById('chat-messages');
@@ -135,31 +139,13 @@
   messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
-document.getElementById('chat-send').addEventListener('click', function() {
-  var input = document.getElementById('chat-input');
-  var message = input.value.trim();
-
-  if (message !== "") {
-    displayMessage(message, 'outgoing');
-    input.value = ''; // Clear the input field
-
-    // Hier würdest du den Fetch-Aufruf einfügen...
-    fetch('https://deineSubdomain.deinedomain.com/beratung', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ frage: message })
-    })
-    .then(response => response.json())
-    .then(data => {
-      // Hier würdest du die Antwort von GPT-4 in dein Chat-Fenster einfügen
-      displayMessage(data.antwort, 'incoming');
-    })
-    .catch(error => console.error('Fehler:', error));
+function checkForEnter(event) {
+  // Wenn die Enter-Taste gedrückt wird, sende die Nachricht
+  if (event.keyCode === 13) {
+    event.preventDefault(); // Verhindert einen Zeilenumbruch
+    sendMessage();
   }
-});
-</script>
+}
 
-  
+document.getElementById('chat-send').addEventListener('click', sendMessage);
 </script>
