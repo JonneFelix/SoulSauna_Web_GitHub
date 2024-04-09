@@ -16,21 +16,17 @@
 <style>
     /* Chat-Container-Positionierung und Styling */
   #chat-container {
-    position: fixed;
-    bottom: 0;
-    right: 20px;
-    width: 350px;
-    height: 400px;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 10px;
-    box-sizing: border-box;
-    z-index: 1000; /* um sicherzustellen, dass es über anderen Elementen schwebt */
-  }
+  max-width: 350px;
+  margin: 0 auto; /* Zentriert den Container */
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
   /* Chat-Nachrichten-Bereich */
   #chat-messages {
