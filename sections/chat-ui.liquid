@@ -124,7 +124,19 @@
     displayMessage(message, 'outgoing');
     input.value = ''; // Clear the input field
     
-    // Hier kommt der Fetch-Aufruf ...
+    fetch('/sendMessage', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({message: message}),
+})
+.then(response => response.json())
+.then(data => displayMessage(data.answer, 'incoming'))
+.catch((error) => {
+  console.error('Error:', error);
+});
+
   }
 }
 
