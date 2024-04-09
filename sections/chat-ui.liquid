@@ -7,8 +7,10 @@
   <div id="chat-messages">
     <!-- Nachrichten werden hier über JavaScript eingefügt -->
   </div>
-  <textarea id="chat-input" placeholder="Schreiben Sie eine Nachricht..."></textarea>
-  <button id="chat-send">Senden</button>
+  <div id="chat-input-container">
+  <textarea id="chat-input" placeholder="Schreiben Sie eine Nachricht..." onkeypress="checkForEnter(event)"></textarea>
+  <button id="chat-send" onclick="sendMessage()">⇨</button> <!-- Ersetze ⇨ mit einem Send-Symbol deiner Wahl -->
+</div>
 </div>
 
 
