@@ -93,10 +93,58 @@
 <!-- JavaScript, um die Nachrichten zu verwalten und mit dem Backend zu kommunizieren -->
 <script>
   document.getElementById('chat-send').addEventListener('click', function() {
-    var input = document.getElementById('chat-input');
-    var message = input.value;
+  var input = document.getElementById('chat-input');
+  var message = input.value.trim();
+  
+  if (message !== "") {
+    displayMessage(message, 'outgoing');
+    input.value = ''; // Clear the input field
+    
+    // Simuliere eine eingehende Nachricht nach einer kurzen Verzögerung
+    setTimeout(function() {
+      displayMessage("Das ist eine automatisierte Antwort.", 'incoming');
+    }, 1500);
+
+    // Hier würdest du den Fetch-Aufruf hinzufügen ...
+  }
+});
+
+  function displayMessage(text, type) {
+  var messagesContainer = document.getElementById('chat-messages');
+  var messageDiv = document.createElement('div');
+  messageDiv.classList.add('chat-message', type);
+  messageDiv.textContent = text;
+  messagesContainer.appendChild(messageDiv);
+
+  // Scrollt zum neuesten Nachrichteneintrag
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+document.getElementById('chat-send').addEventListener('click', function() {
+  var input = document.getElementById('chat-input');
+  var message = input.value.trim();
+
+  if (message !== "") {
+    displayMessage(message, 'outgoing');
     input.value = ''; // Clear the input field
 
-    // Führe den Fetch-Aufruf hier aus...
-  });
+    // Hier würdest du den Fetch-Aufruf einfügen...
+    fetch('https://deineSubdomain.deinedomain.com/beratung', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ frage: message })
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Hier würdest du die Antwort von GPT-4 in dein Chat-Fenster einfügen
+      displayMessage(data.antwort, 'incoming');
+    })
+    .catch(error => console.error('Fehler:', error));
+  }
+});
+</script>
+
+  
 </script>
