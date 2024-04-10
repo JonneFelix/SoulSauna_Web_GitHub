@@ -1,16 +1,16 @@
 <!-- chat-ui.liquid -->
 <div id="chat-container">
   <div id="chat-header">
-  <img src="file:///Users/jonne/Downloads/DALL%C2%B7E%202024-04-09%2015.44.46%20-%20Visualize%20a%20character%20named%20Finn,%20the%20Sauna%20Whisperer.%20Finn%20is%20depicted%20as%20a%20warm%20and%20welcoming%20figure,%20embodying%20both%20professionalism%20and%20expertise%20i.webp" alt="Finn" id="finn-profile-pic"/>
-  <span id="chat-title">Chat mit Finn</span>
+    <img src="file:///Users/jonne/Downloads/DALL·E%202024-04-09%2015.44.46%20-%20Visualize%20a%20character%20named%20Finn,%20the%20Sauna%20Whisperer.%20Finn%20is%20depicted%20as%20a%20warm%20and%20welcoming%20figure,%20embodying%20both%20professionalism%20and%20expertise%20i.webp" alt="Finn" id="finn-profile-pic"/>
+    <span id="chat-title">Chat mit Finn</span>
   </div>
   <div id="chat-messages">
     <!-- Nachrichten werden hier über JavaScript eingefügt -->
   </div>
   <div id="chat-input-container">
-  <textarea id="chat-input" placeholder="Schreiben Sie eine Nachricht..." onkeypress="checkForEnter(event)"></textarea>
-  <button id="chat-send" onclick="sendMessage()">⇨</button> <!-- Ersetze ⇨ mit einem Send-Symbol deiner Wahl -->
-</div>
+    <textarea id="chat-input" placeholder="Schreiben Sie eine Nachricht..." onkeypress="checkForEnter(event)"></textarea>
+    <button id="chat-send" onclick="sendMessage()">⇨</button>
+  </div>
 </div>
 
 
@@ -116,43 +116,64 @@
 
 <!-- JavaScript, um die Nachrichten zu verwalten und mit dem Backend zu kommunizieren -->
 <script>
-  function sendMessage() {
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function() {
+    typeMessage("Hallo, ich bin Finn, der Saunaflüsterer. Wofür brauchst du eine Sauna und wie stellst du sie dir vor?", 'incoming');
+  }, 3000); // Zeigt die Begrüßungsnachricht nach 3 Sekunden
+});
+
+function typeMessage(text, type, index = 0) {
+  if (index < text.length) {
+    displayMessage(text.substring(0, index + 1), type, true);
+    setTimeout(() => typeMessage(text, type, index + 1), 50);
+  }
+}
+
+function displayMessage(text, type, isTyping = false) {
+  var messagesContainer = document.getElementById('chat-messages');
+  var lastMessage = messagesContainer.lastElementChild;
+  
+  if (isTyping && lastMessage && lastMessage.classList.contains('typing')) {
+    lastMessage.textContent = text;
+  } else {
+    if (lastMessage && lastMessage.classList.contains('typing')) {
+      messagesContainer.removeChild(lastMessage);
+    }
+    var messageDiv = document.createElement('div');
+    var profilePicHtml = type === 'incoming' ? '<img src="DEIN_PFAD_ZUM_BILD" class="profile-pic" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">' : '';
+    messageDiv.innerHTML = profilePicHtml + text;
+    messageDiv.classList.add('chat-message', type);
+    if (isTyping) messageDiv.classList.add('typing');
+    messagesContainer.appendChild(messageDiv);
+  }
+
+  if (!isTyping) messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+function sendMessage() {
   var input = document.getElementById('chat-input');
   var message = input.value.trim();
   
   if (message) {
-    displayMessage(message, 'outgoing');
+    typeMessage(message, 'outgoing'); // Ändert, um Typewriter-Effekt auch für ausgehende Nachrichten zu nutzen
     input.value = ''; // Clear the input field
     
     fetch('/sendMessage', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({message: message}),
-})
-.then(response => response.json())
-.then(data => displayMessage(data.answer, 'incoming'))
-.catch((error) => {
-  console.error('Error:', error);
-});
-
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({message: message}),
+    })
+    .then(response => response.json())
+    .then(data => typeMessage(data.answer, 'incoming')) // Nutzt typeMessage für eingehende Antworten
+    .catch((error) => {
+      console.error('Error:', error);
+    });
   }
 }
 
-  function displayMessage(text, type) {
-  var messagesContainer = document.getElementById('chat-messages');
-  var messageDiv = document.createElement('div');
-  messageDiv.classList.add('chat-message', type);
-  messageDiv.textContent = text;
-  messagesContainer.appendChild(messageDiv);
-
-  // Scrollt zum neuesten Nachrichteneintrag
-  messagesContainer.scrollTop = messagesContainer.scrollHeight;
-}
-
 function checkForEnter(event) {
-  // Wenn die Enter-Taste gedrückt wird, sende die Nachricht
   if (event.keyCode === 13) {
     event.preventDefault(); // Verhindert einen Zeilenumbruch
     sendMessage();
