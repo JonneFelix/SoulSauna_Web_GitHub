@@ -17,17 +17,23 @@
 
 <!-- Styles für die Chat-UI -->
 <style>
+@media (max-width: 600px) {
   #chat-container {
-    max-width: 800px; /* Anpassung an deine Breitenanforderungen */
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    max-width: 100%;
+    padding: 15px;
   }
+
+  #chat-input {
+    width: calc(100% - 30px); /* Anpassung für kleinere Geräte */
+  }
+
+  #chat-send {
+    width: 25px;
+    height: 25px;
+    right: 5px;
+    bottom: 5px;
+  }
+}
 
   #chat-header {
     display: flex;
@@ -131,8 +137,8 @@ function displayMessage(text, type) {
   messageDiv.innerHTML = type === 'incoming' ? 
     `<img src="${document.getElementById('chat-container').getAttribute('data-profile-pic-url')}" class="profile-pic">${text}` : text;
 
-  messagesContainer.appendChild(messageDiv);
-  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  messagesContainer.scrollTop = messagesContainer.scrollHeight; // Ändern zu:
+  messagesContainer.scrollIntoView({ behavior: 'smooth', block: 'end' });
 }
 
 
