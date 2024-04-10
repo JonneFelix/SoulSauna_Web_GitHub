@@ -32,169 +32,179 @@
 
 <!-- Styles für die Chat-UI -->
 <style>
-         #chat-input {
-          height: 50px; /* Höhe des Texteingabefelds fixieren */
-          resize: none; /* Verhindert, dass Benutzer die Größe des Felds ändern */
-        }
+   /* Stil des Nachrichtenbereichs */
+     #chat-messages {
+       flex-grow: 1; /* Nimmt verfügbaren Platz ein */
+       margin-bottom: 10px; /* Abstand nach unten für Übersichtlichkeit */
+       height: calc(100% - 140px); /* passt die Höhe dynamisch an */
+       margin: 10px 0;
+       overflow-y: auto; /* Erlaubt Scrollen innerhalb des Nachrichtenbereichs */
+     }
 
-          #chat-send {
-            width: 40px; /* Leicht größere Button-Größe für bessere Touch-Zielgröße */
-            height: 40px;
-            right: 5px;
-            bottom: 10px; /* Zusätzlicher Abstand zum Boden */
-            display: flex; /* Erlaubt zentrierte Items im Button */
-            align-items: center; /* Zentriert den Pfeil vertikal */
-            justify-content: center; /* Zentriert den Pfeil horizontal */
-            padding: 10px; /* Gleiche Padding-Größe für alle Seiten */
-          }
-        }
+   /* Stil für Eingabebereich */
+     #chat-input-container {
+       display: flex;
+       padding: 10px;
+       border-top: 2px solid #C19A6B; /* Fügt eine deutliche Trennlinie hinzu */
+       margin-top: auto; /* Stellt sicher, dass der Eingabebereich am unteren Ende bleibt */
+     }
 
-        #chat-container {
-        width: 100%; /* Vollständige Breite innerhalb des umschließenden Elements */
-        max-width: 800px; /* Maximalbreite für größere Bildschirme anpassen */
-        height: 600px; /* Feste Höhe des Chat-Fensters */
-        margin: 20px auto; /* Zentriert den Container mit Abstand oben und unten */
-        display: flex;
-        flex-direction: column;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        background-color: #fff;
-        overflow: hidden;
-        min-height: 500px; /* Mindesthöhe für das Chat-Fenster */
-        max-height: 80vh; /* Maximalhöhe basierend auf dem Viewport */
-      }
+   /* Stil für das Eingabefeld */
+     #chat-input {
+       flex: 1; /* Erlaubt es dem Eingabefeld, den verfügbaren Platz auszufüllen */
+       padding: 10px;
+       border-radius: 4px; /* Leichte Rundung der Ecken */
+       flex-grow: 1;
+       margin-right: 10px; /* Abstand zwischen Eingabefeld und Senden-Button */
+       resize: none; /* Verhindert, dass Benutzer die Größe des Felds ändern */
+       height: 50px; /* Höhe des Texteingabefelds fixieren */
+       border: 1px solid #C19A6B; /* Fügt eine sichtbare Umrandung hinzu */
+       margin: 10px; /* Fügt außen am Eingabefeld Abstand hinzu */
 
-        /* Stil des Nachrichtenbereichs */
-    #chat-messages {
-      flex-grow: 1; /* Nimmt verfügbaren Platz ein */
-      overflow-y: auto; /* Ermöglicht das Scrollen */
-      margin: 15px 0; /* Abstand oben und unten */
-      margin-bottom: 10px; /* Abstand nach unten für Übersichtlichkeit */
-    }
+     }
 
-        /* Stil des Kopfbereichs */
-    #chat-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 15px;
-      background-color: #C19A6B;
-      color: white;
-    }
 
-        /* Stil für das Profilbild */
-    .profile-pic {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin-right: 10px;
-    }
+           #chat-send {
+             width: 40px; /* Leicht größere Button-Größe für bessere Touch-Zielgröße */
+             height: 40px;
+             right: 5px;
+             bottom: 10px; /* Zusätzlicher Abstand zum Boden */
+             display: flex; /* Erlaubt zentrierte Items im Button */
+             align-items: center; /* Zentriert den Pfeil vertikal */
+             justify-content: center; /* Zentriert den Pfeil horizontal */
+             padding: 10px; /* Gleiche Padding-Größe für alle Seiten */
+             border: none;
+             background-color: #C19A6B;
+             color: white;
+             margin: 10px;
+           }
 
-        #chat-input:focus {
-          border-color: #C19A6B; /* Highlight the input when focused */
-        }
+   /* Added styles for the send icon for better scalability */
+         .send-icon {
+           display: block;
+           width: 100%;
+           height: 100%;
+           text-align: center;
+           text-align: center;
+           line-height: 1; /* Neutralisiert die Zeilenhöhe für eine genauere Positionierung */
+         }
 
-        /* Added animations for chat messages */
-        @keyframes slideIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
+         #chat-container {
+         width: 100%; /* Vollständige Breite innerhalb des umschließenden Elements */
+         max-width: 800px; /* Maximalbreite für größere Bildschirme anpassen */
+         height: 600px; /* Feste Höhe des Chat-Fensters */
+         margin: 20px auto; /* Zentriert den Container mit Abstand oben und unten */
+         display: flex;
+         flex-direction: column;
+         border-radius: 8px;
+         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+         background-color: #fff;
+         overflow: hidden;
+         min-height: 500px; /* Mindesthöhe für das Chat-Fenster */
+         max-height: 80vh; /* Maximalhöhe basierend auf dem Viewport */
+       }
 
-        .chat-message {
-          max-width: calc(100% - 50px); /* Maximale Breite der Nachrichtenblasen */
-          word-wrap: break-word; /* Stellt sicher, dass lange Wörter umgebrochen werden */
-          animation: slideIn 0.3s ease-out; /* New message animation */
-        }
 
-        #chat-send:hover {
-      background-color: #a85d4b;
-    }
 
-        .chat-message.incoming {
-          justify-content: flex-start;
-          background-color: #f0f0f0;
-        }
+         /* Stil des Kopfbereichs */
+     #chat-header {
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+       padding: 15px;
+       background-color: #C19A6B;
+       color: white;
+     }
 
-        .chat-message.outgoing {
-          justify-content: flex-end;
-          background-color: #d1eaff;
-        }
+         /* Stil für das Profilbild */
+     .profile-pic {
+       width: 40px;
+       height: 40px;
+       border-radius: 50%;
+       margin-right: 10px;
+     }
 
-        /* Stil für Eingabebereich */
-    #chat-input-container {
-      display: flex;
-      padding: 10px;
-      border-top: 1px solid #eaeaea; /* Trennlinie */
-      padding: 10px;
-    }
+         #chat-input:focus {
+           border-color: #C19A6B; /* Highlight the input when focused */
+         }
 
-        /* Stil für das Eingabefeld */
-    #chat-input {
-      flex: 1; /* Erlaubt es dem Eingabefeld, den verfügbaren Platz auszufüllen */
-      padding: 10px;
-      border-radius: 4px; /* Leichte Rundung der Ecken */
-      flex-grow: 1;
-      border: 1px solid #C19A6B; /* Farbe des Headers für die Umrandung */
-      margin-right: 10px; /* Abstand zwischen Eingabefeld und Senden-Button */
-    }
+         /* Added animations for chat messages */
+         @keyframes slideIn {
+           from {
+             opacity: 0;
+             transform: translateY(10px);
+           }
+           to {
+             opacity: 1;
+             transform: translateY(0);
+           }
+         }
 
-        /* Stil für den Senden-Button */
-    #chat-send {
-      background-color: #C19A6B;
-      color: white;
-      border: none;
-      border-radius: 4px; /* Leichte Rundung der Ecken */
-      padding: 10px 15px;
-      cursor: pointer;
-    }
+         .chat-message {
+           max-width: calc(100% - 50px); /* Maximale Breite der Nachrichtenblasen */
+           word-wrap: break-word; /* Stellt sicher, dass lange Wörter umgebrochen werden */
+           animation: slideIn 0.3s ease-out; /* New message animation */
+         }
 
-        /* Improved quick reply styles */
-        .quick-replies {
-          display: flex;
-          justify-content: space-around;
-          padding: 10px;
-        }
+         #chat-send:hover {
+       background-color: #a85d4b;
+     }
 
-        .quick-reply-button {
-          background-color: #C19A6B;
-          color: white;
-          border: none;
-          border-radius: 20px;
-          padding: 5px 10px;
-          cursor: pointer;
-          margin: 0 5px;
-        }
+         .chat-message.incoming {
+           justify-content: flex-start;
+           background-color: #f0f0f0;
+         }
 
-        .quick-reply-button:hover {
-          background-color: #a85d4b;
-        }
+         .chat-message.outgoing {
+           justify-content: flex-end;
+           background-color: #d1eaff;
+         }
 
-        /* Added styles for the send icon for better scalability */
-        .send-icon {
-          display: block;
-          width: 100%;
-          height: 100%;
-          text-align: center;
-          line-height: normal; /* Entfernt den Einfluss der Zeilenhöhe */
-        }
+
+
+
+
+         /* Stil für den Senden-Button */
+     #chat-send {
+       background-color: #C19A6B;
+       color: white;
+       border: none;
+       border-radius: 4px; /* Leichte Rundung der Ecken */
+       padding: 10px 15px;
+       cursor: pointer;
+     }
+
+         /* Improved quick reply styles */
+         .quick-replies {
+           display: flex;
+           justify-content: space-around;
+           padding: 10px;
+         }
+
+         .quick-reply-button {
+           background-color: #C19A6B;
+           color: white;
+           border: none;
+           border-radius: 20px;
+           padding: 5px 10px;
+           cursor: pointer;
+           margin: 0 5px;
+         }
+
+         .quick-reply-button:hover {
+           background-color: #a85d4b;
+         }
 
 
   @media (max-width: 600px) {
-    #chat-container {
-      min-height: 400px; /* Angepasste Mindesthöhe auf kleineren Bildschirmen */
-      max-height: 70vh; /* Angepasste Maximalhöhe auf kleineren Bildschirmen */
-    }
+   #chat-container {
+     /* ... vorhandene Stile ... */
+     min-height: 50vh; /* Angepasste Mindesthöhe auf kleineren Bildschirmen */
+   }
 
-    #chat-send {
-      padding: 8px; /* Angepasster Padding im Button auf kleineren Bildschirmen */
-    }
-  }
+   #chat-messages {
+     height: calc(100% - 120px); /* Passt die Höhe auf kleineren Bildschirmen an */
+   }
 </style>
 
 <!-- JavaScript, um die Nachrichten zu verwalten und mit dem Backend zu kommunizieren -->
