@@ -32,188 +32,201 @@
 
 <!-- Styles für die Chat-UI -->
 <style>
-         /* Stil des Nachrichtenbereichs */
-           #chat-messages {
-             flex-grow: 1; /* Erlaubt dem Nachrichtenbereich, den verfügbaren Platz zu füllen */
-        overflow-y: auto; /* Ermöglicht das Scrollen innerhalb des Nachrichtenbereichs */
-        margin: 15px 0; /* Abstand oben und unten im Nachrichtenbereich */
-           }
+           /* Stil des Nachrichtenbereichs */
+             #chat-messages {
+               flex-grow: 1; /* Erlaubt dem Nachrichtenbereich, den verfügbaren Platz zu füllen */
+          overflow-y: auto; /* Ermöglicht das Scrollen innerhalb des Nachrichtenbereichs */
+          margin: 15px 0; /* Abstand oben und unten im Nachrichtenbereich */
+             }
 
-         /* Stil für Eingabebereich */
-           #chat-input-container {
-            display: flex;
-            border-top: 1px solid #C19A6B; /* Fügt eine deutliche Trennlinie oben am Eingabefeld hinzu */
-            padding: 0; /* Entfernt das Padding */
-            position: relative;
-           }
+           /* Stil für Eingabebereich */
+             #chat-input-container {
+              display: flex;
+              border-top: 1px solid #C19A6B; /* Fügt eine deutliche Trennlinie oben am Eingabefeld hinzu */
+              padding: 0; /* Entfernt das Padding */
+              position: relative;
+             }
 
-         /* Stil für das Eingabefeld */
-           #chat-input {
-            flex: 1; /* Erlaubt dem Eingabefeld, den verfügbaren Platz zu füllen */
-            padding: 10px;
-            border: 1px solid #C19A6B; /* Fügt eine sichtbare Umrandung hinzu */
-            margin-right: 10px; /* Abstand zwischen Eingabefeld und Senden-Button */
-            border-radius: 4px; /* Leichte Rundung der Ecken */
-            resize: none; /* Verhindert, dass Benutzer die Größe des Felds ändern */
-            font-family: Arial, sans-serif; /* Stilvolle und klare Schriftart */
-            font-size: 1rem; /* Legt eine angemessene Schriftgröße fest */
-            padding-right: 50px; /* Erstellt Platz für den absolut positionierten Senden-Button */
-            font-size: 1.7rem; /* Erhöht die Schriftgröße von 1rem auf 1.2rem */
-
-           }
+           /* Stil für das Eingabefeld */
+             #chat-input {
+              flex: 1; /* Erlaubt dem Eingabefeld, den verfügbaren Platz zu füllen */
+              padding: 10px;
+              border: 1px solid #C19A6B; /* Fügt eine sichtbare Umrandung hinzu */
+              margin-right: 10px; /* Abstand zwischen Eingabefeld und Senden-Button */
+              border-radius: 4px; /* Leichte Rundung der Ecken */
+              resize: none; /* Verhindert, dass Benutzer die Größe des Felds ändern */
+              font-family: Arial, sans-serif; /* Stilvolle und klare Schriftart */
+              font-size: 1rem; /* Legt eine angemessene Schriftgröße fest */
+              padding-right: 40px; /* Erstellt Platz für den absolut positionierten Senden-Button */
+              font-size: 1.6rem; /* Erhöht die Schriftgröße von 1rem auf 1.2rem */
 
 
-                 #chat-send {
-                    padding: 10px; /* Gleichmäßiges Padding für den Senden-Button */
-                    background-color: #C19A6B;
-                    color: white;
-                    border: none;
-                    border-radius: 4px; /* Rundet die Ecken des Buttons */
-                    cursor: pointer;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    margin: 0;
-                    position: absolute; /* Positioniert den Button absolut innerhalb des Containers */
-                    right: 10px; /* Abstand zum rechten Rand */
-                    top: 50%;
-                    transform: translateY(-50%); /* Zentriert den Button vertikal */
-                    bottom: 10px; /* Abstand zum unteren Rand, angepasst an die Höhe des Eingabefelds */
-              }
-
-         /* Added styles for the send icon for better scalability */
-               .send-icon {
-                 margin: 0; /* Entfernt jeglichen Abstand um das Icon */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-               }
-
-               #chat-container {
-               width: 100%; /* Vollständige Breite innerhalb des umschließenden Elements */
-               max-width: 800px; /* Maximalbreite für größere Bildschirme anpassen */
-               height: 600px; /* Feste Höhe des Chat-Fensters */
-               margin: 20px auto; /* Zentriert den Container mit Abstand oben und unten */
-               display: flex;
-               flex-direction: column;
-               border-radius: 8px;
-               box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-               background-color: #fff;
-               overflow: hidden;
-               min-height: 500px; /* Mindesthöhe für das Chat-Fenster */
-               max-height: 80vh; /* Maximalhöhe basierend auf dem Viewport */
              }
 
 
+                   #chat-send {
+                      padding: 10px; /* Gleichmäßiges Padding für den Senden-Button */
+                      background-color: #C19A6B;
+                      color: white;
+                      border: none;
+                      border-radius: 4px; /* Rundet die Ecken des Buttons */
+                      cursor: pointer;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      margin: 0;
+                      position: absolute; /* Positioniert den Button absolut innerhalb des Containers */
+                      right: 5px; /* Abstand zum rechten Rand */
+                      top: auto;
+                      transform: none;
+                      bottom: 5px; /* Abstand zum unteren Rand, angepasst an die Höhe des Eingabefelds */
+                }
 
-               /* Stil des Kopfbereichs */
-           #chat-header {
-             display: flex;
-             align-items: center;
-             padding: 15px;
-             background-color: #C19A6B;
-             color: white;
-             justify-content: flex-start; /* Ändert die Ausrichtung auf Anfang */
-           }
+           /* Added styles for the send icon for better scalability */
+                 .send-icon {
+                   margin: 0; /* Entfernt jeglichen Abstand um das Icon */
+          display: flex;
+          justify-content: center;
+          align-items: center;
+                 }
 
-      #chat-title {
-      /* Verschiebt den Titeltext nach links */
-      flex-grow: 1;
-      text-align: left;
-      margin-left: 10px; /* Abstand zum Profilbild */
+                 #chat-container {
+                 width: 100%; /* Vollständige Breite innerhalb des umschließenden Elements */
+                 max-width: 800px; /* Maximalbreite für größere Bildschirme anpassen */
+                 height: 600px; /* Feste Höhe des Chat-Fensters */
+                 margin: 20px auto; /* Zentriert den Container mit Abstand oben und unten */
+                 display: flex;
+                 flex-direction: column;
+                 border-radius: 8px;
+                 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                 background-color: #fff;
+                 overflow: hidden;
+                 min-height: 500px; /* Mindesthöhe für das Chat-Fenster */
+                 max-height: 80vh; /* Maximalhöhe basierend auf dem Viewport */
+               }
+
+
+
+                 /* Stil des Kopfbereichs */
+             #chat-header {
+               display: flex;
+               align-items: center;
+               padding: 15px;
+               background-color: #C19A6B;
+               color: white;
+               justify-content: flex-start; /* Ändert die Ausrichtung auf Anfang */
+             }
+
+        #chat-title {
+        /* Verschiebt den Titeltext nach links */
+        flex-grow: 1;
+        text-align: left;
+        margin-left: 10px; /* Abstand zum Profilbild */
+      }
+
+                 /* Stil für das Profilbild */
+             .profile-pic {
+               width: 40px;
+               height: 40px;
+               border-radius: 50%;
+               margin-right: 10px;
+             }
+
+                 #chat-input:focus {
+                   border-color: #C19A6B; /* Highlight the input when focused */
+                 }
+
+                 /* Added animations for chat messages */
+                 @keyframes slideIn {
+                   from {
+                     opacity: 0;
+                     transform: translateY(10px);
+                   }
+                   to {
+                     opacity: 1;
+                     transform: translateY(0);
+                   }
+                 }
+
+                 .chat-message {
+                   max-width: calc(100% - 50px); /* Maximale Breite der Nachrichtenblasen */
+                   word-wrap: break-word; /* Stellt sicher, dass lange Wörter umgebrochen werden */
+                   animation: slideIn 0.3s ease-out; /* New message animation */
+                   margin-bottom: 10px; /* Fügt Abstand nach jeder Nachricht hinzu */
+                 }
+
+                 #chat-send:hover {
+               background-color: #a85d4b;
+             }
+
+                 .chat-message.incoming {
+                   justify-content: flex-start;
+                   background-color: #C19A6B;
+                   color; #103948; /* Text */
+                 }
+
+                 .chat-message.outgoing {
+                   justify-content: flex-end;
+                   background-color: #C19A6B;
+                   color: #103948; /* Text */
+                 }
+
+
+    .sender-name {
+      font-weight: bold;
+      display: block; /* Um sicherzustellen, dass der Name oberhalb des Profilbilds steht */
+      margin-left: 50px; /* Setzt den Namen rechts vom Profilbild, passen Sie diesen Wert an */
     }
 
-               /* Stil für das Profilbild */
-           .profile-pic {
-             width: 40px;
-             height: 40px;
-             border-radius: 50%;
-             margin-right: 10px;
-           }
 
-               #chat-input:focus {
-                 border-color: #C19A6B; /* Highlight the input when focused */
-               }
+                 /* Stil für den Senden-Button */
+             #chat-send {
+               background-color: #C19A6B;
+               color: white;
+               border: none;
+               border-radius: 4px; /* Leichte Rundung der Ecken */
+               padding: 10px 15px;
+               cursor: pointer;
+             }
 
-               /* Added animations for chat messages */
-               @keyframes slideIn {
-                 from {
-                   opacity: 0;
-                   transform: translateY(10px);
+                 /* Improved quick reply styles */
+                 .quick-replies {
+                   display: flex;
+                   justify-content: space-around;
+                   padding: 10px;
                  }
-                 to {
-                   opacity: 1;
-                   transform: translateY(0);
+
+                 .quick-reply-button {
+                   background-color: #C19A6B;
+                   color: white;
+                   border: none;
+                   border-radius: 20px;
+                   padding: 5px 10px;
+                   cursor: pointer;
+                   margin: 0 5px;
                  }
-               }
 
-               .chat-message {
-                 max-width: calc(100% - 50px); /* Maximale Breite der Nachrichtenblasen */
-                 word-wrap: break-word; /* Stellt sicher, dass lange Wörter umgebrochen werden */
-                 animation: slideIn 0.3s ease-out; /* New message animation */
-                 margin-bottom: 10px; /* Fügt Abstand nach jeder Nachricht hinzu */
-               }
-
-               #chat-send:hover {
-             background-color: #a85d4b;
-           }
-
-               .chat-message.incoming {
-                 justify-content: flex-start;
-                 background-color: #f0f0f0;
-               }
-
-               .chat-message.outgoing {
-                 justify-content: flex-end;
-                 background-color: #d1eaff;
-               }
+                 .quick-reply-button:hover {
+                   background-color: #a85d4b;
+                 }
 
 
-  .sender-name {
-    font-weight: bold;
-    display: block; /* Um sicherzustellen, dass der Name oberhalb des Profilbilds steht */
-    margin-left: 50px; /* Setzt den Namen rechts vom Profilbild, passen Sie diesen Wert an */
+          @media (max-width: 600px) {
+          #chat-container {
+            /* Anpassungen für die Höhe auf kleineren Geräten */
+            max-height: 70vh;
+          }
+        }
+
+  /* Container für den Nachrichteninhalt, um Profilbild, Name und Text zu umfassen */
+  .message-content {
+    display: flex;
+    align-items: center;
   }
 
-
-               /* Stil für den Senden-Button */
-           #chat-send {
-             background-color: #C19A6B;
-             color: white;
-             border: none;
-             border-radius: 4px; /* Leichte Rundung der Ecken */
-             padding: 10px 15px;
-             cursor: pointer;
-           }
-
-               /* Improved quick reply styles */
-               .quick-replies {
-                 display: flex;
-                 justify-content: space-around;
-                 padding: 10px;
-               }
-
-               .quick-reply-button {
-                 background-color: #C19A6B;
-                 color: white;
-                 border: none;
-                 border-radius: 20px;
-                 padding: 5px 10px;
-                 cursor: pointer;
-                 margin: 0 5px;
-               }
-
-               .quick-reply-button:hover {
-                 background-color: #a85d4b;
-               }
-
-
-        @media (max-width: 600px) {
-        #chat-container {
-          /* Anpassungen für die Höhe auf kleineren Geräten */
-          max-height: 70vh;
-        }
-      }
+  .message-text {
+    margin-left: 10px; /* Abstand zwischen Name/Profilbild und Text */
+  }
 </style>
 
 <!-- JavaScript, um die Nachrichten zu verwalten und mit dem Backend zu kommunizieren -->
@@ -227,6 +240,13 @@ function typeMessage(fullText, type) {
   // Füge das Profilbild nur zu eingehenden Nachrichten hinzu
 if (type === 'incoming') {
   const profilePicUrl = document.getElementById('chat-container').getAttribute('data-profile-pic-url');
+  messageDiv.innerHTML = `
+    <div class="message-content">
+      <img src="${profilePicUrl}" class="profile-pic">
+      <span class="sender-name">Finn</span>
+      <div class="message-text">${fullText}</div>
+    </div>
+  `;
   const profilePicImg = `<img src="${profilePicUrl}" class="profile-pic">`;
   const nameSpan = `<span class="sender-name">Finn</span>`; // Name neben dem Bild
   messageDiv.innerHTML = profilePicImg + nameSpan; // Fügt das Profilbild und den Namen hinzu
