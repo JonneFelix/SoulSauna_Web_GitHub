@@ -129,7 +129,7 @@
                width: 40px;
                height: 40px;
                border-radius: 50%;
-               margin-right: 10px;
+               margin-right: 10px; /* Abstand zwischen Profilbild und Name */
              }
 
                  #chat-input:focus {
@@ -152,7 +152,11 @@
                    max-width: calc(100% - 50px); /* Maximale Breite der Nachrichtenblasen */
                    word-wrap: break-word; /* Stellt sicher, dass lange Wörter umgebrochen werden */
                    animation: slideIn 0.3s ease-out; /* New message animation */
-                   margin-bottom: 10px; /* Fügt Abstand nach jeder Nachricht hinzu */
+                   display: flex;
+                   align-items: center;
+                   margin-bottom: 10px; /* Abstand zwischen Nachrichten */
+                   padding: 10px; /* Polsterung innerhalb der Nachrichtenblase */
+                   border-radius: 8px; /* Abgerundete Ecken für Nachrichtenblasen */
                  }
 
                  #chat-send:hover {
@@ -160,24 +164,21 @@
              }
 
                  .chat-message.incoming {
-                   justify-content: flex-start;
+                   flex-direction: row; /* Profilbild auf der linken Seite */
                    background-color: white;
                    color; #103948; /* Text */
-                   border-radius: 8px;
                  }
 
                  .chat-message.outgoing {
-                   justify-content: flex-end;
+                   flex-direction: row; /* Profilbild auf der linken Seite */
                    background-color: white;
                    color: #103948; /* Text */
-                   border-radius: 8px;
                  }
 
 
     .sender-name {
+      margin-right: 10px; /* Abstand zwischen Name und Nachrichtentext */
       font-weight: bold;
-      display: block; /* Um sicherzustellen, dass der Name oberhalb des Profilbilds steht */
-      margin-left: 50px; /* Setzt den Namen rechts vom Profilbild, passen Sie diesen Wert an */
     }
 
 
