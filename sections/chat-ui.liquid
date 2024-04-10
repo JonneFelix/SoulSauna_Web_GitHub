@@ -100,11 +100,20 @@ function typeMessage(fullText, type) {
   let container = document.getElementById('chat-messages');
   let messageDiv = document.createElement('div');
   messageDiv.classList.add('chat-message', type);
+
+  // Füge das Profilbild nur zu eingehenden Nachrichten hinzu
+  if (type === 'incoming') {
+    const profilePicUrl = document.getElementById('chat-container').getAttribute('data-profile-pic-url');
+    messageDiv.innerHTML = `<img src="${profilePicUrl}" class="profile-pic">`;
+  }
+
   container.appendChild(messageDiv);
+  const textSpan = document.createElement('span');
+  messageDiv.appendChild(textSpan);
 
   function typeStep() {
     if (index < fullText.length) {
-      messageDiv.innerHTML = fullText.substring(0, index + 1);
+      textSpan.textContent += fullText[index];
       index++;
       setTimeout(typeStep, 50);
     }
@@ -112,21 +121,18 @@ function typeMessage(fullText, type) {
   
   typeStep();
 }
-
+  
 function displayMessage(text, type) {
   const messagesContainer = document.getElementById('chat-messages');
   const messageDiv = document.createElement('div');
   messageDiv.classList.add('chat-message', type);
   
-  if (type === 'incoming') {
-    const profilePicUrl = document.getElementById('chat-container').getAttribute('data-profile-pic-url');
-    messageDiv.innerHTML = `<img src="${profilePicUrl}" class="profile-pic">${text}`;
-  } else {
-    messageDiv.textContent = text;
-  }
+  // Setze die Nachricht direkt in das Nachrichten-Div
+  messageDiv.innerHTML = type === 'incoming' ? 
+    `<img src="${document.getElementById('chat-container').getAttribute('data-profile-pic-url')}" class="profile-pic">${text}` : text;
 
   messagesContainer.appendChild(messageDiv);
-  messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll zum neuesten Nachrichteneintrag
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
 
