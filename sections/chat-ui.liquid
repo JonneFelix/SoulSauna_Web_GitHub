@@ -45,11 +45,16 @@
   color: white;
 }
 
-#finn-profile-pic {
+.profile-pic {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  width: 40px; /* Oder eine andere Größe, die passt */
   margin-right: 10px;
+  float: left; /* Füge das Bild auf der linken Seite der Nachricht ein */
 }
+
+.chat-message {
+  clear: both; /* Stellt sicher, dass Nachrichten nicht neben dem Profilbild fließen */
 
 #chat-title {
   flex-grow: 1;
