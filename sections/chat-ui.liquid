@@ -1,7 +1,6 @@
 <!-- chat-ui.liquid -->
-<div id="chat-container">
+<div id="chat-container" data-profile-pic-url="assets/finn-profile-pic.jpg ">
   <div id="chat-header">
-    <img src="https://drive.google.com/file/d/1JRmXw1Wfel1z7t6MIIFoMjjVU1Hx61GG/view?usp=sharing" alt="Finn" id="finn-profile-pic"/>
     <span id="chat-title">Chat mit Finn</span>
   </div>
   <div id="chat-messages">
@@ -140,7 +139,8 @@ function displayMessage(text, type, isTyping = false) {
       messagesContainer.removeChild(lastMessage);
     }
     var messageDiv = document.createElement('div');
-    var profilePicHtml = type === 'incoming' ? '<img src="DEIN_PFAD_ZUM_BILD" class="profile-pic" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">' : '';
+    var profilePicUrl = document.getElementById('chat-container').getAttribute('data-profile-pic-url');
+    var profilePicHtml = type === 'incoming' ? '<img src="' + profilePicUrl + '" class="profile-pic" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">' : '';
     messageDiv.innerHTML = profilePicHtml + text;
     messageDiv.classList.add('chat-message', type);
     if (isTyping) messageDiv.classList.add('typing');
