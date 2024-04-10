@@ -1,8 +1,15 @@
 <!-- chat-ui.liquid -->
-<div id="chat-container" data-profile-pic-url="https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/Finn_robot.webp?v=1712743606">
+<div
+  id="chat-container"
+  data-profile-pic-url="https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/Finn_robot.webp?v=1712743606"
+>
   <!-- Header improved with a better visual hierarchy -->
   <div id="chat-header">
-    <img src="https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/Finn_robot.webp?v=1712743606" class="profile-pic" alt="Chat with Finn">
+    <img
+      src="https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/Finn_robot.webp?v=1712743606"
+      class="profile-pic"
+      alt="Chat with Finn"
+    >
     <span id="chat-title">Chat mit Finn</span>
   </div>
   <div id="chat-messages" role="log" aria-live="polite">
@@ -10,161 +17,172 @@
   </div>
   <!-- Input container improved for better usability -->
   <div id="chat-input-container">
-    <textarea id="chat-input" aria-label="Schreiben Sie eine Nachricht" placeholder="Schreiben Sie eine Nachricht..." onkeypress="checkForEnter(event)"></textarea>
+    <textarea
+      id="chat-input"
+      aria-label="Schreiben Sie eine Nachricht"
+      placeholder="Schreiben Sie eine Nachricht..."
+      onkeypress="checkForEnter(event)"
+    ></textarea>
     <button id="chat-send" aria-label="Nachricht senden" onclick="sendMessage()">
-      <span class="send-icon">⇨</span> <!-- Added span for better control over the icon -->
+      <span class="send-icon">⇨</span>
+      <!-- Added span for better control over the icon -->
     </button>
   </div>
 </div>
 
 <!-- Styles für die Chat-UI -->
 <style>
-@media (min-width: 1025px) { /* Für große Bildschirme wie Desktops */
+  /* Responsive Style Anpassungen */
+  @media (max-width: 600px) {
+    #chat-container {
+      height: 60vh; /* Kleinere Höhe auf kleinen Bildschirmen */
+    }
+    #chat-send {
+    padding: 0 10px; /* Weniger Abstand im Button auf kleinen Bildschirmen */
+  }
+  }
+
+   #chat-input {
+    height: 50px; /* Höhe des Texteingabefelds fixieren */
+    resize: none; /* Verhindert, dass Benutzer die Größe des Felds ändern */
+  }
+
+    #chat-send {
+      width: 40px; /* Leicht größere Button-Größe für bessere Touch-Zielgröße */
+      height: 40px;
+      right: 5px;
+      bottom: 10px; /* Zusätzlicher Abstand zum Boden */
+    }
+  }
+
   #chat-container {
-    max-width: 600px; /* Größere maximale Breite für größere Bildschirme */
+    width: 100%; /* Vollständige Breite innerhalb des umschließenden Elements */
+    max-width: 800px; /* Maximalbreite für große Bildschirme */
+    height: 70vh; /* 70% der Ansichtshöhe */
+    margin: 20px auto; /* Zentriert den Container mit Abstand oben/unten */
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    overflow: hidden;
   }
-}
 
- #chat-input {
-  height: 50px; /* Höhe des Texteingabefelds fixieren */
-  resize: none; /* Verhindert, dass Benutzer die Größe des Felds ändern */
-}
+  /* Chat Messages Style */
+  #chat-messages {
+    flex-grow: 1; /* Erlaubt #chat-messages, den verfügbaren Platz zu füllen */
+    overflow-y: auto; /* Erlaubt Scrollen, wenn der Inhalt überläuft */
+    margin: 15px 0; /* Fügt oben und unten Abstand hinzu */
+  }
 
-  #chat-send {
-    width: 40px; /* Leicht größere Button-Größe für bessere Touch-Zielgröße */
+  #chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #C19A6B;
+    color: white;
+  }
+
+  .profile-pic {
+    width: 40px;
     height: 40px;
-    right: 5px;
-    bottom: 10px; /* Zusätzlicher Abstand zum Boden */
+    border-radius: 50%;
+    margin-right: 10px;
   }
-}
 
-#chat-container {
-  max-width: 400px; /* Breite des Chat-Fensters auf Desktop-Versionen anpassen */
-  margin: 0 auto;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  height: 600px; /* Höhe des Chat-Fensters fixieren */
-  overflow: hidden;
-}
-
-#chat-messages {
-  overflow-y: auto; /* Ermöglicht Scrollen innerhalb der Nachrichtenliste */
-  flex-grow: 1; /* Ermöglicht es #chat-messages, den verfügbaren Raum auszufüllen */
-  padding: 0 20px; /* Padding für Nachrichten, damit sie nicht am Rand kleben */
-}
-
-#chat-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px;
-  background-color: #C19A6B;
-  color: white;
-}
-
-.profile-pic {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-#chat-input:focus {
-  border-color: #C19A6B; /* Highlight the input when focused */
-}
-
-/* Added animations for chat messages */
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+  #chat-input:focus {
+    border-color: #C19A6B; /* Highlight the input when focused */
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  /* Added animations for chat messages */
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-}
 
-.chat-message {
-  max-width: calc(100% - 50px); /* Maximale Breite der Nachrichtenblasen */
-  word-wrap: break-word; /* Stellt sicher, dass lange Wörter umgebrochen werden */
-  animation: slideIn 0.3s ease-out; /* New message animation */
-}
+  .chat-message {
+    max-width: calc(100% - 50px); /* Maximale Breite der Nachrichtenblasen */
+    word-wrap: break-word; /* Stellt sicher, dass lange Wörter umgebrochen werden */
+    animation: slideIn 0.3s ease-out; /* New message animation */
+  }
 
-#chat-send:hover {
-  background-color: #a85d4b; /* Dunklere Schattierung für den Hover-Effekt */
-  cursor: pointer;
-}
+  #chat-send:hover {
+    background-color: #a85d4b; /* Dunklere Schattierung für den Hover-Effekt */
+    cursor: pointer;
+  }
 
-.chat-message.incoming {
-  justify-content: flex-start;
-  background-color: #f0f0f0;
-}
+  .chat-message.incoming {
+    justify-content: flex-start;
+    background-color: #f0f0f0;
+  }
 
-.chat-message.outgoing {
-  justify-content: flex-end;
-  background-color: #d1eaff;
-}
+  .chat-message.outgoing {
+    justify-content: flex-end;
+    background-color: #d1eaff;
+  }
 
-#chat-input-container {
-  margin-top: auto; /* Positioniert das Eingabefeld am unteren Rand des Chat-Fensters */
-}
+  /* Chat Input Container Style */
+  #chat-input-container {
+    display: flex;
+    border-top: 1px solid #eaeaea; /* Fügt eine Trennlinie hinzu */
+  }
 
-#chat-input {
-  width: calc(100% - 60px); /* Anpassung für Platz */
-  padding: 10px;
-  border: 1px solid #eaeaea;
-  border-radius: 8px;
-  margin-right: 10px;
-}
+  /* Chat Input Style */
+  #chat-input {
+    flex-grow: 1; /* Lässt das Eingabefeld den verfügbaren Platz ausfüllen */
+    padding: 10px;
+    border: none;
+    border-radius: 0; /* Entfernt die Rundung, da es in einem Container ist */
+    margin: 10px; /* Fügt innen im Container Abstand hinzu */
+  }
 
-#chat-send {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  background-color: #C19A6B;
-  border: none;
-  color: white;
-  cursor: pointer;
-  width: 30px;
-  height: 30px;
-}
+  /* Chat Send Button Style */
+  #chat-send {
+    background-color: #C19A6B;
+    color: white;
+    border: none;
+    border-radius: 0 8px 8px 0; /* Rundet nur die rechte obere und untere Ecke */
+    padding: 0 15px; /* Fügt links/rechts im Button Abstand hinzu */
+    cursor: pointer;
+  }
 
-/* Improved quick reply styles */
-.quick-replies {
-  display: flex;
-  justify-content: space-around;
-  padding: 10px;
-}
+  /* Improved quick reply styles */
+  .quick-replies {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+  }
 
-.quick-reply-button {
-  background-color: #C19A6B;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  padding: 5px 10px;
-  cursor: pointer;
-  margin: 0 5px;
-}
+  .quick-reply-button {
+    background-color: #C19A6B;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 0 5px;
+  }
 
-.quick-reply-button:hover {
-  background-color: #a85d4b;
-}
+  .quick-reply-button:hover {
+    background-color: #a85d4b;
+  }
 
-/* Added styles for the send icon for better scalability */
-.send-icon {
-  display: block;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  line-height: 30px; /* Align icon vertically */
-}
+  /* Added styles for the send icon for better scalability */
+  .send-icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 30px; /* Align icon vertically */
+  }
 </style>
-
 
 <!-- JavaScript, um die Nachrichten zu verwalten und mit dem Backend zu kommunizieren -->
 <script>
