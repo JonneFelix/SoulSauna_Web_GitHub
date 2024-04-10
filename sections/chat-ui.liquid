@@ -7,13 +7,10 @@
     <!-- Nachrichten werden hier über JavaScript eingefügt -->
   </div>
   <div id="chat-input-container">
-    <textarea id="chat-input" placeholder="Schreiben Sie eine Nachricht..." onkeypress="checkForEnter(event)"></textarea>
-    <button id="chat-send" onclick="sendMessage()">⇨</button>
+    <textarea id="chat-input" aria-label="Schreiben Sie eine Nachricht" placeholder="Schreiben Sie eine Nachricht..." onkeypress="checkForEnter(event)"></textarea>
+    <button id="chat-send" aria-label="Nachricht senden" onclick="sendMessage()">⇨</button>
   </div>
 </div>
-
-
-
 
 <!-- Styles für die Chat-UI -->
 <style>
@@ -24,46 +21,58 @@
   }
 
   #chat-input {
-    width: calc(100% - 30px); /* Anpassung für kleinere Geräte */
+    width: calc(100% - 45px); /* Anpassung für kleinere Geräte */
   }
 
   #chat-send {
-    width: 25px;
-    height: 25px;
+    width: 40px; /* Leicht größere Button-Größe für bessere Touch-Zielgröße */
+    height: 40px;
     right: 5px;
-    bottom: 5px;
+    bottom: 10px; /* Zusätzlicher Abstand zum Boden */
   }
 }
 
-  #chat-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Zentriert den Titel nicht mehr, sondern verteilt die Elemente */
-    padding: 15px;
-    background-color: #C19A6B;
-    color: white;
-  }
+#chat-container {
+  max-width: 800px; /* Anpassung an deine Breitenanforderungen */
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 
-  .profile-pic {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
+#chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: #C19A6B;
+  color: white;
+}
 
-  .chat-message {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    line-height: 1.4;
-    padding: 8px 12px;
-    border-radius: 20px;
-    background-color: #e8e8e8;
-    max-width: 80%;
-  }
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
 
-  #chat-send:hover {
-  background-color: darken(#C19A6B, 10%); /* Dunkler bei Hover */
+.chat-message {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  line-height: 1.4;
+  padding: 8px 12px;
+  border-radius: 20px;
+  background-color: #e8e8e8;
+  max-width: 80%;
+}
+
+#chat-send:hover {
+  background-color: #a85d4b; /* Dunklere Schattierung für den Hover-Effekt */
   cursor: pointer;
 }
 
@@ -77,30 +86,30 @@
   background-color: #d1eaff;
 }
 
-  #chat-input-container {
-    position: relative;
-    padding-top: 10px;
-  }
+#chat-input-container {
+  position: relative;
+  padding-top: 10px;
+}
 
-  #chat-input {
-    width: calc(100% - 50px);
-    padding: 10px;
-    border: 1px solid #eaeaea;
-    border-radius: 8px;
-    margin-right: 10px;
-  }
+#chat-input {
+  width: calc(100% - 60px); /* Anpassung für Platz */
+  padding: 10px;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  margin-right: 10px;
+}
 
-  #chat-send {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    background-color: #C19A6B;
-    border: none;
-    color: white;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-  }
+#chat-send {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  background-color: #C19A6B;
+  border: none;
+  color: white;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
 </style>
 
 
