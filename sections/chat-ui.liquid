@@ -178,6 +178,22 @@ function checkForEnter(event) {
   }
 }
 
+// Eventuell kannst du hier eine Logik hinzufügen, um "Schnelle Antworten" zu implementieren
+function addQuickReplies(options) {
+  const container = document.getElementById('chat-messages');
+  const repliesDiv = document.createElement('div');
+  repliesDiv.classList.add('quick-replies');
+
+  options.forEach(option => {
+    const button = document.createElement('button');
+    button.textContent = option.label;
+    button.onclick = function() { sendMessage(option.message); };
+    repliesDiv.appendChild(button);
+  });
+
+  container.appendChild(repliesDiv);
+}
+
 document.getElementById('chat-send').addEventListener('click', sendMessage);
 
 // Zeige eine Begrüßungsnachricht beim Laden der Seite an
