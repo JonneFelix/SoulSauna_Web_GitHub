@@ -142,7 +142,7 @@ function displayMessage(text, type, isTyping = false) {
   if (type === 'incoming') {
     // Füge das Profilbild nur zu eingehenden Nachrichten hinzu
     var profilePicUrl = document.getElementById('chat-container').getAttribute('data-profile-pic-url');
-    var imgTag = '<img src="' + profilePicUrl + '" class="profile-pic">';
+    var imgTag = '<img src="https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/finn-profile-pic.jpg?v=1712725211"' + profilePicUrl + '" class="profile-pic">';
     messageDiv.innerHTML = imgTag + text;
   } else {
     // Kein Profilbild für ausgehende Nachrichten
