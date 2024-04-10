@@ -1,14 +1,19 @@
 <!-- chat-ui.liquid -->
 <div id="chat-container" data-profile-pic-url="https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/Finn_robot.webp?v=1712743606">
+  <!-- Header improved with a better visual hierarchy -->
   <div id="chat-header">
+    <img src="https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/Finn_robot.webp?v=1712743606" class="profile-pic" alt="Chat with Finn">
     <span id="chat-title">Chat mit Finn</span>
   </div>
-  <div id="chat-messages">
+  <div id="chat-messages" role="log" aria-live="polite">
     <!-- Nachrichten werden hier über JavaScript eingefügt -->
   </div>
+  <!-- Input container improved for better usability -->
   <div id="chat-input-container">
     <textarea id="chat-input" aria-label="Schreiben Sie eine Nachricht" placeholder="Schreiben Sie eine Nachricht..." onkeypress="checkForEnter(event)"></textarea>
-    <button id="chat-send" aria-label="Nachricht senden" onclick="sendMessage()">⇨</button>
+    <button id="chat-send" aria-label="Nachricht senden" onclick="sendMessage()">
+      <span class="send-icon">⇨</span> <!-- Added span for better control over the icon -->
+    </button>
   </div>
 </div>
 
@@ -60,6 +65,22 @@
   margin-right: 10px;
 }
 
+#chat-input:focus {
+  border-color: #C19A6B; /* Highlight the input when focused */
+}
+
+/* Added animations for chat messages */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .chat-message {
   display: flex;
   align-items: center;
@@ -69,6 +90,7 @@
   border-radius: 20px;
   background-color: #e8e8e8;
   max-width: 80%;
+  animation: slideIn 0.3s ease-out; /* New message animation */
 }
 
 #chat-send:hover {
@@ -109,6 +131,36 @@
   cursor: pointer;
   width: 30px;
   height: 30px;
+}
+
+/* Improved quick reply styles */
+.quick-replies {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.quick-reply-button {
+  background-color: #C19A6B;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.quick-reply-button:hover {
+  background-color: #a85d4b;
+}
+
+/* Added styles for the send icon for better scalability */
+.send-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 30px; /* Align icon vertically */
 }
 </style>
 
@@ -161,6 +213,11 @@ function displayMessage(text, type) {
 function sendMessage() {
   var input = document.getElementById('chat-input');
   var message = input.value.trim();
+  var sendButton = document.getElementById('chat-send');
+
+  // Visual feedback for sending message
+  sendButton.disabled = true; // Disable send button to prevent multiple sends
+  sendButton.classList.add('sending');
   
   if (message) {
     displayMessage(message, 'outgoing');
@@ -181,8 +238,23 @@ function sendMessage() {
     .catch((error) => {
       console.error('Error:', error);
     });
+  }else {
+    // Re-enable send button if the message is empty
+    sendButton.disabled = false;
   }
 }
+
+// Additional JavaScript to handle animation end and re-enable send button
+document.getElementById('chat-send').addEventListener('animationend', function() {
+  this.classList.remove('sending');
+  this.disabled = false;
+});
+
+// onLoad, add a function to handle loading and error states
+window.onload = function() {
+  // Show loading state when waiting for a message
+  // Hide loading state and show message or error accordingly
+};
 
 // EventListener für das Senden bei Eingabe von Enter
 function checkForEnter(event) {
