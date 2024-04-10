@@ -95,65 +95,49 @@
 
 <!-- JavaScript, um die Nachrichten zu verwalten und mit dem Backend zu kommunizieren -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Starte mit einer Begrüßungsnachricht vom Chatbot
-  setTimeout(function() {
-    displayMessage("Hallo, ich bin Finn, der Saunaflüsterer. Wofür brauchst du eine Sauna und wie stellst du sie dir vor?", 'incoming');
-  }, 3000);
-});
-
-function typeMessage(text, type) {
+function typeMessage(fullText, type) {
   let index = 0;
+  let container = document.getElementById('chat-messages');
+  let messageDiv = document.createElement('div');
+  messageDiv.classList.add('chat-message', type);
+  container.appendChild(messageDiv);
+
   function typeStep() {
-    if (index < text.length) {
-      const char = text[index];
-      displayMessage(char, type, true);
+    if (index < fullText.length) {
+      messageDiv.innerHTML = fullText.substring(0, index + 1);
       index++;
       setTimeout(typeStep, 50);
-    } else {
-      // Am Ende der Nachricht wird isTyping auf false gesetzt
-      displayMessage(text, type, false);
     }
   }
+  
   typeStep();
 }
 
-function displayMessage(text, type, isTyping) {
+function displayMessage(text, type) {
   const messagesContainer = document.getElementById('chat-messages');
-  let messageDiv = messagesContainer.querySelector('.typing');
-
-  if (!isTyping && messageDiv) {
-    // Entferne die Klasse 'typing', da wir fertig sind
-    messageDiv.classList.remove('typing');
-    messageDiv.innerHTML = ''; // Lösche den Inhalt
-  } else if (!messageDiv) {
-    // Erstelle die Nachrichten-Div, wenn sie noch nicht existiert
-    messageDiv = document.createElement('div');
-    messageDiv.classList.add('chat-message', type);
-    messagesContainer.appendChild(messageDiv);
-  }
-
-  // Füge das Profilbild nur zu eingehenden Nachrichten hinzu
-  if (type === 'incoming' && !isTyping) {
+  const messageDiv = document.createElement('div');
+  messageDiv.classList.add('chat-message', type);
+  
+  if (type === 'incoming') {
     const profilePicUrl = document.getElementById('chat-container').getAttribute('data-profile-pic-url');
     messageDiv.innerHTML = `<img src="${profilePicUrl}" class="profile-pic">${text}`;
   } else {
-    messageDiv.innerHTML += text; // Füge den Text hinzu
+    messageDiv.textContent = text;
   }
 
-  if (!isTyping) {
-    messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll zum neuesten Nachrichteneintrag
-  }
+  messagesContainer.appendChild(messageDiv);
+  messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll zum neuesten Nachrichteneintrag
 }
 
 
 
+// sendMessage-Funktion, die Typewriter-Effekt für ausgehende Nachrichten verwendet
 function sendMessage() {
   var input = document.getElementById('chat-input');
   var message = input.value.trim();
   
   if (message) {
-    typeMessage(message, 'outgoing'); // Ändert, um Typewriter-Effekt auch für ausgehende Nachrichten zu nutzen
+    displayMessage(message, 'outgoing');
     input.value = ''; // Clear the input field
     
     fetch('/sendMessage', {
@@ -164,13 +148,17 @@ function sendMessage() {
       body: JSON.stringify({message: message}),
     })
     .then(response => response.json())
-    .then(data => typeMessage(data.answer, 'incoming')) // Nutzt typeMessage für eingehende Antworten
+    .then(data => {
+      // Nach Erhalt der Antwort, zeige diese mit Typewriter-Effekt an
+      typeMessage(data.answer, 'incoming');
+    })
     .catch((error) => {
       console.error('Error:', error);
     });
   }
 }
 
+// EventListener für das Senden bei Eingabe von Enter
 function checkForEnter(event) {
   if (event.keyCode === 13) {
     event.preventDefault(); // Verhindert einen Zeilenumbruch
@@ -179,4 +167,9 @@ function checkForEnter(event) {
 }
 
 document.getElementById('chat-send').addEventListener('click', sendMessage);
+
+// Zeige eine Begrüßungsnachricht beim Laden der Seite an
+setTimeout(function() {
+  typeMessage("Hallo, ich bin Finn, der Saunaflüsterer. Wofür brauchst du eine Sauna und wie stellst du sie dir vor?", 'incoming');
+}, 3000);
 </script>
