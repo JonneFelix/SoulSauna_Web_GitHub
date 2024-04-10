@@ -238,16 +238,14 @@ function typeMessage(fullText, type) {
 }
   
 function displayMessage(text, type) {
-  const messagesContainer = document.getElementById('chat-messages');
-  const messageDiv = document.createElement('div');
+  var messagesContainer = document.getElementById('chat-messages');
+  var messageDiv = document.createElement('div');
   messageDiv.classList.add('chat-message', type);
   
-  // Setze die Nachricht direkt in das Nachrichten-Div
-  messageDiv.innerHTML = type === 'incoming' ? 
-    `<img src="${document.getElementById('chat-container').getAttribute('data-profile-pic-url')}" class="profile-pic">${text}` : text;
+  messageDiv.innerHTML = text; // Stellt sicher, dass die Nachricht als Text hinzugefügt wird
 
-  messagesContainer.scrollTop = messagesContainer.scrollHeight; // Ändern zu:
-  messagesContainer.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  messagesContainer.appendChild(messageDiv);
+  messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scrollt zum neuesten Nachrichtenelement
 }
 
 
@@ -256,34 +254,14 @@ function displayMessage(text, type) {
 function sendMessage() {
   var input = document.getElementById('chat-input');
   var message = input.value.trim();
-  var sendButton = document.getElementById('chat-send');
-
-  // Visual feedback for sending message
-  sendButton.disabled = true; // Disable send button to prevent multiple sends
-  sendButton.classList.add('sending');
   
   if (message) {
     displayMessage(message, 'outgoing');
-    input.value = ''; // Clear the input field
+    input.value = ''; // Löscht das Eingabefeld
     
-    fetch('/sendMessage', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({message: message}),
-    })
-    .then(response => response.json())
-    .then(data => {
-      // Nach Erhalt der Antwort, zeige diese mit Typewriter-Effekt an
-      typeMessage(data.answer, 'incoming');
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-  }else {
-    // Re-enable send button if the message is empty
-    sendButton.disabled = false;
+    // Hier könnten Sie Ihre Logik zum Senden der Nachricht an Ihren Server hinzufügen
+    // Nachdem Sie eine Antwort vom Server erhalten haben:
+    displayMessage('Antwort vom Server', 'incoming'); // Beispielantwort
   }
 }
 
