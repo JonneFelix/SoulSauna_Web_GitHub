@@ -1,5 +1,5 @@
 <!-- chat-ui.liquid -->
-<div id="chat-container" data-profile-pic-url="assets/finn-profile-pic.jpg ">
+<div id="chat-container" data-profile-pic-url="https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/finn-profile-pic.jpg?v=1712725211">
   <div id="profile-pic-url" data-url="{{ 'finn-profile-pic.jpg' | asset_url }}" style="display:none;"></div>
   <div id="chat-header">
     <span id="chat-title">Chat mit Finn</span>
@@ -140,17 +140,17 @@ function displayMessage(text, type, isTyping = false) {
       messagesContainer.removeChild(lastMessage);
     }
     var messageDiv = document.createElement('div');
-    // Verwende das Datenattribut, um die URL zu erhalten
-    var profilePicUrl = document.getElementById('profile-pic-url').getAttribute('data-url');
-    var profilePicHtml = type === 'incoming' ? '<img src="' + profilePicUrl + '" class="profile-pic" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">' : '';
+    var profilePicHtml = type === 'incoming' ? '<img src="https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/finn-profile-pic.jpg?v=1712725211" class="profile-pic" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">' : '';
     messageDiv.innerHTML = profilePicHtml + text;
     messageDiv.classList.add('chat-message', type);
     if (isTyping) messageDiv.classList.add('typing');
     messagesContainer.appendChild(messageDiv);
   }
 
+  // Scroll to the latest message entry
   if (!isTyping) messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
+
 
 function sendMessage() {
   var input = document.getElementById('chat-input');
