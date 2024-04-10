@@ -121,40 +121,40 @@
 <!-- JavaScript, um die Nachrichten zu verwalten und mit dem Backend zu kommunizieren -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  // Starte mit einer Begrüßungsnachricht vom Chatbot
   setTimeout(function() {
-    typeMessage("Hallo, ich bin Finn, der Saunaflüsterer. Wofür brauchst du eine Sauna und wie stellst du sie dir vor?", 'incoming');
-  }, 3000); // Zeigt die Begrüßungsnachricht nach 3 Sekunden
+    displayMessage("Hallo, ich bin Finn, der Saunaflüsterer. Wofür brauchst du eine Sauna und wie stellst du sie dir vor?", 'incoming');
+  }, 3000);
 });
-
-function typeMessage(text, type, index = 0) {
-  if (index < text.length) {
-    displayMessage(text.substring(0, index + 1), type, true);
-    setTimeout(() => typeMessage(text, type, index + 1), 50);
-  }
-}
 
 function displayMessage(text, type, isTyping = false) {
   var messagesContainer = document.getElementById('chat-messages');
   var lastMessage = messagesContainer.lastElementChild;
-  
-  if (isTyping && lastMessage && lastMessage.classList.contains('typing')) {
-    lastMessage.textContent = text;
-  } else {
-    if (lastMessage && lastMessage.classList.contains('typing')) {
-      messagesContainer.removeChild(lastMessage);
-    }
-    var messageDiv = document.createElement('div');
-    var profilePicUrl = document.getElementById('chat-container').getAttribute('data-profile-pic-url');
-    var profilePicHtml = type === 'incoming' ? '<img src="' + profilePicUrl + '" class="profile-pic" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">' : '';
-    messageDiv.innerHTML = profilePicHtml + text;
-    messageDiv.classList.add('chat-message', type);
-    if (isTyping) messageDiv.classList.add('typing');
-    messagesContainer.appendChild(messageDiv);
+
+  // Entferne die vorherige "Schreib"-Nachricht, wenn sie vorhanden ist
+  if (lastMessage && lastMessage.classList.contains('typing')) {
+    messagesContainer.removeChild(lastMessage);
   }
 
-  // Scroll to the latest message entry
-  if (!isTyping) messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  var messageDiv = document.createElement('div');
+  messageDiv.classList.add('chat-message', type);
+
+  if (type === 'incoming') {
+    // Füge das Profilbild nur zu eingehenden Nachrichten hinzu
+    var profilePicUrl = document.getElementById('chat-container').getAttribute('data-profile-pic-url');
+    var imgTag = '<img src="' + profilePicUrl + '" class="profile-pic">';
+    messageDiv.innerHTML = imgTag + text;
+  } else {
+    // Kein Profilbild für ausgehende Nachrichten
+    messageDiv.textContent = text;
+  }
+
+  messagesContainer.appendChild(messageDiv);
+
+  // Scroll zum neuesten Nachrichteneintrag
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
+
 
 
 function sendMessage() {
