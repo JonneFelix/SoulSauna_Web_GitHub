@@ -19,15 +19,16 @@
 
 <!-- Styles für die Chat-UI -->
 <style>
-@media (max-width: 600px) {
+@media (min-width: 1025px) { /* Für große Bildschirme wie Desktops */
   #chat-container {
-    max-width: 100%;
-    padding: 15px;
+    max-width: 600px; /* Größere maximale Breite für größere Bildschirme */
   }
+}
 
-  #chat-input {
-    width: calc(100% - 45px); /* Anpassung für kleinere Geräte */
-  }
+ #chat-input {
+  height: 50px; /* Höhe des Texteingabefelds fixieren */
+  resize: none; /* Verhindert, dass Benutzer die Größe des Felds ändern */
+}
 
   #chat-send {
     width: 40px; /* Leicht größere Button-Größe für bessere Touch-Zielgröße */
@@ -38,7 +39,7 @@
 }
 
 #chat-container {
-  max-width: 800px; /* Anpassung an deine Breitenanforderungen */
+  max-width: 400px; /* Breite des Chat-Fensters auf Desktop-Versionen anpassen */
   margin: 0 auto;
   padding: 20px;
   border-radius: 8px;
@@ -46,7 +47,14 @@
   background-color: #fff;
   display: flex;
   flex-direction: column;
+  height: 600px; /* Höhe des Chat-Fensters fixieren */
   overflow: hidden;
+}
+
+#chat-messages {
+  overflow-y: auto; /* Ermöglicht Scrollen innerhalb der Nachrichtenliste */
+  flex-grow: 1; /* Ermöglicht es #chat-messages, den verfügbaren Raum auszufüllen */
+  padding: 0 20px; /* Padding für Nachrichten, damit sie nicht am Rand kleben */
 }
 
 #chat-header {
@@ -82,14 +90,8 @@
 }
 
 .chat-message {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-  line-height: 1.4;
-  padding: 8px 12px;
-  border-radius: 20px;
-  background-color: #e8e8e8;
-  max-width: 80%;
+  max-width: calc(100% - 50px); /* Maximale Breite der Nachrichtenblasen */
+  word-wrap: break-word; /* Stellt sicher, dass lange Wörter umgebrochen werden */
   animation: slideIn 0.3s ease-out; /* New message animation */
 }
 
@@ -109,8 +111,7 @@
 }
 
 #chat-input-container {
-  position: relative;
-  padding-top: 10px;
+  margin-top: auto; /* Positioniert das Eingabefeld am unteren Rand des Chat-Fensters */
 }
 
 #chat-input {
