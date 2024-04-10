@@ -139,7 +139,8 @@ function displayMessage(text, type, isTyping = false) {
       messagesContainer.removeChild(lastMessage);
     }
     var messageDiv = document.createElement('div');
-    var profilePicHtml = type === 'incoming' ? '<img src="https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/finn-profile-pic.jpg?v=1712725211" class="profile-pic" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">' : '';
+    var profilePicUrl = document.getElementById('chat-container').getAttribute('data-profile-pic-url');
+    var profilePicHtml = type === 'incoming' ? '<img src="' + profilePicUrl + '" class="profile-pic" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">' : '';
     messageDiv.innerHTML = profilePicHtml + text;
     messageDiv.classList.add('chat-message', type);
     if (isTyping) messageDiv.classList.add('typing');
