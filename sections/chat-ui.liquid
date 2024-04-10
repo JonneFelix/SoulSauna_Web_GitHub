@@ -140,7 +140,8 @@ function displayMessage(text, type, isTyping = false) {
       messagesContainer.removeChild(lastMessage);
     }
     var messageDiv = document.createElement('div');
-    var profilePicUrl = document.getElementById('chat-container').getAttribute('data-profile-pic-url');
+    // Verwende das Datenattribut, um die URL zu erhalten
+    var profilePicUrl = document.getElementById('profile-pic-url').getAttribute('data-url');
     var profilePicHtml = type === 'incoming' ? '<img src="' + profilePicUrl + '" class="profile-pic" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">' : '';
     messageDiv.innerHTML = profilePicHtml + text;
     messageDiv.classList.add('chat-message', type);
