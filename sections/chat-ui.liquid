@@ -43,7 +43,8 @@
          #chat-input-container {
           display: flex;
           border-top: 1px solid #C19A6B; /* Fügt eine deutliche Trennlinie oben am Eingabefeld hinzu */
-         padding: 0; /* Entfernt das Padding */
+          padding: 0; /* Entfernt das Padding */
+          position: relative;
          }
 
        /* Stil für das Eingabefeld */
@@ -62,21 +63,22 @@
 
 
                #chat-send {
-                 padding: 10px; /* Gleichmäßiges Padding für den Senden-Button */
-      background-color: #C19A6B;
-      color: white;
-      border: none;
-      border-radius: 4px; /* Rundet die Ecken des Buttons */
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-                 margin: 0;
-    position: absolute; /* Positioniert den Button absolut innerhalb des Containers */
-    right: 10px; /* Abstand zum rechten Rand */
-    top: 50%;
-    transform: translateY(-50%); /* Zentriert den Button vertikal */
-               }
+                  padding: 10px; /* Gleichmäßiges Padding für den Senden-Button */
+                  background-color: #C19A6B;
+                  color: white;
+                  border: none;
+                  border-radius: 4px; /* Rundet die Ecken des Buttons */
+                  cursor: pointer;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  margin: 0;
+                  position: absolute; /* Positioniert den Button absolut innerhalb des Containers */
+                  right: 10px; /* Abstand zum rechten Rand */
+                  top: 50%;
+                  transform: translateY(-50%); /* Zentriert den Button vertikal */
+                  bottom: 10px; /* Abstand zum unteren Rand, angepasst an die Höhe des Eingabefelds */
+            }
 
        /* Added styles for the send icon for better scalability */
              .send-icon {
