@@ -1,5 +1,5 @@
 <!-- chat-ui.liquid -->
-<div id="chat-container">
+<div id="chat-container" data-profile-pic-url="https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/finn-profile-pic.jpg?v=1712725211">
   <div id="chat-header">
     <span id="chat-title">Chat mit Finn</span>
   </div>
@@ -136,32 +136,48 @@ document.addEventListener('DOMContentLoaded', function() {
   }, 3000);
 });
 
-function displayMessage(text, type, isTyping = false) {
-  var messagesContainer = document.getElementById('chat-messages');
-  var lastMessage = messagesContainer.lastElementChild;
+function typeMessage(text, type) {
+  let index = 0;
+  function typeStep() {
+    if (index < text.length) {
+      const char = text[index];
+      displayMessage(char, type, true);
+      index++;
+      setTimeout(typeStep, 50);
+    } else {
+      // Am Ende der Nachricht wird isTyping auf false gesetzt
+      displayMessage(text, type, false);
+    }
+  }
+  typeStep();
+}
 
-  // Entferne die vorherige "Schreib"-Nachricht, wenn sie vorhanden ist
-  if (lastMessage && lastMessage.classList.contains('typing')) {
-    messagesContainer.removeChild(lastMessage);
+function displayMessage(text, type, isTyping) {
+  const messagesContainer = document.getElementById('chat-messages');
+  let messageDiv = messagesContainer.querySelector('.typing');
+
+  if (!isTyping && messageDiv) {
+    // Entferne die Klasse 'typing', da wir fertig sind
+    messageDiv.classList.remove('typing');
+    messageDiv.innerHTML = ''; // Lösche den Inhalt
+  } else if (!messageDiv) {
+    // Erstelle die Nachrichten-Div, wenn sie noch nicht existiert
+    messageDiv = document.createElement('div');
+    messageDiv.classList.add('chat-message', type);
+    messagesContainer.appendChild(messageDiv);
   }
 
-  var messageDiv = document.createElement('div');
-  messageDiv.classList.add('chat-message', type);
-
-  if (type === 'incoming') {
-    // Füge das Profilbild nur zu eingehenden Nachrichten hinzu
-    var profilePicUrl = document.getElementById('chat-container').getAttribute('data-profile-pic-url');
-    var imgTag = '<img src="https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/finn-profile-pic.jpg?v=1712725211"' + profilePicUrl + '" class="profile-pic">';
-    messageDiv.innerHTML = imgTag + text;
+  // Füge das Profilbild nur zu eingehenden Nachrichten hinzu
+  if (type === 'incoming' && !isTyping) {
+    const profilePicUrl = document.getElementById('chat-container').getAttribute('data-profile-pic-url');
+    messageDiv.innerHTML = `<img src="${profilePicUrl}" class="profile-pic">${text}`;
   } else {
-    // Kein Profilbild für ausgehende Nachrichten
-    messageDiv.textContent = text;
+    messageDiv.innerHTML += text; // Füge den Text hinzu
   }
 
-  messagesContainer.appendChild(messageDiv);
-
-  // Scroll zum neuesten Nachrichteneintrag
-  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  if (!isTyping) {
+    messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll zum neuesten Nachrichteneintrag
+  }
 }
 
 
