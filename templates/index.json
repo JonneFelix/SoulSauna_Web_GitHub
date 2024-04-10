@@ -13,7 +13,7 @@
         "text_zEhNQU": {
           "type": "text",
           "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text": "SOFORT professionelle Beratung herhalten und entspannen",
             "text_style": "body"
           }
         },
@@ -23,7 +23,7 @@
             "button_label_1": "",
             "button_link_1": "",
             "button_style_secondary_1": false,
-            "button_label_2": "Hier Chat!!",
+            "button_label_2": "KLICKEN SIE HIER",
             "button_link_2": "shopify:\/\/pages\/finn-der-saunaflusterer",
             "button_style_secondary_2": false
           }
