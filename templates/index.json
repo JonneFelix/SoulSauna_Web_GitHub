@@ -69,14 +69,14 @@
         "text_j6Hg7z": {
           "type": "text",
           "settings": {
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "text": "<p>Bei Soulsauna glauben wir, dass wahre Entspannung und Heilung von innen kommt. Unser Ziel ist es, diesen inneren Frieden durch das uralte Ritual der Sauna direkt zu Ihnen nach Hause zu bringen. Unsere Saunen sind mehr als nur eine Wellness-Lösung; sie sind ein Rückzugsort, wo Sie Abstand vom Alltagsstress gewinnen, Ihre Gesundheit pflegen und wertvolle Momente mit Ihren Liebsten teilen können. Jedes Modell wird mit höchster Handwerkskunst und einem tiefen Respekt für die traditionellen Saunabaukunst gefertigt. Dabei legen wir Wert auf nachhaltige Materialien, moderne Technologie und zeitloses Design, um Ihre persönliche Wohlfühloase zu schaffen.<\/p><p>Begleiten Sie uns auf einer Reise zu mehr Wohlbefinden, Vitalität und innerer Balance. Erfahren Sie auf unserer Detailseite mehr über unsere Philosophie, die Menschen hinter Soulsauna und die Geschichten, die jedes unserer Produkte einzigartig machen.<\/p>",
             "text_style": "body"
           }
         },
         "button_4bJqcN": {
           "type": "button",
           "settings": {
-            "button_label": "UNSERE MISSION",
+            "button_label": "Entdecken Sie unsere Geschichte",
             "button_link": "shopify:\/\/pages\/unsere-mission",
             "button_style_secondary": true
           }
