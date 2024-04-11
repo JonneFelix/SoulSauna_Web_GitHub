@@ -185,14 +185,19 @@
         flex-direction: row; /* Profilbild auf der linken Seite */
         background-color: white;
         color: #103948; /* Text */
+        justify-content: flex-end; /* Aligns the message to the right */
+
         }
 
   .chat-message.outgoing .profile-pic {
     margin-left: 10px; /* Space between profile picture and name */
+    margin-right: 0; /* Reset the right margin */
   }
 
   .chat-message.outgoing .sender-name {
-    font-weight: bold;
+    order: -1; /* This puts the sender name before the message bubble */
+    margin-right: 10px; /* Space before the message bubble */
+    margin-left: 0; /* Reset the left margin */
   }
 
         .sender-name {
