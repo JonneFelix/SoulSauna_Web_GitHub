@@ -6,14 +6,14 @@
         "heading_QAU4y4": {
           "type": "heading",
           "settings": {
-            "heading": "ENTLICH MAL ENTSPANNEN",
+            "heading": "Verwandeln Sie Ihr Zuhause in eine Oase der Entspannung",
             "heading_size": "h2"
           }
         },
         "text_zEhNQU": {
           "type": "text",
           "settings": {
-            "text": "SOFORT professionelle Beratung herhalten und entspannen",
+            "text": "Entdecken Sie, wie unsere Saunas Ihr Wohlbefinden steigern können",
             "text_style": "body"
           }
         },
@@ -23,7 +23,7 @@
             "button_label_1": "",
             "button_link_1": "",
             "button_style_secondary_1": false,
-            "button_label_2": "KLICKEN SIE HIER",
+            "button_label_2": "Finden Sie Ihre perfekte Sauna",
             "button_link_2": "shopify:\/\/pages\/finn-der-saunaflusterer",
             "button_style_secondary_2": false
           }
@@ -46,15 +46,6 @@
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": true,
         "show_text_below": true
-      }
-    },
-    "custom_liquid_4e88Kh": {
-      "type": "custom-liquid",
-      "settings": {
-        "custom_liquid": "",
-        "color_scheme": "",
-        "padding_top": 40,
-        "padding_bottom": 52
       }
     },
     "slideshow_NdRfYx": {
@@ -131,7 +122,6 @@
   },
   "order": [
     "image_banner_tnH3it",
-    "custom_liquid_4e88Kh",
     "slideshow_NdRfYx"
   ]
 }
