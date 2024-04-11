@@ -67,7 +67,8 @@
 
   /* Stil für den Senden-Button */
   #chat-send {
-    padding: 6px 12px; /* leicht reduziertes Padding */
+    width: 40px; /* Quadratische Größe */
+    height: 40px;
     background-color: #C19A6B;
     color: white;
     border: none;
@@ -75,9 +76,8 @@
     cursor: pointer;
     position: absolute;
     right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 50%; /* leichte Anpassung zur Höhe des Eingabefeldes */
+    bottom: 10px;
+    transform: translate(0, 0); /* Zentrierung nicht notwendig, da bottom verwendet wird */
     right: 20px; /* Setzt den Button etwas weiter nach rechts */
   }
 
