@@ -54,7 +54,7 @@
     #chat-input {
       height: 42px; /* Initial height */
       min-height: 42px; /* Minimum height */
-      max-height: 150px; /* Maximum height before scrolling */
+      max-height: 200px; /* Maximum height before scrolling */
       overflow-y: auto; /* Allows scrolling when content exceeds max height */
       flex-grow: 1;
       padding: 10px;
@@ -349,21 +349,26 @@ function addQuickReplies(options) {
   container.appendChild(repliesDiv);
 }
 
-// Adjust this function to handle input field growth
+// Adjust this function to handle input field growth and shrinkage
 function adjustInputHeight() {
   const input = document.getElementById('chat-input');
+  // Reset the height to minimum to allow for proper shrinkage
+  input.style.height = '42px'; // Set to your desired minimum height
   if (input.scrollHeight > input.clientHeight) {
     input.style.height = input.scrollHeight + 'px';
   }
 }
 
-// Call this function on input event of the textarea
+// Event listener for input event on the textarea
 document.getElementById('chat-input').addEventListener('input', adjustInputHeight);
+
+// Make sure this function is called after defining it to adjust the height on page load
+adjustInputHeight();
 
 document.getElementById('chat-send').addEventListener('click', sendMessage);
 
 // Zeige eine Begrüßungsnachricht beim Laden der Seite an
 setTimeout(function() {
   typeMessage("Hallo, ich bin Finn, der Saunaflüsterer. Wofür brauchst du eine Sauna und wie stellst du sie dir vor?", 'incoming');
-}, 3000);
+}, 1500);
 </script>
