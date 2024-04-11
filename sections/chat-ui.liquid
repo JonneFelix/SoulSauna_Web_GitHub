@@ -52,7 +52,10 @@
 
     /* Stil für das Eingabefeld */
     #chat-input {
-      height: 30px;
+      height: 42px; /* Initial height */
+      min-height: 42px; /* Minimum height */
+      max-height: 150px; /* Maximum height before scrolling */
+      overflow-y: auto; /* Allows scrolling when content exceeds max height */
       flex-grow: 1;
       padding: 10px;
       border: 1px solid #C19A6B;
