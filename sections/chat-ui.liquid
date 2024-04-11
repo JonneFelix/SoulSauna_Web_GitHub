@@ -42,12 +42,13 @@
   /* Stil für Eingabebereich */
   #chat-input-container {
     display: flex;
-    align-items: center;
     border-top: 1px solid #C19A6B;
     position: relative;
     padding-top: 15px; /* Erhöht den Abstand zwischen der Trennlinie und dem Eingabefeld */
     max-height: 200px; /* Begrenzt das Wachstum auf die Höhe von etwa 6-8 Zeilen */
     overflow: auto;
+    flex-direction: column; /* Stack the elements vertically */
+    align-items: flex-end; /* Align the send button to the right */
   }
 
   /* Stil für das Eingabefeld */
