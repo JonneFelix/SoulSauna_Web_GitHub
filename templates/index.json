@@ -36,16 +36,16 @@
       ],
       "settings": {
         "image": "shopify:\/\/shop_images\/DALL_E_2024-04-08_07.31.36_-_Imagine_a_luxurious_modern_sauna_designed_for_a_contemporary_home._This_landscape-oriented_image_features_a_spacious_elegantly_designed_sauna_with_l.webp",
-        "image_overlay_opacity": 30,
+        "image_overlay_opacity": 0,
         "image_height": "medium",
         "desktop_content_position": "middle-center",
-        "show_text_box": true,
+        "show_text_box": false,
         "desktop_content_alignment": "center",
         "color_scheme": "scheme-1",
         "image_behavior": "none",
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": true,
-        "show_text_below": true
+        "show_text_below": false
       }
     },
     "image_with_text_Fbeyyg": {
