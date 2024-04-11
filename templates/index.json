@@ -58,14 +58,6 @@
             "heading_size": "h1"
           }
         },
-        "caption_EbpjR7": {
-          "type": "caption",
-          "settings": {
-            "caption": "Add a tagline",
-            "text_style": "caption-with-letter-spacing",
-            "text_size": "medium"
-          }
-        },
         "text_j6Hg7z": {
           "type": "text",
           "settings": {
@@ -84,11 +76,11 @@
       },
       "block_order": [
         "heading_nTkbAr",
-        "caption_EbpjR7",
         "text_j6Hg7z",
         "button_4bJqcN"
       ],
       "settings": {
+        "image": "shopify:\/\/shop_images\/UNSERE_Misson.webp",
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "image_first",
