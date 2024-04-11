@@ -32,215 +32,223 @@
 
 <!-- Styles für die Chat-UI -->
 <style>
-        /* Stil des Nachrichtenbereichs */
-      #chat-messages {
-        flex-grow: 1;
-        overflow-y: auto;
-        margin: 15px 0;
-      }
+          /* Stil des Nachrichtenbereichs */
+        #chat-messages {
+          flex-grow: 1;
+          overflow-y: auto;
+          margin: 15px 0;
+        }
 
-      /* Stil für Eingabebereich */
-      #chat-input-container {
-        display: flex;
-        border-top: 1px solid #C19A6B;
-        position: relative;
-        padding-top: 15px; /* Erhöht den Abstand zwischen der Trennlinie und dem Eingabefeld */
-        max-height: 200px; /* Begrenzt das Wachstum auf die Höhe von etwa 6-8 Zeilen */
-        overflow: auto;
-        flex-direction: column; /* Stack the elements vertically */
-      }
-
-      /* Stil für das Eingabefeld */
-      #chat-input {
-        height: 42px; /* Initial height */
-        min-height: 42px; /* Minimum height */
-        max-height: 200px; /* Maximum height before scrolling */
-        overflow-y: auto; /* Allows scrolling when content exceeds max height */
-        flex-grow: 1;
-        padding: 10px;
-        border: 1px solid #C19A6B;
-        border-radius: 4px;
-        font-family: Arial, sans-serif;
-        font-size: 1.6rem;
-        box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-        resize: none;
-        padding-right: 50px; /* Add right padding to prevent text from overlapping the send button */
-      }
-
-      /* CSS for growing the input field vertically */
-    textarea#chat-input {
-      min-height: 42px; /* Minimum height */
-      max-height: 150px; /* Maximum height before scrolling */
-      overflow-y: auto; /* Allow scrolling when content exceeds max height */
-    }
-
-      /* Stil für den Senden-Button */
-      #chat-send {
-        width: 28px; /* Quadratische Größe */
-        height: 28px; /* Quadratische Größe */
-        background-color: #C19A6B;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        position: absolute;
-        right: 20px;
-        bottom: 7px;
-        transform: translate(0, 0); /* Zentrierung nicht notwendig, da bottom verwendet wird */
-        justify-content: center;
-        padding: 0; /* Remove padding to let the flexbox centering take effect */
-        display: flex;
-        align-items: center;
-      }
-
-        /* Added styles for the send icon for better scalability */
-        .send-icon {
+        /* Stil für Eingabebereich */
+        #chat-input-container {
           display: flex;
+          border-top: 1px solid #C19A6B;
+          position: relative;
+          padding-top: 15px; /* Erhöht den Abstand zwischen der Trennlinie und dem Eingabefeld */
+          max-height: 200px; /* Begrenzt das Wachstum auf die Höhe von etwa 6-8 Zeilen */
+          overflow: auto;
+          flex-direction: column; /* Stack the elements vertically */
+        }
+
+        /* Stil für das Eingabefeld */
+        #chat-input {
+          height: 42px; /* Initial height */
+          min-height: 42px; /* Minimum height */
+          max-height: 200px; /* Maximum height before scrolling */
+          overflow-y: auto; /* Allows scrolling when content exceeds max height */
+          flex-grow: 1;
+          padding: 10px;
+          border: 1px solid #C19A6B;
+          border-radius: 4px;
+          font-family: Arial, sans-serif;
+          font-size: 1.6rem;
+          box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+          resize: none;
+          padding-right: 50px; /* Add right padding to prevent text from overlapping the send button */
+        }
+
+        /* CSS for growing the input field vertically */
+      textarea#chat-input {
+        min-height: 42px; /* Minimum height */
+        max-height: 150px; /* Maximum height before scrolling */
+        overflow-y: auto; /* Allow scrolling when content exceeds max height */
+      }
+
+        /* Stil für den Senden-Button */
+        #chat-send {
+          width: 28px; /* Quadratische Größe */
+          height: 28px; /* Quadratische Größe */
+          background-color: #C19A6B;
+          color: white;
+          border: none;
+          border-radius: 50%;
+          cursor: pointer;
+          position: absolute;
+          right: 20px;
+          bottom: 7px;
+          transform: translate(0, 0); /* Zentrierung nicht notwendig, da bottom verwendet wird */
           justify-content: center;
+          padding: 0; /* Remove padding to let the flexbox centering take effect */
+          display: flex;
           align-items: center;
         }
 
-        #chat-container {
-        width: 100%; /* Vollständige Breite innerhalb des umschließenden Elements */
-        max-width: 1300px; /* Maximalbreite für größere Bildschirme anpassen */
-        height: 600px; /* Feste Höhe des Chat-Fensters */
-        margin: 20px auto; /* Zentriert den Container mit Abstand oben und unten */
-        display: flex;
-        flex-direction: column;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        background-color: #fff;
-        overflow: hidden;
-        min-height: 500px; /* Mindesthöhe für das Chat-Fenster */
-        max-height: 80vh; /* Maximalhöhe basierend auf dem Viewport */
-        padding: 20px; /* erhöhtes Padding für den gesamten Container */
-        border: 1px solid #C19A6B;
+          /* Added styles for the send icon for better scalability */
+          .send-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          #chat-container {
+          width: 100%; /* Vollständige Breite innerhalb des umschließenden Elements */
+          max-width: 1300px; /* Maximalbreite für größere Bildschirme anpassen */
+          height: 600px; /* Feste Höhe des Chat-Fensters */
+          margin: 20px auto; /* Zentriert den Container mit Abstand oben und unten */
+          display: flex;
+          flex-direction: column;
+          border-radius: 8px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          background-color: #fff;
+          overflow: hidden;
+          min-height: 500px; /* Mindesthöhe für das Chat-Fenster */
+          max-height: 80vh; /* Maximalhöhe basierend auf dem Viewport */
+          padding: 20px; /* erhöhtes Padding für den gesamten Container */
+          border: 1px solid #C19A6B;
+          }
+
+
+
+          /* Stil des Kopfbereichs */
+          #chat-header {
+          display: flex;
+          align-items: center;
+          padding: 15px;
+          background-color: #C19A6B;
+          color: white;
+          justify-content: flex-start; /* Ändert die Ausrichtung auf Anfang */
+          border-radius: 8px;
+          }
+
+        #chat-title {
+        flex-grow: 1;
+        text-align: left;
+        margin-left: 10px; /* Abstand zum Profilbild */
         }
 
+        /* Stil für das Profilbild */
+        .profile-pic {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px; /* Abstand zwischen Profilbild und Name */
+        }
 
+        #chat-input:focus {
+        outline: none; /* Removes the blue outline */
+        border: 2px solid #C19A6B; /* Adds a border color on focus for a visual cue */
+    }
+        /* Added animations for chat messages */
+        @keyframes slideIn {
+        from {
+        opacity: 0;
+        transform: translateY(10px);
+        }
+        to {
+        opacity: 1;
+        transform: translateY(0);
+        }
+        }
 
-        /* Stil des Kopfbereichs */
-        #chat-header {
+        .chat-message {
+        max-width: calc(100% - 50px); /* Maximale Breite der Nachrichtenblasen */
+        word-wrap: break-word; /* Stellt sicher, dass lange Wörter umgebrochen werden */
+        animation: slideIn 0.3s ease-out; /* New message animation */
         display: flex;
         align-items: center;
-        padding: 15px;
-        background-color: #C19A6B;
-        color: white;
-        justify-content: flex-start; /* Ändert die Ausrichtung auf Anfang */
-        border-radius: 8px;
+        margin-bottom: 10px; /* Abstand zwischen Nachrichten */
+        padding: 10px; /* Polsterung innerhalb der Nachrichtenblase */
+        border-radius: 8px; /* Abgerundete Ecken für Nachrichtenblasen */
         }
 
-      #chat-title {
-      flex-grow: 1;
-      text-align: left;
-      margin-left: 10px; /* Abstand zum Profilbild */
-      }
+        #chat-send:hover {
+        background-color: #a85d4b;
+        }
 
-      /* Stil für das Profilbild */
-      .profile-pic {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin-right: 10px; /* Abstand zwischen Profilbild und Name */
-      }
+        .chat-message.incoming {
+        flex-direction: row; /* Profilbild auf der linken Seite */
+        background-color: white;
+        color; #103948; /* Text */
+        }
 
-      #chat-input:focus {
-      outline: none; /* Removes the blue outline */
-      border: 2px solid #C19A6B; /* Adds a border color on focus for a visual cue */
+        .chat-message.outgoing {
+        flex-direction: row; /* Profilbild auf der linken Seite */
+        background-color: white;
+        color: #103948; /* Text */
+        }
+
+  .chat-message.outgoing .profile-pic {
+    margin-left: 10px; /* Space between profile picture and name */
   }
-      /* Added animations for chat messages */
-      @keyframes slideIn {
-      from {
-      opacity: 0;
-      transform: translateY(10px);
-      }
-      to {
-      opacity: 1;
-      transform: translateY(0);
-      }
-      }
 
-      .chat-message {
-      max-width: calc(100% - 50px); /* Maximale Breite der Nachrichtenblasen */
-      word-wrap: break-word; /* Stellt sicher, dass lange Wörter umgebrochen werden */
-      animation: slideIn 0.3s ease-out; /* New message animation */
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px; /* Abstand zwischen Nachrichten */
-      padding: 10px; /* Polsterung innerhalb der Nachrichtenblase */
-      border-radius: 8px; /* Abgerundete Ecken für Nachrichtenblasen */
-      }
+  .chat-message.outgoing .sender-name {
+    font-weight: bold;
+  }
 
-      #chat-send:hover {
-      background-color: #a85d4b;
-      }
-
-      .chat-message.incoming {
-      flex-direction: row; /* Profilbild auf der linken Seite */
-      background-color: white;
-      color; #103948; /* Text */
-      }
-
-      .chat-message.outgoing {
-      flex-direction: row; /* Profilbild auf der linken Seite */
-      background-color: white;
-      color: #103948; /* Text */
-      }
-
-      .sender-name {
-      margin-right: 10px; /* Abstand zwischen Name und Nachrichtentext */
-      font-weight: bold;
-      }
+        .sender-name {
+        margin-right: 10px; /* Abstand zwischen Name und Nachrichtentext */
+        font-weight: bold;
+        }
 
 
-      /* Stil für den Senden-Button */
-      #chat-send {
-      background-color: #C19A6B;
-      color: white;
-      border: none;
-      border-radius: 6px; /* Leichte Rundung der Ecken */
-      padding: 10px 15px;
-      cursor: pointer;
-      }
+        /* Stil für den Senden-Button */
+        #chat-send {
+        background-color: #C19A6B;
+        color: white;
+        border: none;
+        border-radius: 6px; /* Leichte Rundung der Ecken */
+        padding: 10px 15px;
+        cursor: pointer;
+        }
 
-      /* Improved quick reply styles */
-      .quick-replies {
-      display: flex;
-      justify-content: space-around;
-      padding: 10px;
-      }
+        /* Improved quick reply styles */
+        .quick-replies {
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+        }
 
-      .quick-reply-button {
-      background-color: #C19A6B;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      padding: 5px 10px;
-      cursor: pointer;
-      margin: 0 5px;
-      }
+        .quick-reply-button {
+        background-color: #C19A6B;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 5px 10px;
+        cursor: pointer;
+        margin: 0 5px;
+        }
 
-      .quick-reply-button:hover {
-      background-color: #a85d4b;
-      }
+        .quick-reply-button:hover {
+        background-color: #a85d4b;
+        }
 
 
-      @media (max-width: 600px) {
-      #chat-container {
-      /* Anpassungen für die Höhe auf kleineren Geräten */
-      max-height: 70vh;
-      }
-      }
+        @media (max-width: 600px) {
+        #chat-container {
+        /* Anpassungen für die Höhe auf kleineren Geräten */
+        max-height: 70vh;
+        }
+        }
 
-      /* Container für den Nachrichteninhalt, um Profilbild, Name und Text zu umfassen */
-      .message-content {
-      display: flex;
-      align-items: center;
-      }
+        /* Container für den Nachrichteninhalt, um Profilbild, Name und Text zu umfassen */
+        .message-content {
+        display: flex;
+        align-items: center;
+        }
 
-      .message-text {
-      flex-grow: 1; /* Lässt den Text den verfügbaren Raum ausfüllen */
-      }
+        .message-text {
+        flex-grow: 1; /* Lässt den Text den verfügbaren Raum ausfüllen */
+        }
 </style>
 
 <!-- JavaScript, um die Nachrichten zu verwalten und mit dem Backend zu kommunizieren -->
@@ -288,12 +296,19 @@ function displayMessage(text, type) {
       <span class="message-text">${text}</span>
     `;
   } else {
-    messageDiv.textContent = text;
+    // Add user profile picture and name for outgoing messages
+    const userPicUrl = "https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/User_1.png?v=1712841598"; // URL for user profile picture
+    messageDiv.innerHTML = `
+      <img src="${userPicUrl}" class="profile-pic">
+      <span class="sender-name">Du</span>
+      <span class="message-text">${text}</span>
+    `;
   }
 
   messagesContainer.appendChild(messageDiv);
-  messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scrollt zum neuesten Nachrichtenelement
+  messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to the newest message element
 }
+
 
 
 
