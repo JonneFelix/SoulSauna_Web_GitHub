@@ -33,53 +33,48 @@
 <!-- Styles für die Chat-UI -->
 <style>
     /* Stil des Nachrichtenbereichs */
-    #chat-messages {
-    flex-grow: 1; /* Erlaubt dem Nachrichtenbereich, den verfügbaren Platz zu füllen */
-    overflow-y: auto; /* Ermöglicht das Scrollen innerhalb des Nachrichtenbereichs */
-    margin: 15px 0; /* Abstand oben und unten im Nachrichtenbereich */
-    }
+  #chat-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin: 15px 0;
+  }
 
-    /* Stil für Eingabebereich */
-    #chat-input-container {
-      display: flex;
-      align-items: center; /* Zentriert die Elemente vertikal */
-      padding: 0 10px; /* Fügt links und rechts Padding hinzu */
-      border-top: 1px solid #C19A6B;
-      position: relative;
-      margin-right: -10px; /* Kompensiert das äußere Padding für die Ausrichtung des Senden-Buttons */
-      margin-top: 5px; /* Fügt oben im Container einen kleinen Abstand hinzu */
-      padding-top: 15px; /* Erhöht den Abstand zwischen der Trennlinie und dem Eingabefeld */
-    }
+  /* Stil für Eingabebereich */
+  #chat-input-container {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-top: 1px solid #C19A6B;
+    position: relative;
+    height: 60px; /* angepasste Höhe für Eingabebereich */
+  }
 
-    /* Stil für das Eingabefeld */
-    #chat-input {
-      flex-grow: 1;
-      padding: 10px;
-      margin: 0;
-      border: 1px solid #C19A6B;
-      border-radius: 4px; /* Volle Rundung auf allen Ecken, da der Button jetzt keinen Kontakt hat */
-      border-right: none;
-      font-family: Arial, sans-serif;
-      font-size: 1.6rem;
-      box-shadow: inset 0 0 5px rgba(0,0,0,0.2); /* Fügt einen inneren Schatten hinzu */
-      resize: none; /* Verhindert, dass Benutzer die Größe des Felds ändern */
-      height: 50px; /* Setzt eine feste Höhe für das Eingabefeld, passend zur Schriftgröße */
-      line-height: 50px; /* Zentriert den Text vertikal im Eingabefeld */
-    }
+  /* Stil für das Eingabefeld */
+  #chat-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #C19A6B;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 1.6rem;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    resize: none;
+    height: 100%; /* Höhe des Containers ausfüllen */
+  }
 
-    #chat-send {
-    padding: 10px 15px; /* Passt das Padding an */
+  /* Stil für den Senden-Button */
+  #chat-send {
+    padding: 6px 12px; /* leicht reduziertes Padding */
     background-color: #C19A6B;
     color: white;
     border: none;
-    border-radius: 0 4px 4px 0;
+    border-radius: 4px;
     cursor: pointer;
     position: absolute;
-    right: 10px; /* Passt die rechte Position an, um den Button weiter nach innen zu bringen */
-    top: 50%; /* Zentriert den Button vertikal */
-    transform: translateY(-50%); /* Stellt die vertikale Zentrierung ein */
-    height: 50px; /* Passt die Höhe des Buttons an die Höhe des Eingabefelds an */
-    line-height: 50px; /* Zentriert den Pfeil im Button vertikal */
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 80%; /* leichte Anpassung zur Höhe des Eingabefeldes */
   }
 
     /* Added styles for the send icon for better scalability */
@@ -102,7 +97,7 @@
     overflow: hidden;
     min-height: 500px; /* Mindesthöhe für das Chat-Fenster */
     max-height: 80vh; /* Maximalhöhe basierend auf dem Viewport */
-    padding: 20px; /* Erhöht das Padding oben und unten */
+    padding: 20px; /* erhöhtes Padding für den gesamten Container */
     }
 
 
