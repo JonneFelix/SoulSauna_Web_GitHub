@@ -241,32 +241,28 @@ function typeMessage(fullText, type) {
   messageDiv.classList.add('chat-message', type);
 
   // Füge das Profilbild nur zu eingehenden Nachrichten hinzu
-if (type === 'incoming') {
-  const profilePicUrl = document.getElementById('chat-container').getAttribute('data-profile-pic-url');
-  messageDiv.innerHTML = `
-    <div class="message-content">
+  if (type === 'incoming') {
+    const profilePicUrl = document.getElementById('chat-container').getAttribute('data-profile-pic-url');
+    messageDiv.innerHTML = `
       <img src="${profilePicUrl}" class="profile-pic">
       <span class="sender-name">Finn</span>
-      <div class="message-text">${fullText}</div>
-    </div>
-  `;
-}
+    `;
+    const textSpan = document.createElement('span');
+    textSpan.classList.add('message-text');
+    messageDiv.appendChild(textSpan);
+    container.appendChild(messageDiv);
 
-
-  container.appendChild(messageDiv);
-  const textSpan = document.createElement('span');
-  messageDiv.appendChild(textSpan);
-
-  function typeStep() {
-    if (index < fullText.length) {
-      textSpan.textContent += fullText[index];
-      index++;
-      setTimeout(typeStep, 20);
+    // Tippeffekt für die Nachricht
+    function typeStep() {
+      if (index < fullText.length) {
+        textSpan.textContent += fullText[index++];
+        setTimeout(typeStep, 20);
+      }
     }
+    typeStep();
   }
-  
-  typeStep();
 }
+
   
 function displayMessage(text, type) {
   var messagesContainer = document.getElementById('chat-messages');
@@ -275,11 +271,13 @@ function displayMessage(text, type) {
 
   if (type === 'incoming') {
     const profilePicUrl = document.getElementById('chat-container').getAttribute('data-profile-pic-url');
-    const profilePicImg = `<img src="${profilePicUrl}" class="profile-pic">`;
-    const nameSpan = `<span class="sender-name">Finn</span>`; // Name neben dem Bild
-    messageDiv.innerHTML = profilePicImg + nameSpan + text; // Fügt das Profilbild, den Namen und den Text hinzu
+    messageDiv.innerHTML = `
+      <img src="${profilePicUrl}" class="profile-pic">
+      <span class="sender-name">Finn</span>
+      <span class="message-text">${text}</span>
+    `;
   } else {
-    messageDiv.textContent = text; // Stellt sicher, dass die Nachricht als Text hinzugefügt wird für ausgehende Nachrichten
+    messageDiv.textContent = text;
   }
 
   messagesContainer.appendChild(messageDiv);
