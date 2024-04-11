@@ -98,20 +98,22 @@
     "multicolumn_WjcaDX": {
       "type": "multicolumn",
       "blocks": {
-        "column_BYcdiT": {
+        "column_aFfzBX": {
           "type": "column",
           "settings": {
-            "title": "<strong>Maximilian T.<\/strong>",
-            "text": "<p><em>\"Nach jedem Langstreckenlauf ist meine Soulsauna der Ort, wo ich wahre Erholung finde. Die tiefe Wärme hilft nicht nur meiner Muskulatur, schneller zu regenerieren, sondern ich schlafe auch wie ein Baby. Ich kann mir mein Training ohne die entspannenden Saunagänge danach nicht mehr vorstellen.\"<\/em><\/p>",
+            "image": "shopify:\/\/shop_images\/Hanna_Person_1.png",
+            "title": "<strong>Hannah S.<\/strong>",
+            "text": "<p><em>\"In meinem Job zählt jede Minute, und Stress ist mein ständiger Begleiter. Seit ich aber die Soulsauna in meinem Zuhause habe, kann ich in kürzester Zeit abschalten und neue Kraft sammeln. Es ist, als hätte ich ein kleines Spa nur für mich, das mir hilft, den Alltag hinter mir zu lassen und die Balance zu wahren.\"<\/em><\/p>",
             "link_label": "",
             "link": ""
           }
         },
-        "column_aFfzBX": {
+        "column_BYcdiT": {
           "type": "column",
           "settings": {
-            "title": "<strong>Hannah S.<\/strong>",
-            "text": "<p><em>\"In meinem Job zählt jede Minute, und Stress ist mein ständiger Begleiter. Seit ich aber die Soulsauna in meinem Zuhause habe, kann ich in kürzester Zeit abschalten und neue Kraft sammeln. Es ist, als hätte ich ein kleines Spa nur für mich, das mir hilft, den Alltag hinter mir zu lassen und die Balance zu wahren.\"<\/em><\/p>",
+            "image": "shopify:\/\/shop_images\/Hannes_person_3.png",
+            "title": "<strong>Maximilian T.<\/strong>",
+            "text": "<p><em>\"Nach jedem Langstreckenlauf ist meine Soulsauna der Ort, wo ich wahre Erholung finde. Die tiefe Wärme hilft nicht nur meiner Muskulatur, schneller zu regenerieren, sondern ich schlafe auch wie ein Baby. Ich kann mir mein Training ohne die entspannenden Saunagänge danach nicht mehr vorstellen.\"<\/em><\/p>",
             "link_label": "",
             "link": ""
           }
@@ -119,6 +121,7 @@
         "column_EXaae4": {
           "type": "column",
           "settings": {
+            "image": "shopify:\/\/shop_images\/Sophie_Person_2.png",
             "title": "<strong>Sophie W.<\/strong>",
             "text": "<p><em>\"Unsere Familienzeit ist heilig, und die Soulsauna hat sie noch wertvoller gemacht. Es ist unser gemeinsamer Rückzugsort, wo wir ohne Ablenkung durch Technik entspannen und gesunde Rituale pflegen können. Besonders schätzen wir das nachhaltige Design, das perfekt zu unserem ökologischen Lebensstil passt.\"<\/em><\/p>",
             "link_label": "",
@@ -127,14 +130,14 @@
         }
       },
       "block_order": [
-        "column_BYcdiT",
         "column_aFfzBX",
+        "column_BYcdiT",
         "column_EXaae4"
       ],
       "settings": {
-        "title": "Überschrift",
+        "title": "Fragen sie nicht uns, Fragen sie Sie",
         "heading_size": "h2",
-        "image_width": "full",
+        "image_width": "third",
         "image_ratio": "circle",
         "columns_desktop": 3,
         "column_alignment": "left",
