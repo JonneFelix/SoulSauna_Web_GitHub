@@ -48,6 +48,7 @@
       position: relative;
       margin-right: -10px; /* Kompensiert das äußere Padding für die Ausrichtung des Senden-Buttons */
       margin-top: 5px; /* Fügt oben im Container einen kleinen Abstand hinzu */
+      padding-top: 15px; /* Erhöht den Abstand zwischen der Trennlinie und dem Eingabefeld */
     }
 
     /* Stil für das Eingabefeld */
@@ -63,6 +64,7 @@
       box-shadow: inset 0 0 5px rgba(0,0,0,0.2); /* Fügt einen inneren Schatten hinzu */
       resize: none; /* Verhindert, dass Benutzer die Größe des Felds ändern */
       height: 50px; /* Setzt eine feste Höhe für das Eingabefeld, passend zur Schriftgröße */
+      line-height: 50px; /* Zentriert den Text vertikal im Eingabefeld */
     }
 
     #chat-send {
@@ -73,11 +75,11 @@
     border-radius: 0 4px 4px 0;
     cursor: pointer;
     position: absolute;
-    right: 25px; /* Setzt den Button etwas weiter nach rechts */
-    top: 50%;
-    transform: translateY(-50%); /* Zentriert den Button vertikal */
-    height: 50px; /* Stellt sicher, dass die Höhe des Senden-Buttons der des Eingabefelds entspricht */
-    line-height: 50px; /* Zentriert den Text im Button vertikal */
+    right: 10px; /* Passt die rechte Position an, um den Button weiter nach innen zu bringen */
+    top: 50%; /* Zentriert den Button vertikal */
+    transform: translateY(-50%); /* Stellt die vertikale Zentrierung ein */
+    height: 50px; /* Passt die Höhe des Buttons an die Höhe des Eingabefelds an */
+    line-height: 50px; /* Zentriert den Pfeil im Button vertikal */
   }
 
     /* Added styles for the send icon for better scalability */
@@ -100,7 +102,7 @@
     overflow: hidden;
     min-height: 500px; /* Mindesthöhe für das Chat-Fenster */
     max-height: 80vh; /* Maximalhöhe basierend auf dem Viewport */
-    padding: 10px; /* Fügt Padding auf allen Seiten hinzu */
+    padding: 20px; /* Erhöht das Padding oben und unten */
     }
 
 
