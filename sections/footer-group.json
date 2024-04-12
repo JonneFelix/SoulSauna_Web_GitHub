@@ -4,6 +4,34 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "link_list_YfgrGP": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Hilfe",
+            "menu": "footer"
+          }
+        },
+        "link_list_pybRTh": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Rechtliches",
+            "menu": "footer"
+          }
+        },
+        "text_CGQdab": {
+          "type": "text",
+          "settings": {
+            "heading": "Kontaktinformation",
+            "subtext": "<h6>E-Mail: kundenservice@soulsauna.de <\/h6><h6>Telefonnummer: +49 <\/h6>"
+          }
+        }
+      },
+      "block_order": [
+        "link_list_YfgrGP",
+        "link_list_pybRTh",
+        "text_CGQdab"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "newsletter_enable": false,
