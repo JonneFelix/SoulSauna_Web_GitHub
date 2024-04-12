@@ -5,32 +5,32 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "link_list_YfgrGP": {
-          "type": "link_list",
-          "settings": {
-            "heading": "Hilfe",
-            "menu": "footer"
-          }
-        },
-        "link_list_pybRTh": {
-          "type": "link_list",
-          "settings": {
-            "heading": "Rechtliches",
-            "menu": "footer"
-          }
-        },
         "text_CGQdab": {
           "type": "text",
           "settings": {
             "heading": "Kontaktinformation",
-            "subtext": "<h6>E-Mail: kundenservice@soulsauna.de <\/h6><h6>Telefonnummer: +49 <\/h6>"
+            "subtext": "<h6>E-Mail: <a href=\"mailto:kundenservice@soulsauna.de\" target=\"_blank\" title=\"mailto:kundenservice@soulsauna.de\">kundenservice@soulsauna.de<\/a> <\/h6><h6>Telefonnummer: +49 <\/h6>"
+          }
+        },
+        "text_3pWRAn": {
+          "type": "text",
+          "settings": {
+            "heading": "HILFE",
+            "subtext": "<h6><a href=\"\/pages\/finn-der-saunaflusterer\" target=\"_blank\" title=\"Finn der SaunaFlüsterer\">Beratung<\/a><\/h6><h6><a href=\"\/policies\/contact-information\" title=\"Contact Information\">Kontakt<\/a><\/h6><h6><a href=\"#\" target=\"_blank\" title=\"#\">FAQ <\/a><\/h6>"
+          }
+        },
+        "text_rzq8rq": {
+          "type": "text",
+          "settings": {
+            "heading": "RECHTLICHES",
+            "subtext": "<h6><a href=\"\/policies\/privacy-policy\" target=\"_blank\" title=\"Privacy Policy\">Datenschutzerklärung<\/a> <\/h6><h6><a href=\"\/policies\/terms-of-service\" target=\"_blank\" title=\"Terms of Service\">Allgemeine Geschäftsbedingungen<\/a><\/h6><h6><a href=\"\/policies\/refund-policy\" title=\"Refund Policy\">Wiederrufsrecht<\/a><\/h6><h6><a href=\"\/policies\/legal-notice\" target=\"_blank\" title=\"Legal Notice\">Impressum<\/a><\/h6>"
           }
         }
       },
       "block_order": [
-        "link_list_YfgrGP",
-        "link_list_pybRTh",
-        "text_CGQdab"
+        "text_CGQdab",
+        "text_3pWRAn",
+        "text_rzq8rq"
       ],
       "settings": {
         "color_scheme": "scheme-1",
