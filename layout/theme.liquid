@@ -407,32 +407,30 @@
     {% endif %}
 
     <script>
+      <script>
       document.addEventListener('DOMContentLoaded', function() {
-        var header = document.querySelector('.header-wrapper');
+        var header = document.querySelector('.section-header');
         var announcementBar = document.querySelector('.announcement-bar-section');
-        var logo = document.querySelector('.header__heading-logo'); // Replace with your actual logo image selector
+        // Stellen Sie sicher, dass Sie die korrekte Höhe hier einsetzen.
+        var announcementBarHeight = '36px';
 
-        // Ensure to get the computed style of the element to get actual height even after styles applied
-        var announcementBarHeight = window.getComputedStyle(announcementBar).height;
-
-        // Initial margin-top based on the announcement bar's height
+        // Setzen Sie den Startwert von margin-top basierend auf der Höhe der Ankündigungsleiste.
         header.style.marginTop = announcementBarHeight;
 
         function onScroll() {
-          if (window.scrollY > parseInt(announcementBarHeight)) {
-            header.classList.add('scrolled');
-            // Transition and margin-top adjusted dynamically
-            header.style.transition = 'margin-top 0.3s';
-            header.style.marginTop = '0'; // Removing top margin
+          // Wenn die Seite nach unten gescrollt wird, setzen Sie margin-top auf 0
+          if (window.scrollY > 0) {
+            header.style.marginTop = '0px';
           } else {
-            header.classList.remove('scrolled');
-            header.style.marginTop = announcementBarHeight; // Adding the top margin back
+            // Wenn die Seite oben ist, setzen Sie margin-top zurück auf die Höhe der Ankündigungsleiste
+            header.style.marginTop = announcementBarHeight;
           }
         }
 
-        // Add the event listener for scroll event
+        // Fügen Sie den Event-Listener für das Scroll-Event hinzu.
         window.addEventListener('scroll', onScroll);
       });
+      </script>
     </script>
   </body>
 </html>
