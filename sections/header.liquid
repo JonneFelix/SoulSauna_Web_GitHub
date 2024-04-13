@@ -699,10 +699,10 @@
 {% endschema %}
 
 
-  {% if request.page_type == 'index' %}
+{% if request.page_type == 'index' %}
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    var header = document.querySelector('.header'); // Stellen Sie sicher, dass .header Ihre Header-Klasse ist
+    var header = document.querySelector('.header'); // Referenz auf den Header
 
     function checkScroll() {
       if (window.scrollY > window.innerHeight) {
