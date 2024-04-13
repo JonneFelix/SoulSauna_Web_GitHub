@@ -414,13 +414,13 @@
 
           if (scrollPosition > 0) {
             // Benutzer hat gescrollt, sekundäres Logo und Hintergrundwechsel anzeigen
-            primaryLogo.style.display = 'none';
-            secondaryLogo.style.display = 'block';
+            primaryLogo.style.display = 'block';
+            secondaryLogo.style.display = 'none';
             header.classList.add('scrolled');
           } else {
             // Benutzer ist ganz oben, primäres Logo anzeigen
-            primaryLogo.style.display = 'block';
-            secondaryLogo.style.display = 'none';
+            primaryLogo.style.display = 'none';
+            secondaryLogo.style.display = 'block';
             header.classList.remove('scrolled');
           }
         }
