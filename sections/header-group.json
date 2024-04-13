@@ -2,30 +2,6 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
-    "announcement_bar_hknT7B": {
-      "type": "announcement-bar",
-      "blocks": {
-        "announcement_6zFin9": {
-          "type": "announcement",
-          "settings": {
-            "text": "Welcome to our store",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "announcement_6zFin9"
-      ],
-      "settings": {
-        "color_scheme": "scheme-1",
-        "show_line_separator": true,
-        "show_social": true,
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "enable_country_selector": false,
-        "enable_language_selector": false
-      }
-    },
     "header": {
       "type": "header",
       "settings": {
@@ -39,14 +15,13 @@
         "enable_country_selector": false,
         "enable_language_selector": false,
         "mobile_logo_position": "center",
-        "margin_bottom": 36,
+        "margin_bottom": 0,
         "padding_top": 4,
         "padding_bottom": 4
       }
     }
   },
   "order": [
-    "announcement_bar_hknT7B",
     "header"
   ]
 }
