@@ -410,27 +410,27 @@
       document.addEventListener('DOMContentLoaded', function() {
         var header = document.querySelector('.header-wrapper');
         var announcementBar = document.querySelector('.announcement-bar-section');
-        var logo = document.querySelector('.header__heading-logo'); // Replace with your actual logo image selector
+        var logo = document.querySelector('.header__heading-logo'); // Ersetzen Sie dies durch Ihren tatsächlichen Logo-Selektor
 
-        // Ensure to get the computed style of the element to get actual height even after styles applied
-        var announcementBarHeight = window.getComputedStyle(announcementBar).height;
+        // Stellen Sie sicher, dass Sie den berechneten Stil des Elements erhalten, um die tatsächliche Höhe auch nach angewendeten Stilen zu erhalten
+        var announcementBarHeight = '36px'; // Höhe auf 36px festgelegt
 
-        // Initial margin-top based on the announcement bar's height
+        // Initialer margin-top basierend auf der Höhe der Ankündigungsleiste
         header.style.marginTop = announcementBarHeight;
 
         function onScroll() {
           if (window.scrollY > parseInt(announcementBarHeight)) {
             header.classList.add('scrolled');
-            // Transition and margin-top adjusted dynamically
+            // Übergang und margin-top dynamisch angepasst
             header.style.transition = 'margin-top 0.3s';
-            header.style.marginTop = '0'; // Removing top margin
+            header.style.marginTop = '0'; // Oberen Rand entfernen
           } else {
             header.classList.remove('scrolled');
-            header.style.marginTop = announcementBarHeight; // Adding the top margin back
+            header.style.marginTop = announcementBarHeight; // Den oberen Rand wieder hinzufügen
           }
         }
 
-        // Add the event listener for scroll event
+        // Fügen Sie den Event-Listener für das Scroll-Ereignis hinzu
         window.addEventListener('scroll', onScroll);
       });
     </script>
