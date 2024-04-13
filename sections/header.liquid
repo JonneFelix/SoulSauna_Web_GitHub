@@ -550,6 +550,36 @@ document.addEventListener('DOMContentLoaded', function() {
   </script>
 {%- endif -%}
 
+<script>
+    // Function to handle scroll event
+    function handleScroll() {
+      // Get the current scroll position
+      var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
+      // Example threshold for changing the logo display
+      var threshold = 200;
+
+      // Get logo elements
+      var logo1 = document.querySelector('.logo-1');
+      var logo2 = document.querySelector('.logo-2');
+
+      // Check if the scroll position has reached the threshold
+      if (scrollPosition > threshold) {
+        // Hide logo-1 and display logo-2
+        logo1.style.display = 'none';
+        logo2.style.display = 'block';
+      } else {
+        // Show logo-1 and hide logo-2
+        logo1.style.display = 'block';
+        logo2.style.display = 'none';
+      }
+    }
+
+    // Add scroll event listener to window
+    window.addEventListener('scroll', handleScroll);
+  </script>
+  
+
 {% schema %}
 {
   "name": "t:sections.header.name",
