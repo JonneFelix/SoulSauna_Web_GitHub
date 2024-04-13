@@ -702,8 +702,11 @@
 {% if request.page_type == 'index' %}
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-  var header = document.querySelector('.header'); // Ihr Header-Element
-  var nextSection = document.querySelector('.banner__content banner__content--middle-center page-width scroll-trigger animate--slide-in'); // Das Element direkt unter Ihrem Header
+  var header = document.querySelector('.header');
+  var nextSection = document.querySelector('.banner__content'); // Stellen Sie sicher, dass dies die erste Instanz dieser Klasse nach dem Header ist.
+
+  // ... (Rest des Codes wie oben)
+});
 
   // Funktion zum Anpassen des oberen Paddings des nächsten Abschnitts an die Höhe des Headers
   function adjustNextSectionPadding() {
