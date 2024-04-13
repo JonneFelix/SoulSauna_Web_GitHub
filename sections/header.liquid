@@ -704,23 +704,21 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
   var header = document.querySelector('.header');
-
-  // Setzen Sie den Hintergrund initial auf transparent
-  header.style.backgroundColor = 'transparent';
+  // Initialen Hintergrund auf Weiß setzen
+  header.style.backgroundColor = '#fff'; 
 
   function checkScroll() {
     if (window.scrollY > window.innerHeight) {
       // Wenn gescrollt wird und das Bild nicht mehr sichtbar ist
-      header.style.backgroundColor = '#fff'; // Weißer Hintergrund
-      header.style.backgroundImage = 'none'; // Kein Bild
+      header.classList.add('header-background');
     } else {
       // Wenn wieder nach oben gescrollt wird
-      header.style.backgroundColor = 'transparent'; // Transparenter Hintergrund
-      header.style.backgroundImage = ''; // Hier könnte das Bild zurückgesetzt werden
+      header.classList.remove('header-background');
     }
   }
 
   window.addEventListener('scroll', checkScroll);
 });
+
 </script>
 {% endif %}
