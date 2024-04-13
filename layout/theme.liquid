@@ -280,6 +280,35 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+
+    {% if template == 'index' %}
+      <style>
+        /* Bestehender Stil für den Header */
+        .header-wrapper {
+          position: absolute;
+          width: 100%;
+          background: transparent;
+        }
+        .header-wrapper .header {
+          margin-top: 20px;
+        }
+        /* Neuer Stil für den Menüpunkt-Hintergrund */
+        .header__inline-menu .header__menu-item {
+          background-color: #ffffff; /* Weißer Hintergrund */
+          padding: 5px 10px; /* Innerer Abstand */
+          border-radius: 10px; /* Abgerundete Ecken */
+          margin: 0 5px; /* Außenabstand */
+        }
+        .header__inline-menu .header__menu-item:not(:last-child) {
+          margin-right: 10px; /* Zusätzlicher rechter Abstand */
+        }
+        /* Neuer Stil für den Header nach dem Scrollen */
+        .header-wrapper.scrolled {
+          background-color: #fff; /* Weißer Hintergrund nach dem Scrollen */
+          transition: background-color 0.3s; /* Weiche Übergänge */
+        }
+      </style>
+    {% endif %}
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
