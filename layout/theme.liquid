@@ -362,12 +362,12 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
           var header = document.querySelector('.header');
-          var nextSection = document.querySelector('.banner__content'); // Stelle sicher, dass diese Klasse die richtige ist für die nächste Sektion
+          var nextSection = document.getElementById('MainContent'); // Zugriff auf den Hauptinhalt direkt nach dem Header
 
           function adjustNextSectionPadding() {
               if (nextSection) {
-                  var headerHeight = header.offsetHeight;
-                  nextSection.style.paddingTop = headerHeight + 'px';
+                  var headerHeight = header.offsetHeight; // Hole die aktuelle Höhe des Headers
+                  nextSection.style.paddingTop = headerHeight + 'px'; // Setze das obere Padding des Hauptinhalts
               }
           }
 
@@ -379,7 +379,7 @@
               }
           }
 
-          // Stelle sicher, dass der Header und die nächste Sektion geladen sind, bevor das Padding angepasst wird
+          // Event Listeners, um die Funktionen beim Laden, Scrollen und bei Größenänderungen auszuführen
           if (header && nextSection) {
               adjustNextSectionPadding();
               window.addEventListener('resize', adjustNextSectionPadding);
