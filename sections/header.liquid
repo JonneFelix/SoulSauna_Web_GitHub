@@ -97,6 +97,8 @@
 {%- style -%}
   .header {
     padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem;
+    background-color: transparent; /* Oder jede andere gewünschte Farbe für den Anfangszustand */
+    transition: background-color 0.3s, background-image 0.3s; /* Hinzufügen eines Übergangs, falls gewünscht */
   }
 
   .section-header {
