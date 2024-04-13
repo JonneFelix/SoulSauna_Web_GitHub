@@ -702,19 +702,19 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
   var header = document.querySelector('.header');
-  var headerTransparentClass = 'header-transparent';
-  var headerScrolledClass = 'header-scrolled';
 
-  // Stellen Sie sicher, dass der Header anfangs transparent ist.
-  header.classList.add(headerTransparentClass);
+  // Setzen Sie den Hintergrund initial auf transparent
+  header.style.backgroundColor = 'transparent';
 
   function checkScroll() {
     if (window.scrollY > window.innerHeight) {
-      header.classList.add(headerScrolledClass);
-      header.classList.remove(headerTransparentClass);
+      // Wenn gescrollt wird und das Bild nicht mehr sichtbar ist
+      header.style.backgroundColor = '#fff'; // Weißer Hintergrund
+      header.style.backgroundImage = 'none'; // Kein Bild
     } else {
-      header.classList.remove(headerScrolledClass);
-      header.classList.add(headerTransparentClass);
+      // Wenn wieder nach oben gescrollt wird
+      header.style.backgroundColor = 'transparent'; // Transparenter Hintergrund
+      header.style.backgroundImage = ''; // Hier könnte das Bild zurückgesetzt werden
     }
   }
 
