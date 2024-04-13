@@ -309,7 +309,6 @@
                     transition: background-color 0.3s; /* Weiche Übergänge */
                   }
 
-
       .announcement-bar-section {
         display: block; /* or whatever the default display should be */
         background-color: #fff; /* Add this line if it's not already present */
@@ -402,35 +401,6 @@
       </style>
     {% endif %}
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var primaryLogo = document.querySelector('.header__heading-logo-wrapper');
-        var secondaryLogo = document.querySelector('.header__heading-logo-wrapper-logo-2');
-        var header = document.querySelector('.header-wrapper');
-
-        // Diese Funktion wird aufgerufen, wenn der Benutzer scrollt
-        function handleScroll() {
-          var scrollPosition = window.scrollY;
-
-          if (scrollPosition > 0) {
-            // Benutzer hat gescrollt, sekundäres Logo und Hintergrundwechsel anzeigen
-            primaryLogo.style.display = 'block';
-            secondaryLogo.style.display = 'none';
-            header.classList.add('scrolled');
-          } else {
-            // Benutzer ist ganz oben, primäres Logo anzeigen
-            primaryLogo.style.display = 'none';
-            secondaryLogo.style.display = 'block';
-            header.classList.remove('scrolled');
-          }
-        }
-
-        // Fügen Sie der Seite einen Event Listener für das Scrollen hinzu
-        window.addEventListener('scroll', handleScroll);
-
-        // Rufen Sie die Funktion einmal beim Laden auf, falls die Seite mit einem Scrollwert geladen wird
-        handleScroll();
-      });
-    </script>
+    <script></script>
   </body>
 </html>
