@@ -410,22 +410,25 @@
     {% endif %}
 
     <script>
-            document.addEventListener('DOMContentLoaded', function() {
-          var header = document.querySelector('.header-wrapper');
-          var logo = document.querySelector('.header-logo-image-selector'); // replace with your actual logo image selector
-          var originalLogoSrc = logo.src;
-          var scrolledLogoSrc = 'https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/SoulSauna-Black-1200x600.png?v=1713005774'; // replace with the path to your alternate logo image
+      document.addEventListener('DOMContentLoaded', function() {
+        var header = document.querySelector('.header-wrapper');
+        var announcementBar = document.querySelector('.announcement-bar-section'); // ensure this is your announcement bar selector
+        var logo = document.querySelector('.header-logo-image-selector'); // replace with your actual logo image selector
+        var originalLogoSrc = logo.src;
+        var scrolledLogoSrc = 'path-to-your-alternate-logo'; // replace with the path to your alternate logo image
 
-          function onScroll() {
-              if (window.scrollY > 5) {
-                  header.classList.add('scrolled');
-                  logo.src = scrolledLogoSrc;
-              } else {
-                  header.classList.remove('scrolled');
-                  logo.src = originalLogoSrc;
-              }
-          }
-          window.addEventListener('scroll', onScroll);
+        function onScroll() {
+            if (window.scrollY > 5) {
+                header.classList.add('scrolled');
+                announcementBar.style.display = 'none'; // hide announcement bar
+                logo.src = scrolledLogoSrc;
+            } else {
+                header.classList.remove('scrolled');
+                announcementBar.style.display = 'block'; // show announcement bar
+                logo.src = originalLogoSrc;
+            }
+        }
+        window.addEventListener('scroll', onScroll);
       });
     </script>
   </body>
