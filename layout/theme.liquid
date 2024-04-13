@@ -406,6 +406,7 @@
         var primaryLogo = document.querySelector('.header__heading-logo-wrapper');
         var secondaryLogo = document.querySelector('.header__heading-logo-wrapper-logo-2');
         var header = document.querySelector('.header-wrapper');
+        var announcementBarHeight = '36px'; // Stellen Sie sicher, dass dies Ihrer tatsächlichen Ankündigungsleistenhöhe entspricht.
 
         // Diese Funktion wird aufgerufen, wenn der Benutzer scrollt
         function handleScroll() {
@@ -415,11 +416,13 @@
             // Benutzer hat gescrollt, sekundäres Logo und Hintergrundwechsel anzeigen
             primaryLogo.style.display = 'block';
             secondaryLogo.style.display = 'none';
+            header.style.marginTop = '0px'; // Schließen der Lücke
             header.classList.add('scrolled');
           } else {
             // Benutzer ist ganz oben, primäres Logo anzeigen
             primaryLogo.style.display = 'none';
             secondaryLogo.style.display = 'block';
+            header.style.marginTop = announcementBarHeight; // Lücke entsprechend der Ankündigungsleiste einstellen
             header.classList.remove('scrolled');
           }
         }
