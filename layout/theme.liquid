@@ -410,27 +410,27 @@
       document.addEventListener('DOMContentLoaded', function() {
         var header = document.querySelector('.header-wrapper');
         var announcementBar = document.querySelector('.announcement-bar-section');
-        var logo = document.querySelector('.header__heading-logo'); // Stellen Sie sicher, dass dieser Selektor korrekt ist
-        var originalLogoSrc = logo.src;
-        var scrolledLogoSrc = 'https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/SoulSauna-Black-1200x600.png?v=1713005774'; // Stellen Sie sicher, dass dieser Pfad korrekt ist
+        var logo = document.querySelector('.header__heading-logo'); // Replace with your actual logo image selector
+
+        // Ensure to get the computed style of the element to get actual height even after styles applied
+        var announcementBarHeight = window.getComputedStyle(announcementBar).height;
+
+        // Initial margin-top based on the announcement bar's height
+        header.style.marginTop = announcementBarHeight;
 
         function onScroll() {
-          if (window.scrollY > announcementBar.offsetHeight) { // Prüfen Sie, ob gescrollt wurde
+          if (window.scrollY > parseInt(announcementBarHeight)) {
             header.classList.add('scrolled');
-            logo.src = scrolledLogoSrc;
-            header.style.transition = 'margin-top 0.3s'; // Glatter Übergang
-            header.style.marginTop = '0'; // Entfernen des oberen Abstands
+            // Transition and margin-top adjusted dynamically
+            header.style.transition = 'margin-top 0.3s';
+            header.style.marginTop = '0'; // Removing top margin
           } else {
             header.classList.remove('scrolled');
-            logo.src = originalLogoSrc;
-            header.style.marginTop = announcementBar.offsetHeight + 'px'; // Fügen Sie den Abstand wieder hinzu
+            header.style.marginTop = announcementBarHeight; // Adding the top margin back
           }
         }
 
-        // Set initial margin-top based on the announcement bar's height
-        header.style.marginTop = announcementBar.offsetHeight + 'px';
-
-        // Add the event listener
+        // Add the event listener for scroll event
         window.addEventListener('scroll', onScroll);
       });
     </script>
