@@ -11,10 +11,26 @@
             "text": "Welcome to our store",
             "link": ""
           }
+        },
+        "announcement_bAPke7": {
+          "type": "announcement",
+          "settings": {
+            "text": "JETZT 20% auf ALLE Outdoor SAUNAS",
+            "link": "shopify:\/\/collections\/all"
+          }
+        },
+        "announcement_yQHjRj": {
+          "type": "announcement",
+          "settings": {
+            "text": "Welcome to our store",
+            "link": ""
+          }
         }
       },
       "block_order": [
-        "announcement_g77CRW"
+        "announcement_g77CRW",
+        "announcement_bAPke7",
+        "announcement_yQHjRj"
       ],
       "settings": {
         "color_scheme": "scheme-1",
