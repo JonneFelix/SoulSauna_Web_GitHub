@@ -19,18 +19,18 @@
             "link": "shopify:\/\/collections\/all"
           }
         },
-        "announcement_yQHjRj": {
+        "announcement_ajrPFp": {
           "type": "announcement",
           "settings": {
-            "text": "Welcome to our store",
-            "link": ""
+            "text": "JETZT ihr Traum SAUNA finden",
+            "link": "shopify:\/\/pages\/finn-der-saunaflusterer"
           }
         }
       },
       "block_order": [
         "announcement_g77CRW",
         "announcement_bAPke7",
-        "announcement_yQHjRj"
+        "announcement_ajrPFp"
       ],
       "settings": {
         "color_scheme": "scheme-1",
