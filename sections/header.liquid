@@ -46,13 +46,12 @@
 {%- endif -%}
 
 {% if request.page_type == 'index' %}
-  .header-transparent {
-    background-color: transparent;
-    transition: background-color 0.3s;
-  }
-  .header-scrolled {
-    background-color: #fff; /* Oder jede andere gewünschte Farbe */
-  }
+.header-background {
+  background-image: url('IHRE-BILD-URL'); /* Pfad zum Bild einfügen */
+  background-size: cover;
+  background-position: center;
+  transition: background-color 0.3s, background-image 0.3s; /* Hinzufügen eines Übergangs, falls gewünscht */
+}
 {% endif %}
 
   .menu-drawer-container {
