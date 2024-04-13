@@ -408,44 +408,14 @@
 
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        var header = document.querySelector('.header-wrapper');
-        var announcementBar = document.querySelector('.announcement-bar-section');
-        var logo = document.querySelector('.header__heading-logo'); // Replace with your actual logo image selector
-
-        // Ensure to get the computed style of the element to get actual height even after styles applied
-        var announcementBarHeight = window.getComputedStyle(announcementBar).height;
-
-        // Initial margin-top based on the announcement bar's height
-        header.style.marginTop = announcementBarHeight;
-
-        function onScroll() {
-          if (window.scrollY > parseInt(announcementBarHeight)) {
-            header.classList.add('scrolled');
-            // Transition and margin-top adjusted dynamically
-            header.style.transition = 'margin-top 0.3s';
-            header.style.marginTop = '0'; // Removing top margin
-          } else {
-            header.classList.remove('scrolled');
-            header.style.marginTop = announcementBarHeight; // Adding the top margin back
-          }
-        }
-
-        // Add the event listener for scroll event
-        window.addEventListener('scroll', onScroll);
-      });
-    </script>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // Versuchen Sie den Klassennamen, der nur für das Logo-Image spezifisch ist.
-        var logoImage = document.querySelector('.header__heading-logo');
+        // Wählen Sie das Bild-Tag des Logos mit dem spezifischen Klassennamen
+        var logoImage = document.querySelector('.header__heading-logo-wrapper img'); // Adjusted selector
 
         // Prüfen Sie, ob Sie sich auf der Startseite befinden und das Logo-Image-Tag gefunden wurde.
         if (window.location.pathname === '/' && logoImage) {
           // URL des alternativen Logos, das auf der Startseite angezeigt werden soll.
           var alternativeLogo = 'https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/SoulSauna-Weiss-1200x600-RB.png?v=1713022451';
-          // Zugriff auf das <img>-Element innerhalb des Divs
-          logoImage.querySelector('img').src = alternativeLogo;
+          logoImage.src = alternativeLogo; // Ändern Sie die Quelle des Logobildes
         }
       });
     </script>
