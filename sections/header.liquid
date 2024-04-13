@@ -701,17 +701,24 @@
 {% if request.page_type == 'index' %}
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    var header = document.querySelector('.header'); // Referenz auf den Header
+  var header = document.querySelector('.header');
+  var headerTransparentClass = 'header-transparent';
+  var headerScrolledClass = 'header-scrolled';
 
-    function checkScroll() {
-      if (window.scrollY > window.innerHeight) {
-        header.classList.add('header-background');
-      } else {
-        header.classList.remove('header-background');
-      }
+  // Stellen Sie sicher, dass der Header anfangs transparent ist.
+  header.classList.add(headerTransparentClass);
+
+  function checkScroll() {
+    if (window.scrollY > window.innerHeight) {
+      header.classList.add(headerScrolledClass);
+      header.classList.remove(headerTransparentClass);
+    } else {
+      header.classList.remove(headerScrolledClass);
+      header.classList.add(headerTransparentClass);
     }
+  }
 
-    window.addEventListener('scroll', checkScroll);
-  });
+  window.addEventListener('scroll', checkScroll);
+});
 </script>
 {% endif %}
