@@ -701,38 +701,32 @@
 
 {% if request.page_type == 'index' %}
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  window.addEventListener('load', function() {
   var header = document.querySelector('.header');
-  var nextSection = document.querySelector('.banner__content'); // Stellen Sie sicher, dass dies die erste Instanz dieser Klasse nach dem Header ist.
+  // Die Klasse des nächsten Abschnitts nach dem Header, um das Padding zu bestimmen
+  var nextSection = document.querySelector('.banner__content');
+
+  // Überprüfen Sie, ob nextSection existiert, bevor Sie weitermachen
+  if (nextSection) {
+    var headerHeight = header.offsetHeight;
+    nextSection.style.paddingTop = headerHeight + 'px';
+
+    // Event-Listener für Scroll-Events
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 5) { // oder jede andere Zahl, die Sie für das "Scroll-Past" Kriterium verwenden möchten
+        header.classList.add('white-background');
+      } else {
+        header.classList.remove('white-background');
+      }
+    });
+  } else {
+    console.error('Next section not found.');
+  }
 });
 
-  // Funktion zum Anpassen des oberen Paddings des nächsten Abschnitts an die Höhe des Headers
-  function adjustNextSectionPadding() {
-    var headerHeight = header.offsetHeight; // Die aktuelle Höhe des Headers ermitteln
-    nextSection.style.paddingTop = headerHeight + 'px'; // Padding entsprechend anpassen
-  }
+// CSS hinzufügen:
+// .white-background { background-color: #fff !important; }
 
-  // Das Padding beim Laden der Seite anpassen
-  adjustNextSectionPadding();
-
-  // Die Padding-Anpassung bei Änderung der Fenstergröße sicherstellen
-  window.addEventListener('resize', adjustNextSectionPadding);
-
-  // Scroll-Verhalten definieren, um den Header-Hintergrund zu ändern
-  function changeHeaderBackgroundOnScroll() {
-    if (window.pageYOffset > 5) {
-      header.style.backgroundColor = '#fff'; // Farbe auf Weiß setzen
-    } else {
-      header.style.backgroundColor = 'transparent'; // Transparent setzen, um das Hintergrundbild zu zeigen
-    }
-  }
-
-  // Event Listener für das Scroll-Ereignis hinzufügen
-  window.addEventListener('scroll', changeHeaderBackgroundOnScroll);
-
-  // Das Scroll-Verhalten einmalig beim Laden ausführen, um den initialen Zustand zu setzen
-  changeHeaderBackgroundOnScroll();
-});
 
 </script>
 {% endif %}
