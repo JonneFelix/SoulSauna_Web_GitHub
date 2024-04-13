@@ -194,7 +194,31 @@
             {%- else -%}
               <span class="h2">{{ shop.name }}</span>
             {%- endif -%}
+
+{%- if settings.logo-2 != blank -%}
+
+            <div class="header__heading-logo-wrapper logo-2" style="display:none;">
+                {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+                {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+                {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
+                {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+                {{ settings.logo-2 | image_url: width: 600 | image_tag:
+                  class: 'header__heading-logo motion-reduce logo',
+                  widths: widths,
+                  height: logo_height,
+                  width: settings.logo_width,
+                  alt: logo_alt,
+                  sizes: sizes,
+                  preload: true
+                }}
+              </div>
+            
+             {%- else -%}
+              <span class="h2">{{ shop.name }}</span>
+            {%- endif -%}
+            
           </a>
+
       {%- if request.page_type == 'index' -%}
         </h1>
       {%- endif -%}
