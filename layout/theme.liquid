@@ -403,45 +403,38 @@
     {% endif %}
 
     <script>
-            document.addEventListener('DOMContentLoaded', function() {
-              var header = document.querySelector('.header-wrapper');
-              var announcementBarHeight = '36px'; // Stellen Sie sicher, dass dies Ihrer tatsächlichen Ankündigungsleistenhöhe entspricht.
-
-              function onScroll() {
-                if (window.scrollY > 0) {
-                  header.style.marginTop = '0px';
-                  header.classList.add('scrolled');
-                } else {
-                  header.style.marginTop = announcementBarHeight;
-                  header.classList.remove('scrolled');
-                }
-              }
-
-              window.addEventListener('scroll', onScroll);
-            });
-
-            document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function() {
         // Selektoren für das primäre und sekundäre Logo, die an Ihre Klassennamen angepasst werden müssen
-        var primaryLogo = document.querySelector('.header__heading-logo-wrapper');
-        var secondaryLogo = document.querySelector('.header__heading-logo-wrapper logo-2');
+        var primaryLogo = document.querySelector('.header__heading-logo-wrapper'); // Dies sollte dein aktuelles Hauptlogo sein
+        var secondaryLogo = document.querySelector('.header__heading-logo-wrapper logo-2'); // Dies sollte dein Sekundärlogo sein
+        var headerWrapper = document.querySelector('.header-wrapper');
         var isHomepage = window.location.pathname === '/';
 
-        function switchLogo() {
-          if(isHomepage) {
-            primaryLogo.style.display = 'none'; // Primäres Logo verbergen
-            secondaryLogo.style.display = 'block'; // Sekundäres Logo anzeigen
+        function switchLogo(displayPrimary) {
+          // Wenn displayPrimary wahr ist, zeige das Hauptlogo und verstecke das Sekundärlogo
+          primaryLogo.style.display = displayPrimary ? 'block' : 'none';
+          secondaryLogo.style.display = displayPrimary ? 'none' : 'block';
+        }
+
+        function onScroll() {
+          var scrollPosition = window.scrollY;
+          if (scrollPosition > 0) {
+            // Wenn gescrollt wird, zeige das Sekundärlogo
+            switchLogo(false);
+            headerWrapper.classList.add('scrolled');
           } else {
-            primaryLogo.style.display = 'block'; // Primäres Logo anzeigen
-            secondaryLogo.style.display = 'none'; // Sekundäres Logo verbergen
+            // Wenn am oberen Rand der Seite, zeige das Hauptlogo
+            switchLogo(true);
+            headerWrapper.classList.remove('scrolled');
           }
         }
 
-        // Rufen Sie switchLogo beim Laden der Seite auf
-        switchLogo();
-
-        window.addEventListener('scroll', function() {
-          // Verhalten beim Scrollen könnte hier ebenfalls eingefügt werden, falls gewünscht
-        });
+        if (isHomepage) {
+          // Rufen Sie switchLogo beim Laden der Seite auf, um das Hauptlogo zu verstecken
+          switchLogo(false);
+          // Füge einen Event-Listener hinzu, um das Logo beim Scrollen zu wechseln
+          window.addEventListener('scroll', onScroll);
+        }
       });
     </script>
   </body>
