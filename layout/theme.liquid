@@ -406,21 +406,21 @@
       </style>
     {% endif %}
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var header = document.querySelector('.header-wrapper');
-
-        function onScroll() {
-          if (window.scrollY > parseInt(announcementBarHeight)) {
-            header.classList.add('scrolled');
-          } else {
-            header.classList.remove('scrolled');
+    {% if template == 'index' %}
+      <style>
+        .shopify-section-group-header-group.announcement-bar-section{
+        height: 5px;
         }
-
-        // Add the event listener for scroll event
-        window.addEventListener('scroll', onScroll);
-      });
-    </script>
+        .header-wrapper{
+        position: absolute;
+        width: 100%;
+        background: transparent;
+        }
+        .header-wrapper .header{
+        margin-top: 20px;
+        }
+      </style>
+    {% endif %}
 
     <script>
       document.addEventListener('DOMContentLoaded', function() {
