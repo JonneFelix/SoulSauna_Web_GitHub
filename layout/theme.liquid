@@ -280,6 +280,15 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+    <style>
+      .header {
+        background-color: transparent; /* Transparenter Hintergrund beim Laden der Seite */
+        transition: background-color 0.3s; /* Weiche Übergänge für Hintergrundfarbenänderungen */
+      }
+      .header.scrolled {
+        background-color: #fff; /* Weißer Hintergrund nach dem Scrollen */
+      }
+    </style>
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
@@ -351,31 +360,31 @@
     {%- endif -%}
 
     <script>
-       document.addEventListener('DOMContentLoaded', function() {
-        var header = document.querySelector('.header');
-        var nextSection = document.querySelector('.banner__content'); // Stelle sicher, dass diese Klasse die richtige ist
+      document.addEventListener('DOMContentLoaded', function() {
+          var header = document.querySelector('.header');
+          var nextSection = document.querySelector('.banner__content'); // Stelle sicher, dass diese Klasse die richtige ist für die nächste Sektion
 
-        function adjustNextSectionPadding() {
-          if (nextSection) {
-            var headerHeight = header.offsetHeight;
-            nextSection.style.paddingTop = headerHeight + 'px';
+          function adjustNextSectionPadding() {
+              if (nextSection) {
+                  var headerHeight = header.offsetHeight;
+                  nextSection.style.paddingTop = headerHeight + 'px';
+              }
           }
-        }
 
-        function onScroll() {
-          if (window.scrollY > 5) {
-            header.style.backgroundColor = '#fff'; // oder füge eine Klasse hinzu
-          } else {
-            header.style.backgroundColor = 'transparent'; // oder entferne die Klasse
+          function onScroll() {
+              if (window.scrollY > 5) {
+                  header.classList.add('scrolled');
+              } else {
+                  header.classList.remove('scrolled');
+              }
           }
-        }
 
-        // Stelle sicher, dass der Header und die nächste Sektion geladen sind, bevor das Padding angepasst wird
-        if (header && nextSection) {
-          adjustNextSectionPadding();
-          window.addEventListener('resize', adjustNextSectionPadding);
-          window.addEventListener('scroll', onScroll);
-        }
+          // Stelle sicher, dass der Header und die nächste Sektion geladen sind, bevor das Padding angepasst wird
+          if (header && nextSection) {
+              adjustNextSectionPadding();
+              window.addEventListener('resize', adjustNextSectionPadding);
+              window.addEventListener('scroll', onScroll);
+          }
       });
     </script>
   </body>
