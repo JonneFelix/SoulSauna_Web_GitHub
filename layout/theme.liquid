@@ -394,5 +394,19 @@
         }
       </style>
     {% endif %}
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          var header = document.querySelector('.header-wrapper');
+          function onScroll() {
+              if (window.scrollY > 5) {
+                  header.classList.add('scrolled');
+              } else {
+                  header.classList.remove('scrolled');
+              }
+          }
+          window.addEventListener('scroll', onScroll);
+      });
+    </script>
   </body>
 </html>
