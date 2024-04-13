@@ -702,15 +702,12 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var header = document.querySelector('.header'); // Referenz auf den Header
-    console.log(header);
-
-  
 
     function checkScroll() {
       if (window.scrollY > window.innerHeight) {
-        header.classList.add('header-scrolled');
+        header.classList.add('header-background');
       } else {
-        header.classList.remove('header-scrolled');
+        header.classList.remove('header-background');
       }
     }
 
