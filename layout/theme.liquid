@@ -406,30 +406,18 @@
       </style>
     {% endif %}
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var logoImage = document.querySelector('.header__heading-logo');
-        var header = document.querySelector('.header-wrapper');
-        var announcementBarHeight = '36px'; // Stellen Sie sicher, dass dies Ihrer tatsächlichen Ankündigungsleistenhöhe entspricht.
+    window.addEventListener('load', function() { var logoImage = document.querySelector('.header__heading-logo img'); //
+    Stellen Sie sicher, dass dies der korrekte Selektor für Ihr Logo-Image ist.
 
-        function onScroll() {
-          if (window.scrollY > 0) {
-            header.style.marginTop = '0px';
-            header.classList.add('scrolled');
-          } else {
-            header.style.marginTop = announcementBarHeight;
-            header.classList.remove('scrolled');
-          }
-        }
+    function onScroll() { var header = document.querySelector('.header-wrapper'); var announcementBarHeight = '36px';
 
-        window.addEventListener('scroll', onScroll);
+    if (window.scrollY > 0) { header.style.marginTop = '0px'; header.classList.add('scrolled'); } else {
+    header.style.marginTop = announcementBarHeight; header.classList.remove('scrolled'); } }
 
-        // Logo wechseln, wenn auf der Startseite
-        if (window.location.pathname === '/' && logoImage) {
-          var alternativeLogo = 'https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/SoulSauna-Weiss-1200x600-RB.png?v=1713022451';
-          logoImage.src = alternativeLogo;
-        }
-      });
-    </script>
+    window.addEventListener('scroll', onScroll);
+
+    // Logo wechseln, wenn auf der Startseite if (window.location.pathname === '/' && logoImage) { var alternativeLogo =
+    'https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/SoulSauna-Weiss-1200x600-RB.png?v=1713022451';
+    logoImage.src = alternativeLogo; } });
   </body>
 </html>
