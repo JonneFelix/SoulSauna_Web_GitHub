@@ -349,5 +349,36 @@
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+
+    {% if request.page_type == 'index' %}
+      <script>
+         document.addEventListener('DOMContentLoaded', function() {
+          var header = document.querySelector('.header');
+          var nextSection = document.querySelector('.banner__content'); // Stelle sicher, dass diese Klasse die richtige ist
+
+          function adjustNextSectionPadding() {
+            if (nextSection) {
+              var headerHeight = header.offsetHeight;
+              nextSection.style.paddingTop = headerHeight + 'px';
+            }
+          }
+
+          function onScroll() {
+            if (window.scrollY > 5) {
+              header.style.backgroundColor = '#fff'; // oder füge eine Klasse hinzu
+            } else {
+              header.style.backgroundColor = 'transparent'; // oder entferne die Klasse
+            }
+          }
+
+          // Stelle sicher, dass der Header und die nächste Sektion geladen sind, bevor das Padding angepasst wird
+          if (header && nextSection) {
+            adjustNextSectionPadding();
+            window.addEventListener('resize', adjustNextSectionPadding);
+            window.addEventListener('scroll', onScroll);
+          }
+        });
+      </script>
+    {% endif %}
   </body>
 </html>
