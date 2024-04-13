@@ -407,25 +407,39 @@
 
     <script>
             document.addEventListener('DOMContentLoaded', function() {
-        var header = document.querySelector('.header-wrapper');
-        var announcementBar = document.querySelector('.announcement-bar-section'); // replace with your actual announcement bar selector
-        var logo = document.querySelector('.header-logo'); // replace with your actual logo image selector
-        var originalLogoSrc = logo.getAttribute('src'); // Use getAttribute to ensure you get the exact source path
-        var scrolledLogoSrc = 'path-to-your-alternate-logo'; // replace with the path to your alternate logo image
-
-        function onScroll() {
-          if (window.scrollY > 5) {
-            header.classList.add('scrolled');
-            announcementBar.style.display = 'none'; // hide announcement bar
-            logo.setAttribute('src', scrolledLogoSrc); // Use setAttribute to change the logo source
-          } else {
-            header.classList.remove('scrolled');
-            announcementBar.style.display = 'block'; // show announcement bar
-            logo.setAttribute('src', originalLogoSrc); // Use setAttribute to revert the logo source
+          var header = document.querySelector('.header-wrapper');
+          function onScroll() {
+              if (window.scrollY > 5) {
+                  header.classList.add('scrolled');
+              } else {
+                  header.classList.remove('scrolled');
+              }
           }
-        }
-        window.addEventListener('scroll', onScroll);
+          window.addEventListener('scroll', onScroll);
       });
+
+      /*
+                  document.addEventListener('DOMContentLoaded', function() {
+              var header = document.querySelector('.header-wrapper');
+              var announcementBar = document.querySelector('.announcement-bar-section'); // replace with your actual announcement bar selector
+              var logo = document.querySelector('.header-logo'); // replace with your actual logo image selector
+              var originalLogoSrc = logo.getAttribute('src'); // Use getAttribute to ensure you get the exact source path
+              var scrolledLogoSrc = 'path-to-your-alternate-logo'; // replace with the path to your alternate logo image
+
+              function onScroll() {
+                if (window.scrollY > 5) {
+                  header.classList.add('scrolled');
+                  announcementBar.style.display = 'none'; // hide announcement bar
+                  logo.setAttribute('src', scrolledLogoSrc); // Use setAttribute to change the logo source
+                } else {
+                  header.classList.remove('scrolled');
+                  announcementBar.style.display = 'block'; // show announcement bar
+                  logo.setAttribute('src', originalLogoSrc); // Use setAttribute to revert the logo source
+                }
+              }
+              window.addEventListener('scroll', onScroll);
+            });
+            */
     </script>
   </body>
 </html>
