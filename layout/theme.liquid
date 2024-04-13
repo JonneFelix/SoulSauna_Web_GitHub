@@ -282,42 +282,43 @@
     </script>
 
     <style>
-            {% if template == 'index' %}
-              /* Zusätzlicher Stil für den Header */
-              .header-wrapper {
-                position: absolute;
-                width: 100%;
-                background: transparent;
-                margin-top: 20px;
-              }
-              .header-wrapper .header {
-                margin-top: 20px;
-              }
-              /* Stil für Menüpunkt-Hintergrund */
-              .header__inline-menu .header__menu-item {
-                background-color: #ffffff; /* Weißer Hintergrund */
-                padding: 5px 20px 5px 10px; /* Innerer Abstand */
-                border-radius: 10px; /* Abgerundete Ecken */
-                margin: 0 30px; /* Außenabstand */
-              }
-              .header__inline-menu .header__menu-item:not(:last-child) {
-                margin-right: 10px; /* Zusätzlicher rechter Abstand */
-              }
-              /* Stil für den Header nach dem Scrollen */
-              .header-wrapper.scrolled {
-                background-color: #fff; /* Weißer Hintergrund nach dem Scrollen */
-                transition: background-color 0.3s; /* Weiche Übergänge */
-              }
-              /* Stil, um die Überschneidungen der Dropdown-Pfeile zu verhindern */
-              .header__inline-menu .header__menu-item svg {
-                vertical-align: middle;
-                margin-left: 4px;
-              }
+                {% if template == 'index' %}
+                  /* Zusätzlicher Stil für den Header */
+                  .header-wrapper {
+                    position: absolute;
+                    width: 100%;
+                    background: transparent;
+                    margin-top: 20px;
+                  }
+                  .header-wrapper .header {
+                    margin-top: 20px;
+                  }
+                  /* Stil für Menüpunkt-Hintergrund */
+                  .header__inline-menu .header__menu-item {
+                    background-color: #ffffff; /* Weißer Hintergrund */
+                    padding: 5px 20px 5px 10px; /* Innerer Abstand */
+                    border-radius: 10px; /* Abgerundete Ecken */
+                    margin: 0 30px; /* Außenabstand */
+                  }
+                  .header__inline-menu .header__menu-item:not(:last-child) {
+                    margin-right: 10px; /* Zusätzlicher rechter Abstand */
+                  }
+                  /* Stil für den Header nach dem Scrollen */
+                  .header-wrapper.scrolled {
+                    background-color: #fff; /* Weißer Hintergrund nach dem Scrollen */
+                    transition: background-color 0.3s; /* Weiche Übergänge */
+                  }
+                  /* Stil, um die Überschneidungen der Dropdown-Pfeile zu verhindern */
+                  .header__inline-menu .header__menu-item svg {
+                    vertical-align: middle;
+                    margin-left: 4px;
+                  }
 
-              .announcement-bar-section {
+      .announcement-bar-section {
         display: block; /* or whatever the default display should be */
+        background-color: #fff; /* Add this line if it's not already present */
       }
-            {% endif %}
+                {% endif %}
     </style>
   </head>
 
