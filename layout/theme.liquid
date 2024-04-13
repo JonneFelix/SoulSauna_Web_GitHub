@@ -404,37 +404,32 @@
 
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        // Selektoren für das primäre und sekundäre Logo, die an Ihre Klassennamen angepasst werden müssen
-        var primaryLogo = document.querySelector('.header__heading-logo-wrapper'); // Dies sollte dein aktuelles Hauptlogo sein
-        var secondaryLogo = document.querySelector('.header__heading-logo-wrapper logo-2'); // Dies sollte dein Sekundärlogo sein
-        var headerWrapper = document.querySelector('.header-wrapper');
-        var isHomepage = window.location.pathname === '/';
+        var primaryLogo = document.querySelector('.primary-logo');
+        var secondaryLogo = document.querySelector('.secondary-logo');
+        var header = document.querySelector('.header-wrapper');
 
-        function switchLogo(displayPrimary) {
-          // Wenn displayPrimary wahr ist, zeige das Hauptlogo und verstecke das Sekundärlogo
-          primaryLogo.style.display = displayPrimary ? 'block' : 'none';
-          secondaryLogo.style.display = displayPrimary ? 'none' : 'block';
-        }
-
-        function onScroll() {
+        // Diese Funktion wird aufgerufen, wenn der Benutzer scrollt
+        function handleScroll() {
           var scrollPosition = window.scrollY;
+
           if (scrollPosition > 0) {
-            // Wenn gescrollt wird, zeige das Sekundärlogo
-            switchLogo(false);
-            headerWrapper.classList.add('scrolled');
+            // Benutzer hat gescrollt, sekundäres Logo und Hintergrundwechsel anzeigen
+            primaryLogo.style.display = 'none';
+            secondaryLogo.style.display = 'block';
+            header.classList.add('scrolled');
           } else {
-            // Wenn am oberen Rand der Seite, zeige das Hauptlogo
-            switchLogo(true);
-            headerWrapper.classList.remove('scrolled');
+            // Benutzer ist ganz oben, primäres Logo anzeigen
+            primaryLogo.style.display = 'block';
+            secondaryLogo.style.display = 'none';
+            header.classList.remove('scrolled');
           }
         }
 
-        if (isHomepage) {
-          // Rufen Sie switchLogo beim Laden der Seite auf, um das Hauptlogo zu verstecken
-          switchLogo(false);
-          // Füge einen Event-Listener hinzu, um das Logo beim Scrollen zu wechseln
-          window.addEventListener('scroll', onScroll);
-        }
+        // Fügen Sie der Seite einen Event Listener für das Scrollen hinzu
+        window.addEventListener('scroll', handleScroll);
+
+        // Rufen Sie die Funktion einmal beim Laden auf, falls die Seite mit einem Scrollwert geladen wird
+        handleScroll();
       });
     </script>
   </body>
