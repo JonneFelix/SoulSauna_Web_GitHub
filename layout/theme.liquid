@@ -434,5 +434,20 @@
         window.addEventListener('scroll', onScroll);
       });
     </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Versuchen Sie den Klassennamen, der nur für das Logo-Image spezifisch ist.
+        var logoImage = document.querySelector('.header__heading-logo');
+
+        // Prüfen Sie, ob Sie sich auf der Startseite befinden und das Logo-Image-Tag gefunden wurde.
+        if (window.location.pathname === '/' && logoImage) {
+          // URL des alternativen Logos, das auf der Startseite angezeigt werden soll.
+          var alternativeLogo = 'https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/SoulSauna-Weiss-1200x600-RB.png?v=1713022451';
+          // Zugriff auf das <img>-Element innerhalb des Divs
+          logoImage.querySelector('img').src = alternativeLogo;
+        }
+      });
+    </script>
   </body>
 </html>
