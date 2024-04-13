@@ -702,32 +702,28 @@
 
 {% if request.page_type == 'index' %}
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-  var header = document.querySelector('.header');
-  var heroImage = document.querySelector('.hero-image'); // Ersetzen Sie .hero-image durch die tatsächliche Klasse Ihres Bildes
+  document.addEventListener('DOMContentLoaded', function() {
+    var header = document.querySelector('.header');
+    // Das heroImage sollte das Element sein, das Ihr Hintergrundbild enthält.
+    // Sie müssen .hero-image durch die Klasse oder ID Ihres Hintergrundbild-Elements ersetzen.
+    var heroImageHeight = window.innerHeight; // Höhe des Bildschirmbereichs, übernehmen Sie hier die Höhe Ihres Hintergrundbildes
 
-  // Initialer Zustand, wenn das Bild sichtbar ist
-  header.style.backgroundImage = "url('https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/ErsteSeite-Web.webp?v=1712985536')"; // Pfad zum Bild einfügen
-  header.style.backgroundColor = 'transparent';
-
-  function checkScroll() {
-    var heroBottom = heroImage.getBoundingClientRect().bottom; // Position des unteren Rands des Bildes
-    
-    // Wenn der untere Rand des Bildes oben am Viewport vorbei ist
-    if (heroBottom < header.offsetHeight) {
-      // Hintergrund auf Weiß setzen und Bild entfernen
-      header.style.backgroundColor = '#fff';
-      header.style.backgroundImage = 'none';
-    } else {
-      // Hintergrund auf transparent setzen und Bild anzeigen
-      header.style.backgroundColor = 'transparent';
-      header.style.backgroundImage = "url('https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/ErsteSeite-Web.webp?v=1712985536')"; // Pfad zum Bild einfügen
+    function checkScroll() {
+      if (window.pageYOffset > heroImageHeight) {
+        // Wenn gescrollt wird und das Bild nicht mehr sichtbar ist
+        header.style.backgroundColor = '#fff'; // Weißer Hintergrund
+        header.style.backgroundImage = 'none'; // Kein Bild
+      } else {
+        // Wenn wieder nach oben gescrollt wird
+        header.style.backgroundColor = 'transparent'; // Transparenter Hintergrund
+        header.style.backgroundImage = "url('https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/ErsteSeite-Web.webp?v=1712985536')"; // Bild zurücksetzen
+      }
     }
-  }
 
-  window.addEventListener('scroll', checkScroll);
-});
+    window.addEventListener('scroll', checkScroll);
 
-
+    // Initialer Check, falls die Seite mit einem Scroll-Status geladen wird
+    checkScroll();
+  });
 </script>
 {% endif %}
