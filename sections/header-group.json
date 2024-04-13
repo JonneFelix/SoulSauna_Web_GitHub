@@ -55,7 +55,7 @@
         "enable_country_selector": false,
         "enable_language_selector": false,
         "mobile_logo_position": "center",
-        "margin_bottom": 36,
+        "margin_bottom": 0,
         "padding_top": 4,
         "padding_bottom": 4
       }
