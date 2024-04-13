@@ -408,17 +408,17 @@
 
     {% if template == 'index' %}
       <style>
-        .shopify-section-group-header-group.announcement-bar-section{
-        height: 5px;
-        }
-        .header-wrapper{
-        position: absolute;
-        width: 100%;
-        background: transparent;
-        }
-        .header-wrapper .header{
-        margin-top: 20px;
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+            var header = document.querySelector('.header-wrapper'); // Stelle sicher, dass du die Wrapper-Klasse hier referenzierst
+            function onScroll() {
+                if (window.scrollY > 5) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+            window.addEventListener('scroll', onScroll);
+        });
       </style>
     {% endif %}
 
