@@ -280,15 +280,6 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
-    <style>
-      .header {
-        background-color: transparent; /* Transparenter Hintergrund beim Laden der Seite */
-        transition: background-color 0.3s; /* Weiche Übergänge für Hintergrundfarbenänderungen */
-      }
-      .header.scrolled {
-        background-color: #fff; /* Weißer Hintergrund nach dem Scrollen */
-      }
-    </style>
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
@@ -359,33 +350,20 @@
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-          var header = document.querySelector('.header');
-          var nextSection = document.getElementById('MainContent'); // Zugriff auf den Hauptinhalt direkt nach dem Header
-
-          function adjustNextSectionPadding() {
-              if (nextSection) {
-                  var headerHeight = header.offsetHeight; // Hole die aktuelle Höhe des Headers
-                  nextSection.style.paddingTop = headerHeight + 'px'; // Setze das obere Padding des Hauptinhalts
-              }
-          }
-
-          function onScroll() {
-              if (window.scrollY > 5) {
-                  header.classList.add('scrolled');
-              } else {
-                  header.classList.remove('scrolled');
-              }
-          }
-
-          // Event Listeners, um die Funktionen beim Laden, Scrollen und bei Größenänderungen auszuführen
-          if (header && nextSection) {
-              adjustNextSectionPadding();
-              window.addEventListener('resize', adjustNextSectionPadding);
-              window.addEventListener('scroll', onScroll);
-          }
-      });
-    </script>
+    {% if template == 'index' %}
+      <style>
+        .shopify-section-group-header-group.announcement-bar-section{
+        height: 5px;
+        }
+        .header-wrapper{
+        position: absolute;
+        width: 100%;
+        background: transparent;
+        }
+        .header-wrapper .header{
+        margin-top: 20px;
+        }
+      </style>
+    {% endif %}
   </body>
 </html>
