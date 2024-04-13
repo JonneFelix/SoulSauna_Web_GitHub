@@ -697,36 +697,3 @@
   ]
 }
 {% endschema %}
-
-
-{% if request.page_type == 'index' %}
-<script>
-  window.addEventListener('load', function() {
-  var header = document.querySelector('.header');
-  // Die Klasse des nächsten Abschnitts nach dem Header, um das Padding zu bestimmen
-  var nextSection = document.querySelector('.banner__content');
-
-  // Überprüfen Sie, ob nextSection existiert, bevor Sie weitermachen
-  if (nextSection) {
-    var headerHeight = header.offsetHeight;
-    nextSection.style.paddingTop = headerHeight + 'px';
-
-    // Event-Listener für Scroll-Events
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 5) { // oder jede andere Zahl, die Sie für das "Scroll-Past" Kriterium verwenden möchten
-        header.classList.add('white-background');
-      } else {
-        header.classList.remove('white-background');
-      }
-    });
-  } else {
-    console.error('Next section not found.');
-  }
-});
-
-// CSS hinzufügen:
-// .white-background { background-color: #fff !important; }
-
-
-</script>
-{% endif %}
