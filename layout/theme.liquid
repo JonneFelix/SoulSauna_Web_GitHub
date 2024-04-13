@@ -288,7 +288,7 @@
                     position: absolute;
                     width: 100%;
                     background: transparent;
-                    margin-top: 36px; /* Abstand auf 36px erhöht */
+                    margin-top: 20px; /* Abstand auf 36px erhöht */
                   }
                   .header-wrapper .header {
                     margin-top: 20px;
@@ -410,27 +410,27 @@
       document.addEventListener('DOMContentLoaded', function() {
         var header = document.querySelector('.header-wrapper');
         var announcementBar = document.querySelector('.announcement-bar-section');
-        var logo = document.querySelector('.header__heading-logo'); // Ersetzen Sie dies durch Ihren tatsächlichen Logo-Selektor
+        var logo = document.querySelector('.header__heading-logo'); // Replace with your actual logo image selector
 
-        // Stellen Sie sicher, dass Sie den berechneten Stil des Elements erhalten, um die tatsächliche Höhe auch nach angewendeten Stilen zu erhalten
-        var announcementBarHeight = '36px'; // Höhe auf 36px festgelegt
+        // Ensure to get the computed style of the element to get actual height even after styles applied
+        var announcementBarHeight = window.getComputedStyle(announcementBar).height;
 
-        // Initialer margin-top basierend auf der Höhe der Ankündigungsleiste
+        // Initial margin-top based on the announcement bar's height
         header.style.marginTop = announcementBarHeight;
 
         function onScroll() {
           if (window.scrollY > parseInt(announcementBarHeight)) {
             header.classList.add('scrolled');
-            // Übergang und margin-top dynamisch angepasst
+            // Transition and margin-top adjusted dynamically
             header.style.transition = 'margin-top 0.3s';
-            header.style.marginTop = '0'; // Oberen Rand entfernen
+            header.style.marginTop = '0'; // Removing top margin
           } else {
             header.classList.remove('scrolled');
-            header.style.marginTop = announcementBarHeight; // Den oberen Rand wieder hinzufügen
+            header.style.marginTop = announcementBarHeight; // Adding the top margin back
           }
         }
 
-        // Fügen Sie den Event-Listener für das Scroll-Ereignis hinzu
+        // Add the event listener for scroll event
         window.addEventListener('scroll', onScroll);
       });
     </script>
