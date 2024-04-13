@@ -96,9 +96,8 @@
 
 {%- style -%}
   .header {
-    padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem;
-    background-color: #fff; /* Weißer Hintergrund */
-    transition: background-color 0.3s, background-image 0.3s; /* Hinzufügen eines Übergangs, falls gewünscht */
+    background-color: transparent; /* Transparenter Hintergrund beim Laden der Seite */
+    transition: background-color 0.3s; /* Weiche Übergänge für Hintergrundfarbenänderungen */
   }
 
   .section-header {
@@ -703,27 +702,36 @@
 {% if request.page_type == 'index' %}
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    var header = document.querySelector('.header');
-    // Das heroImage sollte das Element sein, das Ihr Hintergrundbild enthält.
-    // Sie müssen .hero-image durch die Klasse oder ID Ihres Hintergrundbild-Elements ersetzen.
-    var heroImageHeight = window.innerHeight; // Höhe des Bildschirmbereichs, übernehmen Sie hier die Höhe Ihres Hintergrundbildes
+  var header = document.querySelector('.header'); // Ihr Header-Element
+  var nextSection = document.querySelector('.banner__content'); // Das Element direkt unter Ihrem Header
 
-    function checkScroll() {
-      if (window.pageYOffset > heroImageHeight) {
-        // Wenn gescrollt wird und das Bild nicht mehr sichtbar ist
-        header.style.backgroundColor = '#fff'; // Weißer Hintergrund
-        header.style.backgroundImage = 'none'; // Kein Bild
-      } else {
-        // Wenn wieder nach oben gescrollt wird
-        header.style.backgroundColor = 'transparent'; // Transparenter Hintergrund
-        header.style.backgroundImage = "url('https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/ErsteSeite-Web.webp?v=1712985536')"; // Bild zurücksetzen
-      }
+  // Funktion zum Anpassen des oberen Paddings des nächsten Abschnitts an die Höhe des Headers
+  function adjustNextSectionPadding() {
+    var headerHeight = header.offsetHeight; // Die aktuelle Höhe des Headers ermitteln
+    nextSection.style.paddingTop = headerHeight + 'px'; // Padding entsprechend anpassen
+  }
+
+  // Das Padding beim Laden der Seite anpassen
+  adjustNextSectionPadding();
+
+  // Die Padding-Anpassung bei Änderung der Fenstergröße sicherstellen
+  window.addEventListener('resize', adjustNextSectionPadding);
+
+  // Scroll-Verhalten definieren, um den Header-Hintergrund zu ändern
+  function changeHeaderBackgroundOnScroll() {
+    if (window.pageYOffset > 5) {
+      header.style.backgroundColor = '#fff'; // Farbe auf Weiß setzen
+    } else {
+      header.style.backgroundColor = 'transparent'; // Transparent setzen, um das Hintergrundbild zu zeigen
     }
+  }
 
-    window.addEventListener('scroll', checkScroll);
+  // Event Listener für das Scroll-Ereignis hinzufügen
+  window.addEventListener('scroll', changeHeaderBackgroundOnScroll);
 
-    // Initialer Check, falls die Seite mit einem Scroll-Status geladen wird
-    checkScroll();
-  });
+  // Das Scroll-Verhalten einmalig beim Laden ausführen, um den initialen Zustand zu setzen
+  changeHeaderBackgroundOnScroll();
+});
+
 </script>
 {% endif %}
