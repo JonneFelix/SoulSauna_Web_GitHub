@@ -282,54 +282,61 @@
     </script>
 
     <style>
-                    {% if template == 'index' %}
-                    .shopify-section-group-header-group.announcement-bar-section{
-                      height: 0px;
-                    }
-                /* Zusätzlicher Stil für den Header */
-                    .header-wrapper {
-                      position: absolute;
-                      width: 100%;
-                      background: transparent;
-                      margin-top: 0px; /* Abstand auf 36px erhöht */
-                    }
-                    .header-wrapper .header {
-                      margin-top: 0px;
-                    }
+                {% if template == 'index' %}
+                .shopify-section-group-header-group.announcement-bar-section{
+                  height: 0px;
+                }
+            /* Zusätzlicher Stil für den Header */
+                .header-wrapper {
+                  position: absolute;
+                  width: 100%;
+                  background: transparent;
+                  margin-top: 0px; /* Abstand auf 36px erhöht */
+                }
+                .header-wrapper .header {
+                  margin-top: 0px;
+                }
 
-                    .header-wrapper.scrolled .header__heading-logo-wrapper {
-                      transform: translateX(15%);
-                    }
+                .header-wrapper.scrolled .header__heading-logo-wrapper {
+                  transform: translateX(15%);
+                }
 
-                /* Stil für Menüpunkt-Hintergrund */
-                    .header__inline-menu .header__menu-item {
-                      background-color: transparent; /* Weißer Hintergrund */
-                      padding: 5px 25px 5px 10px; /* Innerer Abstand */
-                      border-radius: 10px; /* Abgerundete Ecken */
-                      margin: 0 30px 0 0px; /* Außenabstand */
-                      color: #ffff;
-                    }
+            /* Stil für Menüpunkt-Hintergrund */
+                .header__inline-menu .header__menu-item {
+                  background-color: transparent; /* Weißer Hintergrund */
+                  padding: 5px 25px 5px 10px; /* Innerer Abstand */
+                  border-radius: 10px; /* Abgerundete Ecken */
+                  margin: 0 30px 0 0px; /* Außenabstand */
+                  color: #ffff;
+                }
 
-                    .header__inline-menu .header__menu-item:not(:last-child) {
-                      margin-right: 10px; /* Zusätzlicher rechter Abstand */
-                    }
+            /* Farben nach dem Scrollen */
+                .header__inline-menu.scrolled .header__menu-item {
+                    background-color: #ffff; /* Weißer Hintergrund */
+                    color: #123A49; /* Dunkelblaue Textfarbe */
+                }
+                .header__inline-menu .header__menu-item:not(:last-child) {
+                  margin-right: 10px; /* Zusätzlicher rechter Abstand */
+                }
+                .body.scrolled .header__inline-menu .header__menu-item {
+                background-color: #fff; /* Weißer Hintergrund */
+                }
 
+          /* Standardmäßige Icon-Farbe, wenn nicht gescrollt wird */
+      .icon {
+        filter:  brightness(0) invert(1);
+      }
 
-              /* Standardmäßige Icon-Farbe, wenn nicht gescrollt wird */
-          .icon {
-            filter:  brightness(0) invert(1);
-          }
+      /* Geänderte Icon-Farbe, wenn gescrollt wird */
+      .scrolled .icon {
+        filter: none;
+      }
 
-          /* Geänderte Icon-Farbe, wenn gescrollt wird */
-          .scrolled .icon {
-            filter: none;
-          }
-
-            .announcement-bar-section {
-      display: block; /* or whatever the default display should be */
-      background-color: #fff; /* Add this line if it's not already present */
-                    }
-            {% endif %}
+                .announcement-bar-section {
+                  display: block; /* or whatever the default display should be */
+                  background-color: #fff; /* Add this line if it's not already present */
+                }
+                {% endif %}
     </style>
   </head>
 
@@ -404,6 +411,7 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         var header = document.querySelector('.header-wrapper');
+        var menuItems = document.querySelectorAll('.header__inline-menu .header__menu-item');
         var logoPrimary = document.querySelector('.header__heading-logo-wrapper');
         var logoSecondary = document.querySelector('.header__heading-logo-wrapper-logo-2');
         var cartIcon = document.querySelector('.icon-cart-empty');
@@ -416,6 +424,11 @@
         function updateHeaderStyles() {
           var scrollY = window.scrollY;
           var isScrolled = scrollY > 0;
+
+          // Hintergrund und Textfarbe der Menüelemente aktualisieren
+          menuItems.forEach(function(item) {
+            item.classList.toggle('scrolled', isScrolled);
+          });
 
           // Header-Klasse aktualisieren
           header.classList.toggle('scrolled', isScrolled);
