@@ -506,43 +506,37 @@
         var searchIcon = document.querySelector('.icon-search');
         var menuIcon = document.querySelector('.icon-hamburger');
         var closeIcon = document.querySelector('.icon-close');
-        var body = document.body; // Referenz zum Body für das Hinzufügen/Entfernen der scrolled Klasse
+        var body = document.body;
 
-        // Aktualisiert den Header-Stil beim Scrollen
         function updateHeaderStyles() {
           var scrollY = window.scrollY;
           var isScrolled = scrollY > 0;
 
-          // Hintergrund und Textfarbe der Menüelemente aktualisieren
+          console.log('Scroll Position:', scrollY);
+          console.log('Is Scrolled:', isScrolled);
+
           menuItems.forEach(function(item) {
             item.classList.toggle('scrolled', isScrolled);
           });
 
-          // Header-Klasse aktualisieren
           header.classList.toggle('scrolled', isScrolled);
-          body.classList.toggle('scrolled', isScrolled); // Hinzugefügt, um die scrolled Klasse am Body zu toggeln
+          body.classList.toggle('scrolled', isScrolled);
 
-          // Icon-Farben aktualisieren
           var icons = [cartIcon, searchIcon, menuIcon, closeIcon];
           icons.forEach(function(icon) {
             icon.classList.toggle('scrolled-icon', isScrolled);
           });
 
-          // Logos anzeigen oder verstecken basierend auf der Scroll-Position
           var displayStyle = isScrolled || !isHomePage() ? 'block' : 'none';
           logoPrimary.style.display = displayStyle;
           logoSecondary.style.display = displayStyle === 'block' ? 'none' : 'block';
         }
 
-        // Hilfsfunktion, um zu prüfen, ob die aktuelle Seite die Homepage ist
         function isHomePage() {
           return window.location.pathname === '/' || window.location.pathname.includes('/de/');
         }
 
-        // Event-Listener für das Scrollen
         window.addEventListener('scroll', updateHeaderStyles);
-
-        // Initialer Aufruf, um den Header beim Laden der Seite zu aktualisieren
         updateHeaderStyles();
       });
     </script>
