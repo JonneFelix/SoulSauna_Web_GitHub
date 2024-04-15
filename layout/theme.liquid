@@ -414,12 +414,12 @@
 
           if (isHomepage) {
             if (scrollPosition > 0) {
-              primaryLogo.style.display = 'none';
-              secondaryLogo.style.display = 'block';
+              primaryLogo.style.display = 'block'; // Zeige das primäre Logo beim Scrollen
+              secondaryLogo.style.display = 'none'; // Verberge das sekundäre Logo
               header.classList.add('scrolled');
             } else {
-              primaryLogo.style.display = 'block';
-              secondaryLogo.style.display = 'none';
+              primaryLogo.style.display = 'none'; // Verberge das primäre Logo oben
+              secondaryLogo.style.display = 'block'; // Zeige das sekundäre Logo
               header.classList.remove('scrolled');
             }
           }
@@ -428,18 +428,16 @@
         // Füge nur auf der Startseite den Event Listener für das Scrollen hinzu
         if (isHomepage) {
           window.addEventListener('scroll', handleScroll);
-        }
-
-        // Setze die Header-Lücke und Logos direkt, basierend darauf, ob die Seite die Startseite ist
-        header.style.marginTop = isHomepage ? announcementBarHeight : '0px';
-        if (!isHomepage) {
+          handleScroll(); // Stelle sicher, dass die Logos beim Laden korrekt gesetzt werden
+        } else {
+          // Für andere Seiten immer das primäre Logo anzeigen
           primaryLogo.style.display = 'block';
           secondaryLogo.style.display = 'none';
           header.classList.remove('scrolled');
-        } else {
-          // Stelle sicher, dass die Seite in der Startposition korrekt initialisiert wird
-          handleScroll();
         }
+
+        // Setze die Header-Lücke basierend darauf, ob die Seite die Startseite ist
+        header.style.marginTop = isHomepage ? announcementBarHeight : '0px';
       });
     </script>
   </body>
