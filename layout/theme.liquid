@@ -422,13 +422,13 @@
             if (scrollPosition > 0) {
               primaryLogo.style.display = 'block';
               secondaryLogo.style.display = 'none';
-              cartIcon.classList.add('white-icons');
+              cartIcon.classList.remove('white-icons');
               searchIcon.classList.add('white-icons');
               header.classList.add('scrolled');
             } else {
               primaryLogo.style.display = 'none';
               secondaryLogo.style.display = 'block';
-              cartIcon.classList.remove('white-icons');
+              cartIcon.classList.add('white-icons');
               searchIcon.classList.remove('white-icons');
               header.classList.remove('scrolled');
             }
