@@ -282,56 +282,50 @@
     </script>
 
     <style>
-          {% if template == 'index' %}
-          .shopify-section-group-header-group.announcement-bar-section{
-            height: 0px;
+              {% if template == 'index' %}
+              .shopify-section-group-header-group.announcement-bar-section{
+                height: 0px;
+              }
+          /* Zusätzlicher Stil für den Header */
+              .header-wrapper {
+                position: absolute;
+                width: 100%;
+                background: transparent;
+                margin-top: 0px; /* Abstand auf 36px erhöht */
+              }
+              .header-wrapper .header {
+                margin-top: 0px;
+              }
+          /* Stil für Menüpunkt-Hintergrund */
+              .header__inline-menu .header__menu-item {
+                background-color: #ffffff; /* Weißer Hintergrund */
+                padding: 5px 25px 5px 10px; /* Innerer Abstand */
+                border-radius: 10px; /* Abgerundete Ecken */
+                margin: 0 30px 0 0px; /* Außenabstand */
+              }
+              .header__inline-menu .header__menu-item:not(:last-child) {
+                margin-right: 10px; /* Zusätzlicher rechter Abstand */
+              }
+          /* Stil für den Header nach dem Scrollen */
+              .header-wrapper.scrolled {
+                background-color: #fff; /* Weißer Hintergrund nach dem Scrollen */
+                transition: background-color 0.3s; /* Weiche Übergänge */
           }
-      /* Zusätzlicher Stil für den Header */
-          .header-wrapper {
-            position: absolute;
-            width: 100%;
-            background: transparent;
-            margin-top: 0px; /* Abstand auf 36px erhöht */
-          }
-          .header-wrapper .header {
-            margin-top: 0px;
-          }
-      /* Stil für Menüpunkt-Hintergrund */
-          .header__inline-menu .header__menu-item {
-            background-color: #ffffff; /* Weißer Hintergrund */
-            padding: 5px 25px 5px 10px; /* Innerer Abstand */
-            border-radius: 10px; /* Abgerundete Ecken */
-            margin: 0 30px 0 0px; /* Außenabstand */
-          }
-          .header__inline-menu .header__menu-item:not(:last-child) {
-            margin-right: 10px; /* Zusätzlicher rechter Abstand */
-          }
-      /* Stil für den Header nach dem Scrollen */
-          .header-wrapper.scrolled {
-            background-color: #fff; /* Weißer Hintergrund nach dem Scrollen */
-            transition: background-color 0.3s; /* Weiche Übergänge */
+              .white-icons {
+                filter: brightness(0) invert(1);
+            }
+              .announcement-bar-section {
+                display: block; /* or whatever the default display should be */
+                background-color: #fff; /* Add this line if it's not already present */
+              }
+
+        @media screen and (max-width: 900px) {
+        .icon-hamburger, .icon-close {
+        filter: brightness(0) invert(1);
       }
-          .white-icons {
-            filter: brightness(0) invert(1);
-        }
-          .announcement-bar-section {
-            display: block; /* or whatever the default display should be */
-            background-color: #fff; /* Add this line if it's not already present */
           }
 
-          @media screen and (max-width: 900px) {
-        .mobile-menu-icon {
-          /* Hier setzen Sie den Filter für das weiße Icon ein */
-          filter: brightness(0) invert(1);
-        }
-
-        .mobile-menu-close-icon {
-          /* Und hier für das Schließen-Icon (X) */
-          filter: brightness(0) invert(1);
-        }
-      }
-
-          {% endif %}
+              {% endif %}
     </style>
   </head>
 
