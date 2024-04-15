@@ -26,38 +26,9 @@
 <noscript>{{ 'component-cart-items.css' | asset_url | stylesheet_tag }}</noscript>
 
 <style>
-
 </style>
 
 {%- style -%}
-  .header {
-    background-color: transparent; /* Transparenter Hintergrund beim Laden der Seite */
-    transition: background-color 0.3s; /* Weiche Übergänge für Hintergrundfarbenänderungen */
-  }
-
-  .section-header {
-    position: sticky; /* This is for fixing a Safari z-index issue. PR #2147 */
-    margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
-    transition: margin-top 0.3s; /* Weiche Übergänge */
-    {% if template == 'index' %}
-      margin-top: 36px;
-    {% else %}
-      margin-top: 0;
-    {% endif %}
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-header {
-      margin-bottom: {{ section.settings.margin_bottom }}px;
-    }
-  }
-
-  @media screen and (min-width: 990px) {
-    .header {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
 {%- endstyle -%}
 
 
