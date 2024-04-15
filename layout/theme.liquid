@@ -425,49 +425,36 @@
         var menuIcon = document.querySelector('.icon-hamburger');
         var closeIcon = document.querySelector('.icon-close');
 
+        // Aktualisiert den Header-Stil beim Scrollen
         function updateHeaderStyles() {
           var scrollY = window.scrollY;
-          if(scrollY > 0) {
-            // Fügt die 'scrolled' Klasse hinzu, wenn gescrollt wird
-            header.classList.add('scrolled');
-            menuItems.forEach(function(item) {
-              item.style.color = '#123A49';
-              item.style.backgroundColor = '#fff';
-            });
-            // Update für die Icons
-            cartIcon.classList.remove('scrolled-icon');
-            searchIcon.classList.remove('scrolled-icon');
-            menuIcon.classList.remove('scrolled-icon');
-            closeIcon.classList.remove('scrolled-icon');
-          } else {
-            // Entfernt die 'scrolled' Klasse, wenn man ganz oben ist
-            header.classList.remove('scrolled');
-            menuItems.forEach(function(item) {
-              item.style.color = '#ffffff';
-              item.style.backgroundColor = 'transparent';
-            });
-            // Update für die Icons
-            cartIcon.classList.add('scrolled-icon');
-            searchIcon.classList.add('scrolled-icon');
-            menuIcon.classList.add('scrolled-icon');
-            closeIcon.classList.add('scrolled-icon');
-          }
+          var scrolledClass = 'scrolled'; // Klasse, die zum Body-Element hinzugefügt wird
+          var isScrolled = scrollY > 0;
 
-          // Logik für das Anzeigen der Logos abhängig von der Scroll-Position
-          var isHomepage = window.location.pathname === '/' || window.location.pathname.includes('/de/');
-          if (isHomepage && scrollY > 0) {
-            logoPrimary.style.display = 'block';
-            logoSecondary.style.display = 'none';
-          } else {
-            logoPrimary.style.display = 'none';
-            logoSecondary.style.display = 'block';
-          }
+          // Hintergrund und Textfarbe der Menüelemente aktualisieren
+          menuItems.forEach(function(item) {
+            item.style.color = isScrolled ? '#123A49' : '#ffffff'; // Textfarbe
+            item.style.backgroundColor = isScrolled ? 'rgba(255, 255, 255, 0.9)' : 'transparent'; // Hintergrundfarbe mit leichter Transparenz
+          });
+
+          // Header-Klasse aktualisieren
+          header.classList.toggle(scrolledClass, isScrolled);
+
+          // Icon-Farben aktualisieren
+          var icons = [cartIcon, searchIcon, menuIcon, closeIcon];
+          icons.forEach(function(icon) {
+            icon.classList.toggle('scrolled-icon', isScrolled);
+          });
+
+          // Logos anzeigen oder verstecken
+          logoPrimary.style.display = isScrolled ? 'block' : 'none';
+          logoSecondary.style.display = isScrolled ? 'none' : 'block';
         }
 
         // Event-Listener für das Scrollen
         window.addEventListener('scroll', updateHeaderStyles);
 
-        // Initialer Aufruf, um den Header bei Laden der Seite zu aktualisieren
+        // Initialer Aufruf, um den Header beim Laden der Seite zu aktualisieren
         updateHeaderStyles();
       });
     </script>
