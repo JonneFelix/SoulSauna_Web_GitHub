@@ -420,14 +420,14 @@
 
           if (isHomepage) {
             if (scrollPosition > 0) {
-              primaryLogo.style.display = 'none';
-              secondaryLogo.style.display = 'block';
+              primaryLogo.style.display = 'block';
+              secondaryLogo.style.display = 'none';
               cartIcon.classList.add('white-icons');
               searchIcon.classList.add('white-icons');
               header.classList.add('scrolled');
             } else {
-              primaryLogo.style.display = 'block';
-              secondaryLogo.style.display = 'none';
+              primaryLogo.style.display = 'none';
+              secondaryLogo.style.display = 'block';
               cartIcon.classList.remove('white-icons');
               searchIcon.classList.remove('white-icons');
               header.classList.remove('scrolled');
