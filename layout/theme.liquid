@@ -427,15 +427,17 @@
             searchIcon.classList.remove('scrolled-icon');
             menuIcon.classList.remove('scrolled-icon');
             closeIcon.classList.remove('scrolled-icon');
-            header.classList.remove('scrolled');
-            menuItems.classList.remove('scrolled');
+            header.classList.add('scrolled');
+            menuItems.classList.add('scrolled');
+
           } else {
             cartIcon.classList.add('scrolled-icon');
             searchIcon.classList.add('scrolled-icon');
             menuIcon.classList.add('scrolled-icon');
             closeIcon.classList.add('scrolled-icon');
-            header.classList.add('scrolled');
-            menuItems.classList.add('scrolled');
+            header.classList.remove('scrolled');
+            menuItems.classList.remove('scrolled');
+
           }
         }
 
