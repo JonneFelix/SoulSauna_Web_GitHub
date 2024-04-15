@@ -329,6 +329,16 @@
               margin-right: 10px; /* Zusätzlicher rechter Abstand */
             }
 
+        /* Startzustand für Unterpunkte: Transparenter Hintergrund mit weißer Schrift */
+      .header-wrapper .header__inline-menu .submenu-item {
+        color: #FFFFFF; /* Weißer Text */
+      }
+
+        /* Zustand nach dem Scrollen für Unterpunkte: Weißer Hintergrund mit dunkler Schrift */
+      .header-wrapper.scrolled .header__inline-menu .submenu-item {
+        color: #103948; /* Dunkelblauer Text */
+      }
+
         .scrolled-icon {
         filter: brightness(0) invert(1);
         }
