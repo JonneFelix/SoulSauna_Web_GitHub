@@ -286,13 +286,20 @@
           .shopify-section-group-header-group.announcement-bar-section{
             height: 0px;
           }
-      /* Zusätzlicher Stil für den Header */
-          .header-wrapper {
-            position: absolute;
-            width: 100%;
-            background: transparent;
-            margin-top: 0px; /* Abstand auf 36px erhöht */
-          }
+
+      /* Startzustand: Transparenter Hintergrund mit weißer Schrift */
+      .header-wrapper {
+        transition: background-color 0.3s ease-out;
+        background-color: transparent;
+        color: #FFFFFF;
+        width: 100%;
+
+      }
+
+      .header-wrapper .header__menu-item {
+        color: #FFFFFF; /* Weißer Text */
+      }
+
           .header-wrapper .header {
             margin-top: 0px;
           }
