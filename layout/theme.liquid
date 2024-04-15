@@ -435,10 +435,10 @@
               item.style.backgroundColor = '#fff';
             });
             // Update für die Icons
-            cartIcon.classList.add('scrolled-icon');
-            searchIcon.classList.add('scrolled-icon');
-            menuIcon.classList.add('scrolled-icon');
-            closeIcon.classList.add('scrolled-icon');
+            cartIcon.classList.remove('scrolled-icon');
+            searchIcon.classList.remove('scrolled-icon');
+            menuIcon.classList.remove('scrolled-icon');
+            closeIcon.classList.remove('scrolled-icon');
           } else {
             // Entfernt die 'scrolled' Klasse, wenn man ganz oben ist
             header.classList.remove('scrolled');
@@ -447,10 +447,10 @@
               item.style.backgroundColor = 'transparent';
             });
             // Update für die Icons
-            cartIcon.classList.remove('scrolled-icon');
-            searchIcon.classList.remove('scrolled-icon');
-            menuIcon.classList.remove('scrolled-icon');
-            closeIcon.classList.remove('scrolled-icon');
+            cartIcon.classList.add('scrolled-icon');
+            searchIcon.classList.add('scrolled-icon');
+            menuIcon.classList.add('scrolled-icon');
+            closeIcon.classList.add('scrolled-icon');
           }
 
           // Logik für das Anzeigen der Logos abhängig von der Scroll-Position
