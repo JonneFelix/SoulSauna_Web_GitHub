@@ -410,46 +410,54 @@
 
     <script>
       document.addEventListener('DOMContentLoaded', function() {
+        var primaryLogo = document.querySelector('.header__heading-logo-wrapper');
+        var secondaryLogo = document.querySelector('.header__heading-logo-wrapper-logo-2');
         var header = document.querySelector('.header-wrapper');
-        var menuItems = document.querySelectorAll('.header__inline-menu .header__menu-item');
-        var logoPrimary = document.querySelector('.header__heading-logo-wrapper');
-        var logoSecondary = document.querySelector('.header__heading-logo-wrapper-logo-2');
         var cartIcon = document.querySelector('.icon-cart-empty');
         var searchIcon = document.querySelector('.icon-search');
         var menuIcon = document.querySelector('.icon-hamburger');
         var closeIcon = document.querySelector('.icon-close');
-        var body = document.body;
 
-        function updateHeaderStyles() {
-          var scrollY = window.scrollY;
-          var isScrolled = scrollY > 0;
-
-          console.log('Scroll Position:', scrollY);
-          console.log('Is Scrolled:', isScrolled);
-
-          menuItems.forEach(function(item) {
-            item.classList.toggle('scrolled', isScrolled);
-          });
-
-          header.classList.toggle('scrolled', isScrolled);
-          body.classList.toggle('scrolled', isScrolled);
-
-          var icons = [cartIcon, searchIcon, menuIcon, closeIcon];
-          icons.forEach(function(icon) {
-            icon.classList.toggle('scrolled-icon', isScrolled);
-          });
-
-          var displayStyle = isScrolled || !isHomePage() ? 'block' : 'none';
-          logoPrimary.style.display = displayStyle;
-          logoSecondary.style.display = displayStyle === 'block' ? 'none' : 'block';
+        // Diese Funktion aktualisiert die Farben der Icons
+        function updateIconColors(scrollPosition) {
+          if(scrollPosition > 0) {
+            cartIcon.classList.add('scrolled-icon');
+            searchIcon.classList.add('scrolled-icon');
+            menuIcon.classList.add('scrolled-icon');
+            closeIcon.classList.add('scrolled-icon');
+          } else {
+            cartIcon.classList.remove('scrolled-icon');
+            searchIcon.classList.remove('scrolled-icon');
+            menuIcon.classList.remove('scrolled-icon');
+            closeIcon.classList.remove('scrolled-icon');
+          }
         }
 
-        function isHomePage() {
-          return window.location.pathname === '/' || window.location.pathname.includes('/de/');
+        // Diese Funktion wird aufgerufen, wenn der Benutzer scrollt
+        function handleScroll() {
+          var scrollPosition = window.scrollY;
+          var isHomepage = window.location.pathname === '/' || window.location.pathname === '/de/';
+
+          updateIconColors(scrollPosition); // Aktualisieren der Icon-Farben basierend auf der Scroll-Position
+
+          if (isHomepage) {
+            if (scrollPosition > 0) {
+              primaryLogo.style.display = 'block';
+              secondaryLogo.style.display = 'none';
+              header.classList.add('scrolled');
+            } else {
+              primaryLogo.style.display = 'none';
+              secondaryLogo.style.display = 'block';
+              header.classList.remove('scrolled');
+            }
+          } else {
+            primaryLogo.style.display = 'block';
+            secondaryLogo.style.display = 'none';
+          }
         }
 
-        window.addEventListener('scroll', updateHeaderStyles);
-        updateHeaderStyles();
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Beim Laden der Seite ausführen
       });
     </script>
   </body>
