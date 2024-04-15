@@ -321,25 +321,9 @@
               background-color: transparent; /* Weißer Hintergrund */
               color: #123A49; /* Dunkelblaue Textfarbe */
           }
-
          .dropdown-background {
             background-color: white; /* oder die gewünschte Farbe */
           }
-
-        .header__inline-menu .header__menu-item.dropdown-background {
-            background-color: #fff; /* Weißer Hintergrund für Dropdown-Menü */
-        }
-
-        /* Stil für Dropdown-Menü, wenn nach unten gescrollt wird */
-        .body.scrolled .header__inline-menu .header__menu-item {
-            background-color: #fff; /* Weißer Hintergrund */
-        }
-
-
-        .header__inline-menu .header__menu-item {
-            transition: background-color 0.3s; /* Weiche Übergänge für Hintergrundfarbenänderungen */
-        }
-
           .header__inline-menu .header__menu-item:not(:last-child) {
             margin-right: 10px; /* Zusätzlicher rechter Abstand */
           }
@@ -431,80 +415,64 @@
     {%- endif -%}
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          var primaryLogo = document.querySelector('.header__heading-logo-wrapper');
-          var secondaryLogo = document.querySelector('.header__heading-logo-wrapper-logo-2');
-          var header = document.querySelector('.header-wrapper');
-          var cartIcon = document.querySelector('.icon-cart-empty');
-          var searchIcon = document.querySelector('.icon-search');
-          var menuIcon = document.querySelector('.icon-hamburger');
-          var closeIcon = document.querySelector('.icon-close');
-          var menuItems = document.querySelector('.header__inline-menu');
-          var dropdownMenus = document.querySelectorAll('.header__inline-menu .header__menu-item'); // Ersetzen Sie mit dem richtigen Selektor für Ihre Menü-Items
+      document.addEventListener('DOMContentLoaded', function() {
+        var primaryLogo = document.querySelector('.header__heading-logo-wrapper');
+        var secondaryLogo = document.querySelector('.header__heading-logo-wrapper-logo-2');
+        var header = document.querySelector('.header-wrapper');
+        var cartIcon = document.querySelector('.icon-cart-empty');
+        var searchIcon = document.querySelector('.icon-search');
+        var menuIcon = document.querySelector('.icon-hamburger');
+        var closeIcon = document.querySelector('.icon-close');
+        var menuItems = document.querySelector('.header__inline-menu');
 
 
-          // Diese Funktion aktualisiert die Farben der Icons
-          function updateIconColors(scrollPosition) {
-            if(scrollPosition > 0) {
-              cartIcon.classList.remove('scrolled-icon');
-              searchIcon.classList.remove('scrolled-icon');
-              menuIcon.classList.remove('scrolled-icon');
-              closeIcon.classList.remove('scrolled-icon');
-              header.classList.add('scrolled');
-              menuItems.classList.add('scrolled');
+        // Diese Funktion aktualisiert die Farben der Icons
+        function updateIconColors(scrollPosition) {
+          if(scrollPosition > 0) {
+            cartIcon.classList.remove('scrolled-icon');
+            searchIcon.classList.remove('scrolled-icon');
+            menuIcon.classList.remove('scrolled-icon');
+            closeIcon.classList.remove('scrolled-icon');
+            header.classList.add('scrolled');
+            menuItems.classList.add('scrolled');
 
-            } else {
-              cartIcon.classList.add('scrolled-icon');
-              searchIcon.classList.add('scrolled-icon');
-              menuIcon.classList.add('scrolled-icon');
-              closeIcon.classList.add('scrolled-icon');
-              header.classList.remove('scrolled');
-              menuItems.classList.remove('scrolled');
+          } else {
+            cartIcon.classList.add('scrolled-icon');
+            searchIcon.classList.add('scrolled-icon');
+            menuIcon.classList.add('scrolled-icon');
+            closeIcon.classList.add('scrolled-icon');
+            header.classList.remove('scrolled');
+            menuItems.classList.remove('scrolled');
 
-            }
           }
+        }
 
-          // Diese Funktion wird aufgerufen, wenn der Benutzer scrollt
-          function handleScroll() {
-            var scrollPosition = window.scrollY;
-            var isHomepage = window.location.pathname === '/' || window.location.pathname === '/de/';
+        // Diese Funktion wird aufgerufen, wenn der Benutzer scrollt
+        function handleScroll() {
+          var scrollPosition = window.scrollY;
+          var isHomepage = window.location.pathname === '/' || window.location.pathname === '/de/';
 
-            updateIconColors(scrollPosition); // Aktualisieren der Icon-Farben basierend auf der Scroll-Position
+          updateIconColors(scrollPosition); // Aktualisieren der Icon-Farben basierend auf der Scroll-Position
 
-            if (isHomepage) {
-              if (scrollPosition > 0) {
-                primaryLogo.style.display = 'block';
-                secondaryLogo.style.display = 'none';
-                document.body.classList.add('scrolled');
-                header.classList.add('scrolled');
-              } else {
-                primaryLogo.style.display = 'none';
-                secondaryLogo.style.display = 'block';
-                document.body.classList.remove('scrolled');
-                header.classList.remove('scrolled');
-              }
-            } else {
+          if (isHomepage) {
+            if (scrollPosition > 0) {
               primaryLogo.style.display = 'block';
               secondaryLogo.style.display = 'none';
+              header.classList.add('scrolled');
+            } else {
+              primaryLogo.style.display = 'none';
+              secondaryLogo.style.display = 'block';
+              header.classList.remove('scrolled');
             }
+          } else {
+            primaryLogo.style.display = 'block';
+            secondaryLogo.style.display = 'none';
+          }
+        }
 
-
-            // Aktualisieren der Menü-Hintergrundfarben basierend auf der Scroll-Position
-            dropdownMenus.forEach(function(menuItem) {
-              if (document.body.classList.contains('scrolled')) {
-                menuItem.classList.add('dropdown-background');
-              } else {
-                menuItem.classList.remove('dropdown-background');
-              }
-            });
-         }
-      }
-
-
-
-          window.addEventListener('scroll', handleScroll);
-          handleScroll(); // Beim Laden der Seite ausführen
-        });
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Beim Laden der Seite ausführen
+      });
     </script>
   </body>
 </html>
