@@ -411,7 +411,6 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         var header = document.querySelector('.header-wrapper');
-        var menuItems = document.querySelectorAll('.header__inline-menu .header__menu-item');
         var logoPrimary = document.querySelector('.header__heading-logo-wrapper');
         var logoSecondary = document.querySelector('.header__heading-logo-wrapper-logo-2');
         var cartIcon = document.querySelector('.icon-cart-empty');
@@ -424,11 +423,6 @@
         function updateHeaderStyles() {
           var scrollY = window.scrollY;
           var isScrolled = scrollY > 0;
-
-          // Hintergrund und Textfarbe der Menüelemente aktualisieren
-          menuItems.forEach(function(item) {
-            item.classList.toggle('scrolled', isScrolled);
-          });
 
           // Header-Klasse aktualisieren
           header.classList.toggle('scrolled', isScrolled);
