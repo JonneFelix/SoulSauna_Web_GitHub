@@ -402,36 +402,44 @@
     {% endif %}
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function() {
         var primaryLogo = document.querySelector('.header__heading-logo-wrapper');
         var secondaryLogo = document.querySelector('.header__heading-logo-wrapper-logo-2');
         var header = document.querySelector('.header-wrapper');
-        var announcementBarHeight = '0px'; // Stellen Sie sicher, dass dies Ihrer tatsächlichen Ankündigungsleistenhöhe entspricht.
+        var isHomepage = window.location.pathname === '/';
+        var announcementBarHeight = '0px'; // Höhe der Ankündigungsleiste.
 
-        // Diese Funktion wird aufgerufen, wenn der Benutzer scrollt
         function handleScroll() {
           var scrollPosition = window.scrollY;
 
-          if (scrollPosition > 0) {
-            // Benutzer hat gescrollt, sekundäres Logo und Hintergrundwechsel anzeigen
-            primaryLogo.style.display = 'block';
-            secondaryLogo.style.display = 'none';
-            header.style.marginTop = '0px'; // Schließen der Lücke
-            header.classList.add('scrolled');
-          } else {
-            // Benutzer ist ganz oben, primäres Logo anzeigen
-            primaryLogo.style.display = 'none';
-            secondaryLogo.style.display = 'block';
-            header.style.marginTop = announcementBarHeight; // Lücke entsprechend der Ankündigungsleiste einstellen
-            header.classList.remove('scrolled');
+          if (isHomepage) {
+            if (scrollPosition > 0) {
+              primaryLogo.style.display = 'none';
+              secondaryLogo.style.display = 'block';
+              header.classList.add('scrolled');
+            } else {
+              primaryLogo.style.display = 'block';
+              secondaryLogo.style.display = 'none';
+              header.classList.remove('scrolled');
+            }
           }
         }
 
-        // Fügen Sie der Seite einen Event Listener für das Scrollen hinzu
-        window.addEventListener('scroll', handleScroll);
+        // Füge nur auf der Startseite den Event Listener für das Scrollen hinzu
+        if (isHomepage) {
+          window.addEventListener('scroll', handleScroll);
+        }
 
-        // Rufen Sie die Funktion einmal beim Laden auf, falls die Seite mit einem Scrollwert geladen wird
-        handleScroll();
+        // Setze die Header-Lücke und Logos direkt, basierend darauf, ob die Seite die Startseite ist
+        header.style.marginTop = isHomepage ? announcementBarHeight : '0px';
+        if (!isHomepage) {
+          primaryLogo.style.display = 'block';
+          secondaryLogo.style.display = 'none';
+          header.classList.remove('scrolled');
+        } else {
+          // Stelle sicher, dass die Seite in der Startposition korrekt initialisiert wird
+          handleScroll();
+        }
       });
     </script>
   </body>
