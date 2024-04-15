@@ -462,7 +462,7 @@
 
            // Diese Funktion aktualisiert die Farben der Icons
       function updateIconColors(scrollPosition) {
-        var action = scrollPosition > 0 ? 'add' : 'remove';
+        var action = scrollPosition > 0 ? 'remove' : 'add';
         cartIcon.classList[action]('scrolled-icon');
         searchIcon.classList[action]('scrolled-icon');
         menuIcon.classList[action]('scrolled-icon');
