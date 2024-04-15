@@ -405,37 +405,43 @@
         var cartIcon = document.querySelector('.icon-cart-empty');
         var searchIcon = document.querySelector('.icon-search');
         var menuIcon = document.querySelector('.icon-hamburger');
-        var searchIcon = document.querySelector('.icon-search');
+        var closeIcon = document.querySelector('.icon-close');
 
+        // Diese Funktion aktualisiert die Farben der Icons
+        function updateIconColors(scrollPosition) {
+          if(scrollPosition > 0) {
+            cartIcon.classList.add('scrolled-icon');
+            searchIcon.classList.add('scrolled-icon');
+            menuIcon.classList.add('scrolled-icon');
+            closeIcon.classList.add('scrolled-icon');
+          } else {
+            cartIcon.classList.remove('scrolled-icon');
+            searchIcon.classList.remove('scrolled-icon');
+            menuIcon.classList.remove('scrolled-icon');
+            closeIcon.classList.remove('scrolled-icon');
+          }
+        }
 
         // Diese Funktion wird aufgerufen, wenn der Benutzer scrollt
         function handleScroll() {
           var scrollPosition = window.scrollY;
           var isHomepage = window.location.pathname === '/' || window.location.pathname === '/de/';
 
+          updateIconColors(scrollPosition); // Aktualisieren der Icon-Farben basierend auf der Scroll-Position
+
           if (isHomepage) {
             if (scrollPosition > 0) {
-              primaryLogo.style.display = 'block';
-              secondaryLogo.style.display = 'none';
-              cartIcon.classList.remove('white-icons');
-              searchIcon.classList.remove('white-icons');
-              menuIcon.classList.remove('scrolled-icon');
-              closeIcon.classList.remove('scrolled-icon');
-              header.classList.add('scrolled');
-            } else {
               primaryLogo.style.display = 'none';
               secondaryLogo.style.display = 'block';
-              cartIcon.classList.add('white-icons');
-              searchIcon.classList.add('white-icons');
-              menuIcon.classList.add('scrolled-icon');
-              closeIcon.classList.add('scrolled-icon');
+              header.classList.add('scrolled');
+            } else {
+              primaryLogo.style.display = 'block';
+              secondaryLogo.style.display = 'none';
               header.classList.remove('scrolled');
             }
           } else {
             primaryLogo.style.display = 'block';
             secondaryLogo.style.display = 'none';
-            cartIcon.classList.remove('white-icons');
-            searchIcon.classList.remove('white-icons');
           }
         }
 
