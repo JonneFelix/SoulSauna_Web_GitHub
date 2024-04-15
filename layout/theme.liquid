@@ -416,12 +416,12 @@
           // Logik für die Startseite
           if (isHomepage) {
             if (scrollPosition > 0) {
-              primaryLogo.style.display = 'none';
-              secondaryLogo.style.display = 'block';
-              header.classList.add('scrolled');
-            } else {
               primaryLogo.style.display = 'block';
               secondaryLogo.style.display = 'none';
+              header.classList.add('scrolled');
+            } else {
+              primaryLogo.style.display = 'none';
+              secondaryLogo.style.display = 'block';
               header.classList.remove('scrolled');
             }
           } else {
