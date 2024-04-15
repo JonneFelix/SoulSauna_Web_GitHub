@@ -282,72 +282,81 @@
     </script>
 
     <style>
-      {% if template == 'index' %}
-      .shopify-section-group-header-group.announcement-bar-section{
-         height: 0px;
-       }
+            {% if template == 'index' %}
+            .shopify-section-group-header-group.announcement-bar-section{
+               height: 0px;
+             }
 
-        /* Startzustand: Transparenter Hintergrund mit weißer Schrift */
-        .header-wrapper {
-          transition: background-color 0.3s;
-          background-color: transparent;
-          color: #FFFFFF;
-          width: 100%;
-          position: absolute;
-        }
+              /* Startzustand: Transparenter Hintergrund mit weißer Schrift */
+              .header-wrapper {
+                transition: background-color 0.3s;
+                background-color: transparent;
+                color: #FFFFFF;
+                width: 100%;
+                position: absolute;
+              }
 
-        .header-wrapper .header__menu-item {
-          color: #FFFFFF; /* Weißer Text */
-        }
+              .header-wrapper .header__menu-item {
+                color: #FFFFFF; /* Weißer Text */
+              }
 
-        /* Stil für den Header nach dem Scrollen */
-            .header-wrapper.scrolled {
-              background-color: #FFFFFF; /* Weißer Hintergrund */
-              color: #103948; /* Dunkelblauer Text */
-        }
+              /* Stil für den Header nach dem Scrollen */
+                  .header-wrapper.scrolled {
+                    background-color: #FFFFFF; /* Weißer Hintergrund */
+                    color: #103948; /* Dunkelblauer Text */
+              }
 
-        .header-wrapper.scrolled .header__menu-item {
-          color: #103948; /* Dunkelblauer Text */
-        }
+              .header-wrapper.scrolled .header__menu-item {
+                color: #103948; /* Dunkelblauer Text */
+              }
 
-            .header-wrapper .header {
-              margin-top: 0px;
-            }
+                  .header-wrapper .header {
+                    margin-top: 0px;
+                  }
 
-            .header-wrapper.scrolled .header__heading-logo-wrapper {
-              transform: translateX(15%);
-            }
+                  .header-wrapper.scrolled .header__heading-logo-wrapper {
+                    transform: translateX(15%);
+                  }
 
-        /* Stil für Menüpunkt-Hintergrund */
-            .header__inline-menu .header__menu-item {
-              background-color: transparent; /* Weißer Hintergrund */
-              padding: 5px 25px 5px 10px; /* Innerer Abstand */
-              border-radius: 10px; /* Abgerundete Ecken */
-              margin: 0 30px 0 0px; /* Außenabstand */
-            }
-            .header__inline-menu .header__menu-item:not(:last-child) {
-              margin-right: 10px; /* Zusätzlicher rechter Abstand */
-            }
+              /* Stil für Menüpunkt-Hintergrund */
+                  .header__inline-menu .header__menu-item {
+                    background-color: transparent; /* Weißer Hintergrund */
+                    padding: 5px 25px 5px 10px; /* Innerer Abstand */
+                    border-radius: 10px; /* Abgerundete Ecken */
+                    margin: 0 30px 0 0px; /* Außenabstand */
+                  }
+                  .header__inline-menu .header__menu-item:not(:last-child) {
+                    margin-right: 10px; /* Zusätzlicher rechter Abstand */
+                  }
 
-        /* Startzustand für Unterpunkte: Transparenter Hintergrund mit weißer Schrift */
-      .header-wrapper .header__inline-menu .submenu-item {
-        color: #FFFFFF; /* Weißer Text */
+            /* Vor dem Scrollen */
+      .list-menu--disclosure {
+          background: transparent; /* Transparenter Hintergrund */
+          color: #FFFFFF; /* Weiße Schriftfarbe */
       }
 
-        /* Zustand nach dem Scrollen für Unterpunkte: Weißer Hintergrund mit dunkler Schrift */
-      .header-wrapper.scrolled .header__inline-menu .submenu-item {
-        color: #103948; /* Dunkelblauer Text */
+      .header__submenu .header__menu-item {
+          color: #FFFFFF; /* Weiße Schriftfarbe */
       }
 
-        .scrolled-icon {
-        filter: brightness(0) invert(1);
-        }
+      /* Nach dem Scrollen */
+      .header-wrapper.scrolled .list-menu--disclosure {
+          background: #000a7d; /* Dunkelblauer Hintergrund */
+      }
 
-            .announcement-bar-section {
-              display: block; /* or whatever the default display should be */
-              background-color: #fff; /* Add this line if it's not already present */
-            }
-            {% endif %}
+      .header-wrapper.scrolled .header__submenu .header__menu-item {
+          color: #fcba03; /* Gelbe Schriftfarbe */
+      }
+
+              .scrolled-icon {
+              filter: brightness(0) invert(1);
+              }
+
+                  .announcement-bar-section {
+                    display: block; /* or whatever the default display should be */
+                    background-color: #fff; /* Add this line if it's not already present */
+                  }
+                  {% endif %}
     </style>
   </head>
 
@@ -420,56 +429,72 @@
     {%- endif -%}
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var primaryLogo = document.querySelector('.header__heading-logo-wrapper');
-        var secondaryLogo = document.querySelector('.header__heading-logo-wrapper-logo-2');
-        var header = document.querySelector('.header-wrapper');
-        var cartIcon = document.querySelector('.icon-cart-empty');
-        var searchIcon = document.querySelector('.icon-search');
-        var menuIcon = document.querySelector('.icon-hamburger');
-        var closeIcon = document.querySelector('.icon-close');
+          document.addEventListener('DOMContentLoaded', function() {
+            var primaryLogo = document.querySelector('.header__heading-logo-wrapper');
+            var secondaryLogo = document.querySelector('.header__heading-logo-wrapper-logo-2');
+            var header = document.querySelector('.header-wrapper');
+            var cartIcon = document.querySelector('.icon-cart-empty');
+            var searchIcon = document.querySelector('.icon-search');
+            var menuIcon = document.querySelector('.icon-hamburger');
+            var closeIcon = document.querySelector('.icon-close');
+            var menuItems = document.querySelectorAll('.header__inline-menu .header__menu-item');
+            var submenuItems = document.querySelectorAll('.header__submenu .header__menu-item'); // Stelle sicher, dass dies die richtigen Klassen sind
 
-        // Diese Funktion aktualisiert die Farben der Icons
-        function updateIconColors(scrollPosition) {
-          if(scrollPosition > 0) {
-            cartIcon.classList.remove('scrolled-icon');
-            searchIcon.classList.remove('scrolled-icon');
-            menuIcon.classList.remove('scrolled-icon');
-            closeIcon.classList.remove('scrolled-icon');
-          } else {
-            cartIcon.classList.add('scrolled-icon');
-            searchIcon.classList.add('scrolled-icon');
-            menuIcon.classList.add('scrolled-icon');
-            closeIcon.classList.add('scrolled-icon');
-          }
+
+            // Diese Funktion aktualisiert die Farben der Menüpunkte
+      function updateMenuColors(scrollPosition) {
+        if(scrollPosition > 0) {
+          menuItems.forEach(function(item) {
+            item.style.color = '#fcba03'; // Gelbe Schriftfarbe beim Scrollen
+          });
+          submenuItems.forEach(function(item) {
+            item.style.color = '#fcba03'; // Gelbe Schriftfarbe beim Scrollen
+          });
+        } else {
+          menuItems.forEach(function(item) {
+            item.style.color = ''; // Entferne den Inline-Stil, damit CSS wirken kann
+          });
+          submenuItems.forEach(function(item) {
+            item.style.color = ''; // Entferne den Inline-Stil, damit CSS wirken kann
+          });
         }
+      }
 
-        // Diese Funktion wird aufgerufen, wenn der Benutzer scrollt
-        function handleScroll() {
-          var scrollPosition = window.scrollY;
-          var isHomepage = window.location.pathname === '/' || window.location.pathname === '/de/';
+           // Diese Funktion aktualisiert die Farben der Icons
+      function updateIconColors(scrollPosition) {
+        var action = scrollPosition > 0 ? 'add' : 'remove';
+        cartIcon.classList[action]('scrolled-icon');
+        searchIcon.classList[action]('scrolled-icon');
+        menuIcon.classList[action]('scrolled-icon');
+        closeIcon.classList[action]('scrolled-icon');
+      }
 
-          updateIconColors(scrollPosition); // Aktualisieren der Icon-Farben basierend auf der Scroll-Position
+            // Diese Funktion wird aufgerufen, wenn der Benutzer scrollt
+            function handleScroll() {
+              var scrollPosition = window.scrollY;
+              var isHomepage = window.location.pathname === '/' || window.location.pathname === '/de/';
 
-          if (isHomepage) {
-            if (scrollPosition > 0) {
-              primaryLogo.style.display = 'block';
-              secondaryLogo.style.display = 'none';
-              header.classList.add('scrolled');
-            } else {
-              primaryLogo.style.display = 'none';
-              secondaryLogo.style.display = 'block';
-              header.classList.remove('scrolled');
+              updateIconColors(scrollPosition); // Aktualisieren der Icon-Farben basierend auf der Scroll-Position
+
+              if (isHomepage) {
+                if (scrollPosition > 0) {
+                  primaryLogo.style.display = 'block';
+                  secondaryLogo.style.display = 'none';
+                  header.classList.add('scrolled');
+                } else {
+                  primaryLogo.style.display = 'none';
+                  secondaryLogo.style.display = 'block';
+                  header.classList.remove('scrolled');
+                }
+              } else {
+                primaryLogo.style.display = 'block';
+                secondaryLogo.style.display = 'none';
+              }
             }
-          } else {
-            primaryLogo.style.display = 'block';
-            secondaryLogo.style.display = 'none';
-          }
-        }
 
-        window.addEventListener('scroll', handleScroll);
-        handleScroll(); // Beim Laden der Seite ausführen
-      });
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Beim Laden der Seite ausführen
+          });
     </script>
   </body>
 </html>
