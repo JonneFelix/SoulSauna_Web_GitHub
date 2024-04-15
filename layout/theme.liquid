@@ -282,149 +282,61 @@
     </script>
 
     <style>
-            header-drawer {
-              justify-self: start;
-              margin-left: -1.2rem;
-            }
-
-          {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
-            .scrolled-past-header .header__heading-logo-wrapper {
-              width: 75%;
-            }
-          {%- endif -%}
-
-          {%- if section.settings.menu_type_desktop != "drawer" -%}
-            @media screen and (min-width: 990px) {
-              header-drawer {
-                display: none;
-              }
-            }
-          {%- endif -%}
-
-
-            .menu-drawer-container {
-              display: flex;
-            }
-
-            .list-menu {
-              list-style: none;
-              padding: 0;
-              margin: 0;
-            }
-
-            .list-menu--inline {
-              display: inline-flex;
-              flex-wrap: wrap;
-            }
-
-            summary.list-menu__item {
-              padding-right: 2.7rem;
-            }
-
-            .list-menu__item {
-              display: flex;
-              align-items: center;
-              line-height: calc(1 + 0.3 / var(--font-body-scale));
-            }
-
-            .list-menu__item--link {
-              text-decoration: none;
-              padding-bottom: 1rem;
-              padding-top: 1rem;
-              line-height: calc(1 + 0.8 / var(--font-body-scale));
-            }
-
-            @media screen and (min-width: 750px) {
-              .list-menu__item--link {
-                padding-bottom: 0.5rem;
-                padding-top: 0.5rem;
-              }
-            }
-
-            .header {
-        background-color: transparent; /* Transparenter Hintergrund beim Laden der Seite */
-        transition: background-color 0.3s; /* Weiche Übergänge für Hintergrundfarbenänderungen */
-      }
-
-      .section-header {
-        position: sticky; /* This is for fixing a Safari z-index issue. PR #2147 */
-        margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
-        transition: margin-top 0.3s; /* Weiche Übergänge */
-        {% if template == 'index' %}
-          margin-top: 36px;
-        {% else %}
-          margin-top: 0;
-        {% endif %}
-      }
-
-      @media screen and (min-width: 750px) {
-        .section-header {
-          margin-bottom: {{ section.settings.margin_bottom }}px;
-        }
-      }
-
-      @media screen and (min-width: 990px) {
-        .header {
-          padding-top: {{ section.settings.padding_top }}px;
-          padding-bottom: {{ section.settings.padding_bottom }}px;
-        }
-      }
-
-                          {% if template == 'index' %}
-                          .shopify-section-group-header-group.announcement-bar-section{
-                            height: 0px;
-                          }
-                      /* Zusätzlicher Stil für den Header */
-                          .header-wrapper {
-                            position: absolute;
-                            width: 100%;
-                            background: transparent;
-                            margin-top: 0px; /* Abstand auf 36px erhöht */
-                          }
-                          .header-wrapper .header {
-                            margin-top: 0px;
-                          }
-
-                          .header-wrapper.scrolled .header__heading-logo-wrapper {
-                            transform: translateX(15%);
-                          }
-
-                      /* Stil für Menüpunkt-Hintergrund */
-                          .header__inline-menu .header__menu-item {
-                            background-color: transparent;
-                            padding: 5px 25px 5px 10px; /* Innerer Abstand */
-                            border-radius: 10px; /* Abgerundete Ecken */
-                            margin: 0 30px 0 0px; /* Außenabstand */
-                            color: #FFFFFF; /* Weiße Farbe wenn nicht gescrollt wird */
-                          }
-
-                      /* Farben nach dem Scrollen */
-                          .header__inline-menu.scrolled .header__menu-item {
-                              background-color: #ffff; /* Weißer Hintergrund */
-                              color: #123A49 !important; /* Dunkelblaue Farbe wenn gescrollt wird */
-                          }
-                          .header__inline-menu .header__menu-item:not(:last-child) {
-                            margin-right: 10px; /* Zusätzlicher rechter Abstand */
-                          }
-                          .body.scrolled .header__inline-menu .header__menu-item {
-                          background-color: #fff; /* Weißer Hintergrund */
-                          }
-
-                    /* Standardmäßige Icon-Farbe, wenn nicht gescrollt wird */
-                .icon {
-                  filter:  brightness(0) invert(1);
+                {% if template == 'index' %}
+                .shopify-section-group-header-group.announcement-bar-section{
+                  height: 0px;
+                }
+            /* Zusätzlicher Stil für den Header */
+                .header-wrapper {
+                  position: absolute;
+                  width: 100%;
+                  background: transparent;
+                  margin-top: 0px; /* Abstand auf 36px erhöht */
+                }
+                .header-wrapper .header {
+                  margin-top: 0px;
                 }
 
-                /* Geänderte Icon-Farbe, wenn gescrollt wird */
-                .scrolled .icon {
-                  filter: none;
+                .header-wrapper.scrolled .header__heading-logo-wrapper {
+                  transform: translateX(15%);
                 }
 
-                          .announcement-bar-section {
-                            display: block; /* or whatever the default display should be */
-                            background-color: #fff; /* Add this line if it's not already present */
-                          }
-                          {% endif %}
+            /* Stil für Menüpunkt-Hintergrund */
+                .header__inline-menu .header__menu-item {
+                  background-color: transparent;
+                  padding: 5px 25px 5px 10px; /* Innerer Abstand */
+                  border-radius: 10px; /* Abgerundete Ecken */
+                  margin: 0 30px 0 0px; /* Außenabstand */
+                  color: #FFFFFF; /* Weiße Farbe wenn nicht gescrollt wird */
+                }
+
+            /* Farben nach dem Scrollen */
+                .header__inline-menu.scrolled .header__menu-item {
+                    background-color: #ffff; /* Weißer Hintergrund */
+                    color: #123A49 !important; /* Dunkelblaue Farbe wenn gescrollt wird */
+                }
+                .header__inline-menu .header__menu-item:not(:last-child) {
+                  margin-right: 10px; /* Zusätzlicher rechter Abstand */
+                }
+                .body.scrolled .header__inline-menu .header__menu-item {
+                background-color: #fff; /* Weißer Hintergrund */
+                }
+
+          /* Standardmäßige Icon-Farbe, wenn nicht gescrollt wird */
+      .icon {
+        filter:  brightness(0) invert(1);
+      }
+
+      /* Geänderte Icon-Farbe, wenn gescrollt wird */
+      .scrolled .icon {
+        filter: none;
+      }
+
+                .announcement-bar-section {
+                  display: block; /* or whatever the default display should be */
+                  background-color: #fff; /* Add this line if it's not already present */
+                }
+                {% endif %}
     </style>
   </head>
 
