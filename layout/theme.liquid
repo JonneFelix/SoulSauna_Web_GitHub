@@ -321,11 +321,11 @@
               background-color: transparent; /* Weißer Hintergrund */
               color: #123A49; /* Dunkelblaue Textfarbe */
           }
-         .dropdown-background {
-            background-color: white; /* oder die gewünschte Farbe */
-          }
           .header__inline-menu .header__menu-item:not(:last-child) {
             margin-right: 10px; /* Zusätzlicher rechter Abstand */
+          }
+          .body.scrolled .header__inline-menu .header__menu-item {
+          background-color: #fff; /* Weißer Hintergrund */
           }
 
       /* Stil für den Header nach dem Scrollen */
@@ -424,54 +424,40 @@
         var menuIcon = document.querySelector('.icon-hamburger');
         var closeIcon = document.querySelector('.icon-close');
         var menuItems = document.querySelector('.header__inline-menu');
+        var body = document.body; // Fügen Sie das <body>-Element hinzu
 
+        // Funktion zum Aktualisieren der Icon-Farben und Header-Klassen
+        function updateStyles(scrollPosition) {
+          var scrolled = scrollPosition > 0;
 
-        // Diese Funktion aktualisiert die Farben der Icons
-        function updateIconColors(scrollPosition) {
-          if(scrollPosition > 0) {
-            cartIcon.classList.remove('scrolled-icon');
-            searchIcon.classList.remove('scrolled-icon');
-            menuIcon.classList.remove('scrolled-icon');
-            closeIcon.classList.remove('scrolled-icon');
-            header.classList.add('scrolled');
-            menuItems.classList.add('scrolled');
+          // Update der Icon-Farben
+          cartIcon.classList.toggle('scrolled-icon', scrolled);
+          searchIcon.classList.toggle('scrolled-icon', scrolled);
+          menuIcon.classList.toggle('scrolled-icon', scrolled);
+          closeIcon.classList.toggle('scrolled-icon', scrolled);
 
-          } else {
-            cartIcon.classList.add('scrolled-icon');
-            searchIcon.classList.add('scrolled-icon');
-            menuIcon.classList.add('scrolled-icon');
-            closeIcon.classList.add('scrolled-icon');
-            header.classList.remove('scrolled');
-            menuItems.classList.remove('scrolled');
+          // Toggle der 'scrolled'-Klasse basierend auf der Scroll-Position
+          header.classList.toggle('scrolled', scrolled);
+          menuItems.classList.toggle('scrolled', scrolled);
+          body.classList.toggle('scrolled', scrolled); // Toggle die Klasse am <body>
 
-          }
-        }
-
-        // Diese Funktion wird aufgerufen, wenn der Benutzer scrollt
-        function handleScroll() {
-          var scrollPosition = window.scrollY;
-          var isHomepage = window.location.pathname === '/' || window.location.pathname === '/de/';
-
-          updateIconColors(scrollPosition); // Aktualisieren der Icon-Farben basierend auf der Scroll-Position
-
-          if (isHomepage) {
-            if (scrollPosition > 0) {
-              primaryLogo.style.display = 'block';
-              secondaryLogo.style.display = 'none';
-              header.classList.add('scrolled');
-            } else {
-              primaryLogo.style.display = 'none';
-              secondaryLogo.style.display = 'block';
-              header.classList.remove('scrolled');
-            }
+          // Anpassen der Logos
+          if (window.location.pathname === '/' || window.location.pathname === '/de/') {
+            primaryLogo.style.display = scrolled ? 'block' : 'none';
+            secondaryLogo.style.display = scrolled ? 'none' : 'block';
           } else {
             primaryLogo.style.display = 'block';
             secondaryLogo.style.display = 'none';
           }
         }
 
-        window.addEventListener('scroll', handleScroll);
-        handleScroll(); // Beim Laden der Seite ausführen
+        // Event-Listener für das Scroll-Event
+        window.addEventListener('scroll', function() {
+          updateStyles(window.scrollY);
+        });
+
+        // Initialen Zustand setzen
+        updateStyles(window.scrollY);
       });
     </script>
   </body>
