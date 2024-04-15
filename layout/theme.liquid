@@ -405,6 +405,7 @@
         var cartIcon = document.querySelector('.icon-cart-empty');
         var searchIcon = document.querySelector('.icon-search');
 
+
         // Diese Funktion wird aufgerufen, wenn der Benutzer scrollt
         function handleScroll() {
           var scrollPosition = window.scrollY;
@@ -416,12 +417,16 @@
               secondaryLogo.style.display = 'none';
               cartIcon.classList.remove('white-icons');
               searchIcon.classList.remove('white-icons');
+              menuIcon.classList.remove('scrolled-icon');
+              closeIcon.classList.remove('scrolled-icon');
               header.classList.add('scrolled');
             } else {
               primaryLogo.style.display = 'none';
               secondaryLogo.style.display = 'block';
               cartIcon.classList.add('white-icons');
               searchIcon.classList.add('white-icons');
+              menuIcon.classList.add('scrolled-icon');
+              closeIcon.classList.add('scrolled-icon');
               header.classList.remove('scrolled');
             }
           } else {
