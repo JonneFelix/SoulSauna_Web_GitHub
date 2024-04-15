@@ -406,44 +406,58 @@
     {% endif %}
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var primaryLogo = document.querySelector('.header__heading-logo-wrapper');
-        var secondaryLogo = document.querySelector('.header__heading-logo-wrapper-logo-2');
-        var header = document.querySelector('.header-wrapper');
-        var announcementBarHeight = '0px'; // Stellen Sie sicher, dass dies Ihrer tatsächlichen Ankündigungsleistenhöhe entspricht.
+          document.addEventListener('DOMContentLoaded', function() {
+            var primaryLogo = document.querySelector('.header__heading-logo-wrapper');
+            var secondaryLogo = document.querySelector('.header__heading-logo-wrapper-logo-2');
+            var header = document.querySelector('.header-wrapper');
+            var announcementBarHeight = '0px'; // Stellen Sie sicher, dass dies Ihrer tatsächlichen Ankündigungsleistenhöhe entspricht.
+            // Icons auswählen
+            var cartIcon = document.querySelector('.cart-icon');
+            var searchIcon = document.querySelector('.search-icon');
 
-        // Diese Funktion wird aufgerufen, wenn der Benutzer scrollt
-        function handleScroll() {
-          var scrollPosition = window.scrollY;
-          var isHomepage = window.location.pathname === '/' || window.location.pathname === '/de/'; // Prüfen, ob es die Homepage ist, Pfad ggf. anpassen
+            // Diese Funktion wird aufgerufen, wenn der Benutzer scrollt
+            function handleScroll() {
+              var scrollPosition = window.scrollY;
+              var isHomepage = window.location.pathname === '/' || window.location.pathname === '/de/'; // Prüfen, ob es die Homepage ist, Pfad ggf. anpassen
 
-          // Logik für die Startseite
-          if (isHomepage) {
-            if (scrollPosition > 0) {
-              primaryLogo.style.display = 'block';
-              secondaryLogo.style.display = 'none';
-              header.classList.add('scrolled');
-            } else {
-              primaryLogo.style.display = 'none';
-              secondaryLogo.style.display = 'block';
-              header.classList.remove('scrolled');
+              // Logik für die Startseite
+              if (isHomepage) {
+                if (scrollPosition > 0) {
+                  primaryLogo.style.display = 'block';
+                  secondaryLogo.style.display = 'none';
+                  header.classList.add('scrolled');
+                } else {
+                  primaryLogo.style.display = 'none';
+                  secondaryLogo.style.display = 'block';
+                  header.classList.remove('scrolled');
+                }
+              } else {
+                // Logik für andere Seiten
+                primaryLogo.style.display = 'block';
+                secondaryLogo.style.display = 'none';
+              }
+
+              // Icons weiß färben, wenn gescrollt wird
+      if (scrollPosition > 0) {
+        cartIcon.classList.add('white-icons');
+        searchIcon.classList.add('white-icons');
+        // weitere Icons anpassen ...
+      } else {
+        cartIcon.classList.remove('white-icons');
+        searchIcon.classList.remove('white-icons');
+        // weitere Icons anpassen ...
+      }
+
+              // Lückenlogik
+              header.style.marginTop = scrollPosition > 0 ? '0px' : announcementBarHeight;
             }
-          } else {
-            // Logik für andere Seiten
-            primaryLogo.style.display = 'block';
-            secondaryLogo.style.display = 'none';
-          }
 
-          // Lückenlogik
-          header.style.marginTop = scrollPosition > 0 ? '0px' : announcementBarHeight;
-        }
+            // Event Listener für das Scrollen hinzufügen
+            window.addEventListener('scroll', handleScroll);
 
-        // Event Listener für das Scrollen hinzufügen
-        window.addEventListener('scroll', handleScroll);
-
-        // Initialen Aufruf durchführen, um den Zustand beim Laden der Seite zu setzen
-        handleScroll();
-      });
+            // Initialen Aufruf durchführen, um den Zustand beim Laden der Seite zu setzen
+            handleScroll();
+          });
     </script>
   </body>
 </html>
