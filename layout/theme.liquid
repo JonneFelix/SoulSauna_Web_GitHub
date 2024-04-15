@@ -309,6 +309,18 @@
             margin: 0 30px 0 0px; /* Außenabstand */
             color: #ffff;
           }
+
+      /* Vordefinierte Farben vor dem Scrollen */
+          .header__inline-menu .header__menu-item {
+              background-color: transparent; /* Transparenter Hintergrund */
+              color: #ffffff; /* Weiße Textfarbe */
+          }
+
+      /* Farben nach dem Scrollen */
+          .header__inline-menu.scrolled .header__menu-item {
+              background-color: #ffffff; /* Weißer Hintergrund */
+              color: #123A49; /* Dunkelblaue Textfarbe */
+          }
           .header__inline-menu .header__menu-item:not(:last-child) {
             margin-right: 10px; /* Zusätzlicher rechter Abstand */
           }
@@ -406,6 +418,7 @@
         var searchIcon = document.querySelector('.icon-search');
         var menuIcon = document.querySelector('.icon-hamburger');
         var closeIcon = document.querySelector('.icon-close');
+        var menuItems = document.querySelector('.header__inline-menu');
 
         // Diese Funktion aktualisiert die Farben der Icons
         function updateIconColors(scrollPosition) {
@@ -414,11 +427,15 @@
             searchIcon.classList.remove('scrolled-icon');
             menuIcon.classList.remove('scrolled-icon');
             closeIcon.classList.remove('scrolled-icon');
+            header.classList.remove('scrolled');
+            menuItems.classList.remove('scrolled');
           } else {
             cartIcon.classList.add('scrolled-icon');
             searchIcon.classList.add('scrolled-icon');
             menuIcon.classList.add('scrolled-icon');
             closeIcon.classList.add('scrolled-icon');
+            header.classList.add('scrolled');
+            menuItems.classList.add('scrolled');
           }
         }
 
