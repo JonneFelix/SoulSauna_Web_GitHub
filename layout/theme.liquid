@@ -282,61 +282,49 @@
     </script>
 
     <style>
-                {% if template == 'index' %}
-                .shopify-section-group-header-group.announcement-bar-section{
-                  height: 0px;
-                }
-            /* Zusätzlicher Stil für den Header */
-                .header-wrapper {
-                  position: absolute;
-                  width: 100%;
-                  background: transparent;
-                  margin-top: 0px; /* Abstand auf 36px erhöht */
-                }
-                .header-wrapper .header {
-                  margin-top: 0px;
-                }
+          {% if template == 'index' %}
+          .shopify-section-group-header-group.announcement-bar-section{
+            height: 0px;
+          }
+      /* Zusätzlicher Stil für den Header */
+          .header-wrapper {
+            position: absolute;
+            width: 100%;
+            background: transparent;
+            margin-top: 0px; /* Abstand auf 36px erhöht */
+          }
+          .header-wrapper .header {
+            margin-top: 0px;
+          }
 
-                .header-wrapper.scrolled .header__heading-logo-wrapper {
-                  transform: translateX(15%);
-                }
+          .header-wrapper.scrolled .header__heading-logo-wrapper {
+            transform: translateX(15%);
+          }
 
-            /* Stil für Menüpunkt-Hintergrund */
-                .header__inline-menu .header__menu-item {
-                  background-color: transparent;
-                  padding: 5px 25px 5px 10px; /* Innerer Abstand */
-                  border-radius: 10px; /* Abgerundete Ecken */
-                  margin: 0 30px 0 0px; /* Außenabstand */
-                  color: #FFFFFF; /* Weiße Farbe wenn nicht gescrollt wird */
-                }
-
-            /* Farben nach dem Scrollen */
-                .header__inline-menu.scrolled .header__menu-item {
-                    background-color: #ffff; /* Weißer Hintergrund */
-                    color: #123A49 !important; /* Dunkelblaue Farbe wenn gescrollt wird */
-                }
-                .header__inline-menu .header__menu-item:not(:last-child) {
-                  margin-right: 10px; /* Zusätzlicher rechter Abstand */
-                }
-                .body.scrolled .header__inline-menu .header__menu-item {
-                background-color: #fff; /* Weißer Hintergrund */
-                }
-
-          /* Standardmäßige Icon-Farbe, wenn nicht gescrollt wird */
-      .icon {
-        filter:  brightness(0) invert(1);
+      /* Stil für Menüpunkt-Hintergrund */
+          .header__inline-menu .header__menu-item {
+            background-color: #ffffff; /* Weißer Hintergrund */
+            padding: 5px 25px 5px 10px; /* Innerer Abstand */
+            border-radius: 10px; /* Abgerundete Ecken */
+            margin: 0 30px 0 0px; /* Außenabstand */
+          }
+          .header__inline-menu .header__menu-item:not(:last-child) {
+            margin-right: 10px; /* Zusätzlicher rechter Abstand */
+          }
+      /* Stil für den Header nach dem Scrollen */
+          .header-wrapper.scrolled {
+            background-color: #fff; /* Weißer Hintergrund nach dem Scrollen */
+            transition: background-color 0.7s; /* Weiche Übergänge */
+      }
+      .scrolled-icon {
+      filter: brightness(0) invert(1);
       }
 
-      /* Geänderte Icon-Farbe, wenn gescrollt wird */
-      .scrolled .icon {
-        filter: none;
-      }
-
-                .announcement-bar-section {
-                  display: block; /* or whatever the default display should be */
-                  background-color: #fff; /* Add this line if it's not already present */
-                }
-                {% endif %}
+          .announcement-bar-section {
+            display: block; /* or whatever the default display should be */
+            background-color: #fff; /* Add this line if it's not already present */
+          }
+          {% endif %}
     </style>
   </head>
 
@@ -421,15 +409,15 @@
         // Diese Funktion aktualisiert die Farben der Icons
         function updateIconColors(scrollPosition) {
           if(scrollPosition > 0) {
-            cartIcon.classList.add('scrolled-icon');
-            searchIcon.classList.add('scrolled-icon');
-            menuIcon.classList.add('scrolled-icon');
-            closeIcon.classList.add('scrolled-icon');
-          } else {
             cartIcon.classList.remove('scrolled-icon');
             searchIcon.classList.remove('scrolled-icon');
             menuIcon.classList.remove('scrolled-icon');
             closeIcon.classList.remove('scrolled-icon');
+          } else {
+            cartIcon.classList.add('scrolled-icon');
+            searchIcon.classList.add('scrolled-icon');
+            menuIcon.classList.add('scrolled-icon');
+            closeIcon.classList.add('scrolled-icon');
           }
         }
 
