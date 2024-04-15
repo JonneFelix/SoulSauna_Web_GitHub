@@ -19,13 +19,13 @@
         "text_mQ3TtG": {
           "type": "text",
           "settings": {
-            "text": "<p>Ist ihnen eine persönliche Beratung Lieber? Kein Problem! Rufen sie uns gerne unter <strong>+491601691111<\/strong> oder<\/p>"
+            "text": "<p>Ist ihnen eine persönliche Beratung lieber? Kein Problem! Rufen sie uns gerne unter <strong>+491601691111<\/strong> oder schreiben sie uns eine Mail: <a href=\"mailto:kundenservice@soulsauna.de\" target=\"_blank\" title=\"mailto:kundenservice@soulsauna.de\">kundenservice@soulsauna.de<\/a><\/p>"
           }
         },
         "button_R9GJxj": {
           "type": "button",
           "settings": {
-            "button_label": "KLICKEN SIE HIER",
+            "button_label": "HILFE",
             "button_link": "shopify:\/\/pages\/finn-der-saunaflusterer",
             "button_style_secondary": false,
             "button_label_2": "",
@@ -39,7 +39,7 @@
         "button_R9GJxj"
       ],
       "custom_css": [
-        ".rich-text{border: none;}",
+        ".rich-text {border: none;}",
         ".rich-text::before,.rich-text::after {box-shadow: none !important;}"
       ],
       "settings": {
