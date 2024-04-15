@@ -422,6 +422,7 @@
         var menuIcon = document.querySelector('.icon-hamburger');
         var closeIcon = document.querySelector('.icon-close');
         var menuItems = document.querySelector('.header__inline-menu');
+        var dropdownMenu = document.querySelector('.dropdown-menu-selector'); // Ersetzen Sie '.dropdown-menu-selector' durch den tatsächlichen Selektor Ihres Dropdown-Menüs
 
         // Diese Funktion aktualisiert die Farben der Icons
         function updateIconColors(scrollPosition) {
@@ -432,6 +433,7 @@
             closeIcon.classList.remove('scrolled-icon');
             header.classList.add('scrolled');
             menuItems.classList.add('scrolled');
+            dropdownMenu.classList.add('dropdown-background');
 
           } else {
             cartIcon.classList.add('scrolled-icon');
@@ -440,6 +442,7 @@
             closeIcon.classList.add('scrolled-icon');
             header.classList.remove('scrolled');
             menuItems.classList.remove('scrolled');
+            dropdownMenu.classList.remove('dropdown-background');
 
           }
         }
