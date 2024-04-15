@@ -282,67 +282,78 @@
     </script>
 
     <style>
-          {% if template == 'index' %}
-          .shopify-section-group-header-group.announcement-bar-section{
-            height: 0px;
-          }
-      /* Zusätzlicher Stil für den Header */
-          .header-wrapper {
-            position: absolute;
-            width: 100%;
-            background: transparent;
-            margin-top: 0px; /* Abstand auf 36px erhöht */
-          }
-          .header-wrapper .header {
-            margin-top: 0px;
-          }
+                {% if template == 'index' %}
+                .shopify-section-group-header-group.announcement-bar-section{
+                  height: 0px;
+                }
+            /* Zusätzlicher Stil für den Header */
+                .header-wrapper {
+                  position: absolute;
+                  width: 100%;
+                  background: transparent;
+                  margin-top: 0px; /* Abstand auf 36px erhöht */
+                }
+                .header-wrapper .header {
+                  margin-top: 0px;
+                }
 
-          .header-wrapper.scrolled .header__heading-logo-wrapper {
-            transform: translateX(15%);
-          }
+                .header-wrapper.scrolled .header__heading-logo-wrapper {
+                  transform: translateX(15%);
+                }
 
-      /* Stil für Menüpunkt-Hintergrund */
-          .header__inline-menu .header__menu-item {
-            background-color: transparent; /* Weißer Hintergrund */
-            padding: 5px 25px 5px 10px; /* Innerer Abstand */
-            border-radius: 10px; /* Abgerundete Ecken */
-            margin: 0 30px 0 0px; /* Außenabstand */
-            color: #ffff;
-          }
+            /* Stil für Menüpunkt-Hintergrund */
+                .header__inline-menu .header__menu-item {
+                  background-color: transparent; /* Weißer Hintergrund */
+                  padding: 5px 25px 5px 10px; /* Innerer Abstand */
+                  border-radius: 10px; /* Abgerundete Ecken */
+                  margin: 0 30px 0 0px; /* Außenabstand */
+                  color: #ffff;
+                }
 
-      /* Vordefinierte Farben vor dem Scrollen */
-          .header__inline-menu .header__menu-item {
-              background-color: transparent; /* Transparenter Hintergrund */
-              color: #ffffff; /* Weiße Textfarbe */
-          }
+            /* Farben nach dem Scrollen */
+                .header__inline-menu.scrolled .header__menu-item {
+                    background-color: #ffff; /* Weißer Hintergrund */
+                    color: #123A49; /* Dunkelblaue Textfarbe */
+                }
+                .header__inline-menu .header__menu-item:not(:last-child) {
+                  margin-right: 10px; /* Zusätzlicher rechter Abstand */
+                }
+                .body.scrolled .header__inline-menu .header__menu-item {
+                background-color: #fff; /* Weißer Hintergrund */
+                }
 
-      /* Farben nach dem Scrollen */
-          .header__inline-menu.scrolled .header__menu-item {
-              background-color: #ffff; /* Weißer Hintergrund */
-              color: #123A49; /* Dunkelblaue Textfarbe */
-          }
-          .header__inline-menu .header__menu-item:not(:last-child) {
-            margin-right: 10px; /* Zusätzlicher rechter Abstand */
-          }
-          .body.scrolled .header__inline-menu .header__menu-item {
-          background-color: #fff; /* Weißer Hintergrund */
-          }
+            /* Stil für den Header nach dem Scrollen */
+                .header-wrapper.scrolled {
+                  background-color: #fff; /* Weißer Hintergrund nach dem Scrollen */
+                  transition: background-color 0.7s; /* Weiche Übergänge */
+            }
+            /* CSS für nicht gescrollten Zustand */
+            .header__menu-item {
+              background-color: transparent;
+              color: #ffffff;
+            }
 
-      /* Stil für den Header nach dem Scrollen */
-          .header-wrapper.scrolled {
-            background-color: #fff; /* Weißer Hintergrund nach dem Scrollen */
-            transition: background-color 0.7s; /* Weiche Übergänge */
+          /* CSS für gescrollten Zustand */
+            .scrolled .header__menu-item {
+              background-color: #fff;
+              color: #123A49;
+            }
+
+          /* Standardmäßige Icon-Farbe, wenn nicht gescrollt wird */
+      .icon {
+        filter: invert(100%);
       }
 
-      .scrolled-icon {
-      filter: brightness(0) invert(1);
+      /* Geänderte Icon-Farbe, wenn gescrollt wird */
+      .scrolled .icon {
+        filter: none;
       }
 
-          .announcement-bar-section {
-            display: block; /* or whatever the default display should be */
-            background-color: #fff; /* Add this line if it's not already present */
-          }
-          {% endif %}
+                .announcement-bar-section {
+                  display: block; /* or whatever the default display should be */
+                  background-color: #fff; /* Add this line if it's not already present */
+                }
+                {% endif %}
     </style>
   </head>
 
@@ -424,21 +435,21 @@
         var searchIcon = document.querySelector('.icon-search');
         var menuIcon = document.querySelector('.icon-hamburger');
         var closeIcon = document.querySelector('.icon-close');
+        var body = document.body; // Referenz zum Body für das Hinzufügen/Entfernen der scrolled Klasse
 
         // Aktualisiert den Header-Stil beim Scrollen
         function updateHeaderStyles() {
           var scrollY = window.scrollY;
-          var scrolledClass = 'scrolled'; // Klasse, die zum Body-Element hinzugefügt wird
           var isScrolled = scrollY > 0;
 
           // Hintergrund und Textfarbe der Menüelemente aktualisieren
           menuItems.forEach(function(item) {
-            item.style.color = isScrolled ? '#123A49' : '#ffffff'; // Textfarbe
-            item.style.backgroundColor = isScrolled ? 'rgba(255, 255, 255, 0.9)' : 'transparent'; // Hintergrundfarbe mit leichter Transparenz
+            item.classList.toggle('scrolled', isScrolled);
           });
 
           // Header-Klasse aktualisieren
-          header.classList.toggle(scrolledClass, isScrolled);
+          header.classList.toggle('scrolled', isScrolled);
+          body.classList.toggle('scrolled', isScrolled); // Hinzugefügt, um die scrolled Klasse am Body zu toggeln
 
           // Icon-Farben aktualisieren
           var icons = [cartIcon, searchIcon, menuIcon, closeIcon];
@@ -446,9 +457,15 @@
             icon.classList.toggle('scrolled-icon', isScrolled);
           });
 
-          // Logos anzeigen oder verstecken
-          logoPrimary.style.display = isScrolled ? 'block' : 'none';
-          logoSecondary.style.display = isScrolled ? 'none' : 'block';
+          // Logos anzeigen oder verstecken basierend auf der Scroll-Position
+          var displayStyle = isScrolled || !isHomePage() ? 'block' : 'none';
+          logoPrimary.style.display = displayStyle;
+          logoSecondary.style.display = displayStyle === 'block' ? 'none' : 'block';
+        }
+
+        // Hilfsfunktion, um zu prüfen, ob die aktuelle Seite die Homepage ist
+        function isHomePage() {
+          return window.location.pathname === '/' || window.location.pathname.includes('/de/');
         }
 
         // Event-Listener für das Scrollen
