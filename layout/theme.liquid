@@ -300,6 +300,16 @@
         color: #FFFFFF; /* Weißer Text */
       }
 
+      /* Stil für den Header nach dem Scrollen */
+          .header-wrapper.scrolled {
+            background-color: #FFFFFF; /* Weißer Hintergrund */
+            color: #103948; /* Dunkelblauer Text */
+      }
+
+      .header-wrapper.scrolled .header__menu-item {
+        color: #103948; /* Dunkelblauer Text */
+      }
+
           .header-wrapper .header {
             margin-top: 0px;
           }
@@ -318,11 +328,7 @@
           .header__inline-menu .header__menu-item:not(:last-child) {
             margin-right: 10px; /* Zusätzlicher rechter Abstand */
           }
-      /* Stil für den Header nach dem Scrollen */
-          .header-wrapper.scrolled {
-            background-color: #fff; /* Weißer Hintergrund nach dem Scrollen */
-            transition: background-color 0.7s; /* Weiche Übergänge */
-      }
+
       .scrolled-icon {
       filter: brightness(0) invert(1);
       }
