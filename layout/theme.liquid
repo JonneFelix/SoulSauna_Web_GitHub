@@ -321,17 +321,29 @@
               background-color: transparent; /* Weißer Hintergrund */
               color: #123A49; /* Dunkelblaue Textfarbe */
           }
+
          .dropdown-background {
             background-color: white; /* oder die gewünschte Farbe */
           }
+
+        .header__inline-menu .header__menu-item.dropdown-background {
+            background-color: #fff; /* Weißer Hintergrund für Dropdown-Menü */
+        }
+
+        .header__inline-menu .header__menu-item {
+            transition: background-color 0.3s; /* Weiche Übergänge für Hintergrundfarbenänderungen */
+        }
+
           .header__inline-menu .header__menu-item:not(:last-child) {
             margin-right: 10px; /* Zusätzlicher rechter Abstand */
           }
+
       /* Stil für den Header nach dem Scrollen */
           .header-wrapper.scrolled {
             background-color: #fff; /* Weißer Hintergrund nach dem Scrollen */
             transition: background-color 0.7s; /* Weiche Übergänge */
       }
+
       .scrolled-icon {
       filter: brightness(0) invert(1);
       }
@@ -422,7 +434,7 @@
         var menuIcon = document.querySelector('.icon-hamburger');
         var closeIcon = document.querySelector('.icon-close');
         var menuItems = document.querySelector('.header__inline-menu');
-        var dropdownMenu = document.querySelector('.dropdown-menu-selector'); // Ersetzen Sie '.dropdown-menu-selector' durch den tatsächlichen Selektor Ihres Dropdown-Menüs
+
 
         // Diese Funktion aktualisiert die Farben der Icons
         function updateIconColors(scrollPosition) {
@@ -433,7 +445,6 @@
             closeIcon.classList.remove('scrolled-icon');
             header.classList.add('scrolled');
             menuItems.classList.add('scrolled');
-            dropdownMenu.classList.add('dropdown-background');
 
           } else {
             cartIcon.classList.add('scrolled-icon');
@@ -442,7 +453,6 @@
             closeIcon.classList.add('scrolled-icon');
             header.classList.remove('scrolled');
             menuItems.classList.remove('scrolled');
-            dropdownMenu.classList.remove('dropdown-background');
 
           }
         }
