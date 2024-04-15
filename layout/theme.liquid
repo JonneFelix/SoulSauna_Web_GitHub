@@ -415,63 +415,61 @@
     {%- endif -%}
 
     <script>
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          var header = document.querySelector('.header-wrapper');
-          var menuItems = document.querySelectorAll('.header__inline-menu .header__menu-item');
-          var logoPrimary = document.querySelector('.header__heading-logo-wrapper');
-          var logoSecondary = document.querySelector('.header__heading-logo-wrapper-logo-2');
-          var cartIcon = document.querySelector('.icon-cart-empty');
-          var searchIcon = document.querySelector('.icon-search');
-          var menuIcon = document.querySelector('.icon-hamburger');
-          var closeIcon = document.querySelector('.icon-close');
+      document.addEventListener('DOMContentLoaded', function() {
+        var header = document.querySelector('.header-wrapper');
+        var menuItems = document.querySelectorAll('.header__inline-menu .header__menu-item');
+        var logoPrimary = document.querySelector('.header__heading-logo-wrapper');
+        var logoSecondary = document.querySelector('.header__heading-logo-wrapper-logo-2');
+        var cartIcon = document.querySelector('.icon-cart-empty');
+        var searchIcon = document.querySelector('.icon-search');
+        var menuIcon = document.querySelector('.icon-hamburger');
+        var closeIcon = document.querySelector('.icon-close');
 
-          function updateHeaderStyles() {
-            var scrollY = window.scrollY;
-            if(scrollY > 0) {
-              // Fügt die 'scrolled' Klasse hinzu, wenn gescrollt wird
-              header.classList.add('scrolled');
-              menuItems.forEach(function(item) {
-                item.style.color = '#123A49';
-                item.style.backgroundColor = '#fff';
-              });
-              // Update für die Icons
-              cartIcon.classList.add('scrolled-icon');
-              searchIcon.classList.add('scrolled-icon');
-              menuIcon.classList.add('scrolled-icon');
-              closeIcon.classList.add('scrolled-icon');
-            } else {
-              // Entfernt die 'scrolled' Klasse, wenn man ganz oben ist
-              header.classList.remove('scrolled');
-              menuItems.forEach(function(item) {
-                item.style.color = '#ffffff';
-                item.style.backgroundColor = 'transparent';
-              });
-              // Update für die Icons
-              cartIcon.classList.remove('scrolled-icon');
-              searchIcon.classList.remove('scrolled-icon');
-              menuIcon.classList.remove('scrolled-icon');
-              closeIcon.classList.remove('scrolled-icon');
-            }
-
-            // Logik für das Anzeigen der Logos abhängig von der Scroll-Position
-            var isHomepage = window.location.pathname === '/' || window.location.pathname.includes('/de/');
-            if (isHomepage && scrollY > 0) {
-              logoPrimary.style.display = 'block';
-              logoSecondary.style.display = 'none';
-            } else {
-              logoPrimary.style.display = 'none';
-              logoSecondary.style.display = 'block';
-            }
+        function updateHeaderStyles() {
+          var scrollY = window.scrollY;
+          if(scrollY > 0) {
+            // Fügt die 'scrolled' Klasse hinzu, wenn gescrollt wird
+            header.classList.add('scrolled');
+            menuItems.forEach(function(item) {
+              item.style.color = '#123A49';
+              item.style.backgroundColor = '#fff';
+            });
+            // Update für die Icons
+            cartIcon.classList.add('scrolled-icon');
+            searchIcon.classList.add('scrolled-icon');
+            menuIcon.classList.add('scrolled-icon');
+            closeIcon.classList.add('scrolled-icon');
+          } else {
+            // Entfernt die 'scrolled' Klasse, wenn man ganz oben ist
+            header.classList.remove('scrolled');
+            menuItems.forEach(function(item) {
+              item.style.color = '#ffffff';
+              item.style.backgroundColor = 'transparent';
+            });
+            // Update für die Icons
+            cartIcon.classList.remove('scrolled-icon');
+            searchIcon.classList.remove('scrolled-icon');
+            menuIcon.classList.remove('scrolled-icon');
+            closeIcon.classList.remove('scrolled-icon');
           }
 
-          // Event-Listener für das Scrollen
-          window.addEventListener('scroll', updateHeaderStyles);
+          // Logik für das Anzeigen der Logos abhängig von der Scroll-Position
+          var isHomepage = window.location.pathname === '/' || window.location.pathname.includes('/de/');
+          if (isHomepage && scrollY > 0) {
+            logoPrimary.style.display = 'block';
+            logoSecondary.style.display = 'none';
+          } else {
+            logoPrimary.style.display = 'none';
+            logoSecondary.style.display = 'block';
+          }
+        }
 
-          // Initialer Aufruf, um den Header bei Laden der Seite zu aktualisieren
-          updateHeaderStyles();
-        });
-      </script>
+        // Event-Listener für das Scrollen
+        window.addEventListener('scroll', updateHeaderStyles);
+
+        // Initialer Aufruf, um den Header bei Laden der Seite zu aktualisieren
+        updateHeaderStyles();
+      });
     </script>
   </body>
 </html>
