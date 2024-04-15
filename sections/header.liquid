@@ -84,6 +84,16 @@
       padding-bottom: 0.5rem;
       padding-top: 0.5rem;
     }
+    .header__inline-menu .header__menu-item {
+    background-color: transparent; /* Default background */
+    color: #ffffff; /* Default text color */
+  }
+
+  .header__inline-menu .header__menu-item.scrolled {
+    /* Styles für Menüpunkte nach dem Scrollen */
+    background-color: rgba(255, 255, 255, 0.9); /* Hintergrundfarbe, wenn gescrollt wird */
+    color: #123A49; /* Textfarbe, wenn gescrollt wird */
+  }
   }
 </style>
 
@@ -115,6 +125,7 @@
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
+
   }
 {%- endstyle -%}
 
@@ -386,6 +397,26 @@
   
   });
 </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var header = document.querySelector('.header-wrapper');
+    var menuItems = document.querySelectorAll('.header__inline-menu .header__menu-item');
+
+    function updateHeaderStyles() {
+      var scrollY = window.scrollY;
+      var isScrolled = scrollY > 0;
+      header.classList.toggle('scrolled', isScrolled);
+      menuItems.forEach(function(item) {
+        item.classList.toggle('scrolled', isScrolled);
+      });
+    }
+
+    window.addEventListener('scroll', updateHeaderStyles);
+    updateHeaderStyles(); // Um den initialen Zustand zu setzen
+  });
+</script>
+    
   </header>
 </{% if section.settings.sticky_header_type != 'none' %}sticky-header{% else %}div{% endif %}>
 
