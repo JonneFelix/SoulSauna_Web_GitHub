@@ -8,12 +8,13 @@
         "announcement_g77CRW": {
           "type": "announcement",
           "settings": {
-            "text": "HERZLICH WILLKOMMEN",
+            "text": "HERZLICH WILLKOMMEN!",
             "link": ""
           }
         },
         "announcement_bAPke7": {
           "type": "announcement",
+          "disabled": true,
           "settings": {
             "text": "20% auf ALLE Outdoor SAUNAS",
             "link": "shopify:\/\/collections\/all"
