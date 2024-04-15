@@ -282,42 +282,42 @@
     </script>
 
     <style>
-                      {% if template == 'index' %}
-                        /* Zusätzlicher Stil für den Header */
-                        .header-wrapper {
-                          position: absolute;
-                          width: 100%;
-                          background: transparent;
-                          margin-top: 0px; /* Abstand auf 36px erhöht */
-                        }
-                        .header-wrapper .header {
-                          margin-top: 0px;
-                        }
-                        /* Stil für Menüpunkt-Hintergrund */
-                        .header__inline-menu .header__menu-item {
-                          background-color: #ffffff; /* Weißer Hintergrund */
-                          padding: 5px 25px 5px 10px; /* Innerer Abstand */
-                          border-radius: 10px; /* Abgerundete Ecken */
-                          margin: 0 30px 0 0px; /* Außenabstand */
-                        }
-                        .header__inline-menu .header__menu-item:not(:last-child) {
-                          margin-right: 10px; /* Zusätzlicher rechter Abstand */
-                        }
-                        /* Stil für den Header nach dem Scrollen */
-                        .header-wrapper.scrolled {
-                          background-color: #fff; /* Weißer Hintergrund nach dem Scrollen */
-                          transition: background-color 0.3s; /* Weiche Übergänge */
-                        }
-                        .white-icons {
-        filter: invert(100%);
+                {% if template == 'index' %}
+                  /* Zusätzlicher Stil für den Header */
+                  .header-wrapper {
+                    position: absolute;
+                    width: 100%;
+                    background: transparent;
+                    margin-top: 0px; /* Abstand auf 36px erhöht */
+                  }
+                  .header-wrapper .header {
+                    margin-top: 0px;
+                  }
+                  /* Stil für Menüpunkt-Hintergrund */
+                  .header__inline-menu .header__menu-item {
+                    background-color: #ffffff; /* Weißer Hintergrund */
+                    padding: 5px 25px 5px 10px; /* Innerer Abstand */
+                    border-radius: 10px; /* Abgerundete Ecken */
+                    margin: 0 30px 0 0px; /* Außenabstand */
+                  }
+                  .header__inline-menu .header__menu-item:not(:last-child) {
+                    margin-right: 10px; /* Zusätzlicher rechter Abstand */
+                  }
+                  /* Stil für den Header nach dem Scrollen */
+                  .header-wrapper.scrolled {
+                    background-color: #fff; /* Weißer Hintergrund nach dem Scrollen */
+                    transition: background-color 0.3s; /* Weiche Übergänge */
+                  }
+                  .white-icons {
+                  filter: invert(100%);
+                  }
+
+
+      .announcement-bar-section {
+        display: block; /* or whatever the default display should be */
+        background-color: #fff; /* Add this line if it's not already present */
       }
-
-
-            .announcement-bar-section {
-              display: block; /* or whatever the default display should be */
-              background-color: #fff; /* Add this line if it's not already present */
-            }
-                      {% endif %}
+                {% endif %}
     </style>
   </head>
 
@@ -406,58 +406,45 @@
     {% endif %}
 
     <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            var primaryLogo = document.querySelector('.header__heading-logo-wrapper');
-            var secondaryLogo = document.querySelector('.header__heading-logo-wrapper-logo-2');
-            var header = document.querySelector('.header-wrapper');
-            var announcementBarHeight = '0px'; // Stellen Sie sicher, dass dies Ihrer tatsächlichen Ankündigungsleistenhöhe entspricht.
-            // Icons auswählen
-            var cartIcon = document.querySelector('.cart-icon');
-            var searchIcon = document.querySelector('.search-icon');
+      document.addEventListener('DOMContentLoaded', function() {
+        var primaryLogo = document.querySelector('.header__heading-logo-wrapper');
+        var secondaryLogo = document.querySelector('.header__heading-logo-wrapper-logo-2');
+        var header = document.querySelector('.header-wrapper');
+        var cartIcon = document.querySelector('.icon-cart-empty');
+        var searchIcon = document.querySelector('.icon-search');
 
-            // Diese Funktion wird aufgerufen, wenn der Benutzer scrollt
-            function handleScroll() {
-              var scrollPosition = window.scrollY;
-              var isHomepage = window.location.pathname === '/' || window.location.pathname === '/de/'; // Prüfen, ob es die Homepage ist, Pfad ggf. anpassen
+        // Diese Funktion wird aufgerufen, wenn der Benutzer scrollt
+        function handleScroll() {
+          var scrollPosition = window.scrollY;
+          var isHomepage = window.location.pathname === '/' || window.location.pathname === '/de/';
 
-              // Logik für die Startseite
-              if (isHomepage) {
-                if (scrollPosition > 0) {
-                  primaryLogo.style.display = 'block';
-                  secondaryLogo.style.display = 'none';
-                  header.classList.add('scrolled');
-                } else {
-                  primaryLogo.style.display = 'none';
-                  secondaryLogo.style.display = 'block';
-                  header.classList.remove('scrolled');
-                }
-              } else {
-                // Logik für andere Seiten
-                primaryLogo.style.display = 'block';
-                secondaryLogo.style.display = 'none';
-              }
-
-              // Icons weiß färben, wenn gescrollt wird
-      if (scrollPosition > 0) {
-        cartIcon.classList.add('white-icons');
-        searchIcon.classList.add('white-icons');
-        // weitere Icons anpassen ...
-      } else {
-        cartIcon.classList.remove('white-icons');
-        searchIcon.classList.remove('white-icons');
-        // weitere Icons anpassen ...
-      }
-
-              // Lückenlogik
-              header.style.marginTop = scrollPosition > 0 ? '0px' : announcementBarHeight;
+          if (isHomepage) {
+            if (scrollPosition > 0) {
+              primaryLogo.style.display = 'none';
+              secondaryLogo.style.display = 'block';
+              cartIcon.classList.add('white-icons');
+              searchIcon.classList.add('white-icons');
+              header.classList.add('scrolled');
+            } else {
+              primaryLogo.style.display = 'block';
+              secondaryLogo.style.display = 'none';
+              cartIcon.classList.remove('white-icons');
+              searchIcon.classList.remove('white-icons');
+              header.classList.remove('scrolled');
             }
+          } else {
+            primaryLogo.style.display = 'block';
+            secondaryLogo.style.display = 'none';
+            cartIcon.classList.remove('white-icons');
+            searchIcon.classList.remove('white-icons');
+          }
 
-            // Event Listener für das Scrollen hinzufügen
-            window.addEventListener('scroll', handleScroll);
+          header.style.marginTop = scrollPosition > 0 ? '0px' : '36px'; // Die Höhe der Ankündigungsleiste anpassen
+        }
 
-            // Initialen Aufruf durchführen, um den Zustand beim Laden der Seite zu setzen
-            handleScroll();
-          });
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Beim Laden der Seite ausführen
+      });
     </script>
   </body>
 </html>
