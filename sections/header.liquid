@@ -95,8 +95,12 @@
   .section-header {
     position: sticky; /* This is for fixing a Safari z-index issue. PR #2147 */
     margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
-    margin-top: 36px;
     transition: margin-top 0.3s; /* Weiche Übergänge */
+    {% if template == 'index' %}
+      margin-top: 36px;
+    {% else %}
+      margin-top: 0;
+    {% endif %}
   }
 
   @media screen and (min-width: 750px) {
@@ -112,6 +116,7 @@
     }
   }
 {%- endstyle -%}
+
 
 <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
