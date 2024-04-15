@@ -428,24 +428,26 @@
         function updateHeaderStyles() {
           var scrollY = window.scrollY;
           if(scrollY > 0) {
-            // Fügt die 'scrolled' Klasse hinzu, wenn gescrollt wird
-            header.classList.add('scrolled');
-            menuItems.forEach(function(item) {
-              item.style.color = '#123A49';
-              item.style.backgroundColor = '#fff';
-            });
-            // Update für die Icons
-            cartIcon.classList.remove('scrolled-icon');
-            searchIcon.classList.remove('scrolled-icon');
-            menuIcon.classList.remove('scrolled-icon');
-            closeIcon.classList.remove('scrolled-icon');
-          } else {
             // Entfernt die 'scrolled' Klasse, wenn man ganz oben ist
             header.classList.remove('scrolled');
             menuItems.forEach(function(item) {
               item.style.color = '#ffffff';
               item.style.backgroundColor = 'transparent';
             });
+
+            // Update für die Icons
+            cartIcon.classList.remove('scrolled-icon');
+            searchIcon.classList.remove('scrolled-icon');
+            menuIcon.classList.remove('scrolled-icon');
+            closeIcon.classList.remove('scrolled-icon');
+          } else {
+            // Fügt die 'scrolled' Klasse hinzu, wenn gescrollt wird
+            header.classList.add('scrolled');
+            menuItems.forEach(function(item) {
+              item.style.color = '#123A49';
+              item.style.backgroundColor = '#fff';
+            });
+
             // Update für die Icons
             cartIcon.classList.add('scrolled-icon');
             searchIcon.classList.add('scrolled-icon');
