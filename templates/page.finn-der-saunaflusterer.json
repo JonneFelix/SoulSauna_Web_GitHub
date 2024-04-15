@@ -38,6 +38,10 @@
         "text_mQ3TtG",
         "button_R9GJxj"
       ],
+      "custom_css": [
+        ".rich-text{border: none;}",
+        ".rich-text::before,.rich-text::after {box-shadow: none !important;}"
+      ],
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
