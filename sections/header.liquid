@@ -365,27 +365,7 @@
       </a>
     </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var header = document.querySelector('.section-header');
-  var announcementBarHeight = '36px'; // Die Höhe Ihrer Ankündigungsleiste.
 
-  header.style.marginTop = announcementBarHeight; // Startwert setzen
-
-  function onScroll() {
-    // Wenn die Seite nach unten gescrollt wird, setzen Sie margin-top auf 0
-    if (window.scrollY > 0) {
-      header.style.marginTop = '0px';
-    } else {
-      // Wenn die Seite oben ist, setzen Sie margin-top zurück auf die Höhe der Ankündigungsleiste
-      header.style.marginTop = announcementBarHeight;
-    }
-  }
-
-  // Event-Listener für Scroll-Event hinzufügen
-  window.addEventListener('scroll', onScroll);
-});
-</script>
 
 </header>
 
