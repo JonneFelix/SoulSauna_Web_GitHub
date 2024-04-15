@@ -409,15 +409,15 @@
         // Diese Funktion aktualisiert die Farben der Icons
         function updateIconColors(scrollPosition) {
           if(scrollPosition > 0) {
-            cartIcon.classList.remove('scrolled-icon');
-            searchIcon.classList.remove('scrolled-icon');
-            menuIcon.classList.remove('scrolled-icon');
-            closeIcon.classList.remove('scrolled-icon');
-          } else {
             cartIcon.classList.add('scrolled-icon');
             searchIcon.classList.add('scrolled-icon');
             menuIcon.classList.add('scrolled-icon');
             closeIcon.classList.add('scrolled-icon');
+          } else {
+            cartIcon.classList.remove('scrolled-icon');
+            searchIcon.classList.remove('scrolled-icon');
+            menuIcon.classList.remove('scrolled-icon');
+            closeIcon.classList.remove('scrolled-icon');
           }
         }
 
