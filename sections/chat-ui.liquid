@@ -322,18 +322,26 @@ function sendMessage() {
   if (message) {
     displayMessage(message, 'outgoing');
     input.value = ''; // Löscht das Eingabefeld
-    
-    // Hier könnten Sie Ihre Logik zum Senden der Nachricht an Ihren Server hinzufügen
-    // Nachdem Sie eine Antwort vom Server erhalten haben:
-    displayMessage('Antwort vom Server', 'incoming'); // Beispielantwort
+
+    fetch('https://dein-backend-url/sendMessage', { // Ersetze 'https://dein-backend-url' mit der tatsächlichen URL deines Backends
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ message: message })
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Zeigt die Antwort vom Server im Chat-Fenster an
+      displayMessage(data.answer, 'incoming');
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      displayMessage("Es gab ein Problem bei der Verbindung zum Server.", 'incoming');
+    });
   }
 }
 
-// Additional JavaScript to handle animation end and re-enable send button
-document.getElementById('chat-send').addEventListener('animationend', function() {
-  this.classList.remove('sending');
-  this.disabled = false;
-});
 
 // onLoad, add a function to handle loading and error states
 window.onload = function() {
