@@ -282,109 +282,100 @@
     </script>
 
     <style>
-                                          {% if template == 'index' %}
-                                          .shopify-section-group-header-group.announcement-bar-section{
-                                             height: 0px;
-                                           }
+                                                {% if template == 'index' %}
+                                                .shopify-section-group-header-group.announcement-bar-section{
+                                                   height: 0px;
+                                                 }
 
-                                            /* Startzustand: Transparenter Hintergrund mit weißer Schrift */
-                                            .header-wrapper {
-                                              transition: background-color 0.3s;
-                                              background-color: transparent;
-                                              color: #FFFFFF;
-                                              width: 100%;
-                                              position: absolute;
-                                            }
+                                                  /* Startzustand: Transparenter Hintergrund mit weißer Schrift */
+                                                  .header-wrapper {
+                                                    transition: background-color 0.3s;
+                                                    background-color: transparent;
+                                                    color: #FFFFFF;
+                                                    width: 100%;
+                                                    position: absolute;
+                                                  }
 
-                                            .header-wrapper .header__menu-item {
-                                              color: #FFFFFF; /* Weißer Text */
-                                            }
+                                                  .header-wrapper .header__menu-item {
+                                                    color: #FFFFFF; /* Weißer Text */
+                                                  }
 
-                                            /* Stil für den Header nach dem Scrollen */
-                                                .header-wrapper.scrolled {
-                                                  background-color: #FFFFFF; /* Weißer Hintergrund */
-                                                  color: #103948; /* Dunkelblauer Text */
-                                            }
+                                                  /* Stil für den Header nach dem Scrollen */
+                                                      .header-wrapper.scrolled {
+                                                        background-color: #FFFFFF; /* Weißer Hintergrund */
+                                                        color: #103948; /* Dunkelblauer Text */
+                                                  }
 
-                                            .header-wrapper.scrolled .header__menu-item {
-                                              color: #103948; /* Dunkelblauer Text */
-                                            }
+                                                  .header-wrapper.scrolled .header__menu-item {
+                                                    color: #103948; /* Dunkelblauer Text */
+                                                  }
 
-      /* Standard-Linienfarbe vor dem Scrollen für Dropdown-Menüpunkte */
-      .header__submenu .header__menu-item:not(:last-child)::after {
-        content: '';
-        display: block;
-        margin: 0 auto;
-        height: 1px;
-        width: 100%; /* Anpassung für das Design deines Menüs */
-        background-color: #FFFFFF; /* Weiße Linie */
-        position: relative;
+      /* Grenzlinie für Untermenü-Punkte */
+      .header__submenu .header__menu-item {
+        border-bottom: 1px solid #FFFFFF; /* Weiße Linie für den Startzustand */
+        padding-bottom: 8px; /* Abstand nach unten, um die Linie besser sichtbar zu machen */
       }
 
-      /* Linienfarbe nach dem Scrollen für Dropdown-Menüpunkte */
-      .header-wrapper.scrolled .header__submenu .header__menu-item:not(:last-child)::after {
-        background-color: #C19A6B; /* Farbe der Linie nach dem Scrollen */
+      /* Ändere die Farbe der Grenzlinie nach dem Scrollen */
+      .header-wrapper.scrolled .header__submenu .header__menu-item {
+        border-bottom-color: #C19A6B; /* Neue Farbe nach dem Scrollen */
       }
+                                                  .header-wrapper .header {
+                                                    margin-top: 0px;
+                                                  }
 
+                                                  .header-wrapper.scrolled .header__heading-logo-wrapper {
+                                                    transform: translateX(0%);
+                                                  }
+                                                  @media screen and (max-width: 989px) {
+                                                    .header-wrapper.scrolled .header__heading-logo-wrapper {
+                                                      transform: translateX(15%);
+                                                  }}
 
+                                                  /* Stil für Menüpunkt-Hintergrund */
+                                                      .header__inline-menu .header__menu-item {
+                                                        background-color: transparent; /* Weißer Hintergrund */
+                                                        padding: 5px 25px 5px 10px; /* Innerer Abstand */
+                                                        border-radius: 10px; /* Abgerundete Ecken */
+                                                        margin: 0 30px 0 0px; /* Außenabstand */
+                                                      }
+                                                      .header__inline-menu .header__menu-item:not(:last-child) {
+                                                        margin-right: 10px; /* Zusätzlicher rechter Abstand */
+                                                      }
 
+                                                /* Vor dem Scrollen */
+                                          .list-menu--disclosure {
+                                              background: #C19A6B; /* Transparenter Hintergrund */
+                                              color: #FFFFFF; /* Weiße Schriftfarbe */
+                                          }
 
-                                            .header-wrapper .header {
-                                              margin-top: 0px;
-                                            }
+                                          .header__submenu .header__menu-item {
+                                              color: #FFFFFF; /* Weiße Schriftfarbe */
+                                          }
 
-                                            .header-wrapper.scrolled .header__heading-logo-wrapper {
-                                              transform: translateX(0%);
-                                            }
-                                            @media screen and (max-width: 989px) {
-                                              .header-wrapper.scrolled .header__heading-logo-wrapper {
-                                                transform: translateX(15%);
-                                            }}
+                                          /* Nach dem Scrollen */
+                                          .header-wrapper.scrolled .list-menu--disclosure {
+                                              background: #ffff; /* Dunkelblauer Hintergrund */
+                                          }
 
-                                            /* Stil für Menüpunkt-Hintergrund */
-                                                .header__inline-menu .header__menu-item {
-                                                  background-color: transparent; /* Weißer Hintergrund */
-                                                  padding: 5px 25px 5px 10px; /* Innerer Abstand */
-                                                  border-radius: 10px; /* Abgerundete Ecken */
-                                                  margin: 0 30px 0 0px; /* Außenabstand */
-                                                }
-                                                .header__inline-menu .header__menu-item:not(:last-child) {
-                                                  margin-right: 10px; /* Zusätzlicher rechter Abstand */
-                                                }
+                                          .header-wrapper.scrolled .header__submenu .header__menu-item {
+                                              color: #103948; /* Gelbe Schriftfarbe */
+                                          }
 
-                                          /* Vor dem Scrollen */
-                                    .list-menu--disclosure {
-                                        background: #C19A6B; /* Transparenter Hintergrund */
-                                        color: #FFFFFF; /* Weiße Schriftfarbe */
+                                                  .scrolled-icon {
+                                                  filter: brightness(0) invert(1);
+                                                  }
+                                                  .header-wrapper.scrolled {
+                                      border-bottom: 1px solid #C19A6B; /* Eine leichte Linie für Kontrast */
                                     }
 
-                                    .header__submenu .header__menu-item {
-                                        color: #FFFFFF; /* Weiße Schriftfarbe */
-                                    }
-
-                                    /* Nach dem Scrollen */
-                                    .header-wrapper.scrolled .list-menu--disclosure {
-                                        background: #ffff; /* Dunkelblauer Hintergrund */
-                                    }
-
-                                    .header-wrapper.scrolled .header__submenu .header__menu-item {
-                                        color: #103948; /* Gelbe Schriftfarbe */
-                                    }
-
-                                            .scrolled-icon {
-                                            filter: brightness(0) invert(1);
-                                            }
-                                            .header-wrapper.scrolled {
-                                border-bottom: 1px solid #C19A6B; /* Eine leichte Linie für Kontrast */
-                              }
 
 
-
-                                                .announcement-bar-section {
-                                                  display: block; /* or whatever the default display should be */
-                                                  background-color: #fff; /* Add this line if it's not already present */
-                                                }
-                                                {% endif %}
+                                                      .announcement-bar-section {
+                                                        display: block; /* or whatever the default display should be */
+                                                        background-color: #fff; /* Add this line if it's not already present */
+                                                      }
+                                                      {% endif %}
     </style>
   </head>
 
