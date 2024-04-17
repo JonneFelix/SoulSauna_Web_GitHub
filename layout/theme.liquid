@@ -310,21 +310,21 @@
                   color: #103948; /* Dunkelblauer Text */
                   }
 
-            /* Gerade Linien für Dropdown-Menüpunkte und letzte Linie entfernen */
+      /* Gerade Linien für Dropdown-Menüpunkte und letzte Linie entfernen */
       .header__submenu .header__menu-item:not(:last-child) a {
-        border-bottom: 1px solid #FFFFFF; /* Weiße Linie für den Startzustand */
-        padding-bottom: 8px; /* Abstand nach unten, um die Linie besser sichtbar zu machen */
-        display: block; /* Stellt sicher, dass die border-bottom auf die gesamte Breite angewendet wird */
+        border-bottom: 1px solid #FFFFFF !important; /* Weiße Linie für den Startzustand */
+        padding-bottom: 8px !important; /* Abstand nach unten, um die Linie besser sichtbar zu machen */
+        display: block !important; /* Stellt sicher, dass die border-bottom auf die gesamte Breite angewendet wird */
       }
 
       /* Ändere die Farbe der Grenzlinie nach dem Scrollen */
       .header-wrapper.scrolled .header__submenu .header__menu-item:not(:last-child) a {
-        border-bottom-color: #C19A6B; /* Neue Farbe nach dem Scrollen */
+        border-bottom-color: #C19A6B !important; /* Neue Farbe nach dem Scrollen */
       }
 
       /* Entferne die Linie vom letzten Unterpunkt im Dropdown-Menü */
       .header__submenu .header__menu-item:last-child a {
-        border-bottom: none;
+        border-bottom: none !important;
       }
 
 
