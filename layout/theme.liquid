@@ -282,106 +282,108 @@
     </script>
 
     <style>
-                                    {% if template == 'index' %}
-                                    .shopify-section-group-header-group.announcement-bar-section{
-                                    height: 0px;
-                                    }
+                                          {% if template == 'index' %}
+                                          .shopify-section-group-header-group.announcement-bar-section{
+                                          height: 0px;
+                                          }
 
-                                    /* Startzustand: Transparenter Hintergrund mit weißer Schrift */
-                                    .header-wrapper {
-                                    transition: background-color 0.3s;
-                                    background-color: transparent;
-                                    color: #FFFFFF;
-                                    width: 100%;
-                                    position: absolute;
-                                    }
+                                          /* Startzustand: Transparenter Hintergrund mit weißer Schrift */
+                                          .header-wrapper {
+                                          transition: background-color 0.3s;
+                                          background-color: transparent;
+                                          color: #FFFFFF;
+                                          width: 100%;
+                                          position: absolute;
+                                          }
 
-                                    .header-wrapper .header__menu-item {
-                                    color: #FFFFFF; /* Weißer Text */
-                                    }
+                                          .header-wrapper .header__menu-item {
+                                          color: #FFFFFF; /* Weißer Text */
+                                          }
 
-                                    /* Stil für den Header nach dem Scrollen */
-                                    .header-wrapper.scrolled {
-                                    background-color: #FFFFFF; /* Weißer Hintergrund */
-                                    color: #103948; /* Dunkelblauer Text */
-                                    }
+                                          /* Stil für den Header nach dem Scrollen */
+                                          .header-wrapper.scrolled {
+                                          background-color: #FFFFFF; /* Weißer Hintergrund */
+                                          color: #103948; /* Dunkelblauer Text */
+                                          }
 
-                                    .header-wrapper.scrolled .header__menu-item {
-                                    color: #103948; /* Dunkelblauer Text */
-                                    }
+                                          .header-wrapper.scrolled .header__menu-item {
+                                          color: #103948; /* Dunkelblauer Text */
+                                          }
 
       /* Grenzlinie für Untermenü-Punkte */
-      .header__submenu .header__menu-item:not(:last-child) {
+      .header__submenu > li:not(:last-child) .header__menu-item {
         border-bottom: 1px solid #FFFFFF; /* Weiße Linie für den Startzustand */
+        padding-bottom: 8px; /* Abstand nach unten, um die Linie besser sichtbar zu machen */
       }
 
       /* Ändere die Farbe der Grenzlinie nach dem Scrollen */
-      .header-wrapper.scrolled .header__submenu .header__menu-item:not(:last-child) {
+      .header-wrapper.scrolled .header__submenu > li:not(:last-child) .header__menu-item {
         border-bottom-color: #C19A6B; /* Neue Farbe nach dem Scrollen */
       }
 
-      /* Entferne die Linie vom letzten Unterpunkt */
-      .header__submenu .header__menu-item:last-child {
-        border-bottom: none !important;
+      /* Stelle sicher, dass es keine Linie beim letzten Element gibt */
+      .header__submenu > li:last-child .header__menu-item {
+        border-bottom: none;
       }
 
 
-                              .header-wrapper .header {
-                              margin-top: 0px;
-                              }
 
-                              .header-wrapper.scrolled .header__heading-logo-wrapper {
-                              transform: translateX(0%);
-                              }
-                              @media screen and (max-width: 989px) {
-                              .header-wrapper.scrolled .header__heading-logo-wrapper {
-                              transform: translateX(15%);
-                              }}
+                                    .header-wrapper .header {
+                                    margin-top: 0px;
+                                    }
 
-                              /* Stil für Menüpunkt-Hintergrund */
-                              .header__inline-menu .header__menu-item {
-                              background-color: transparent; /* Weißer Hintergrund */
-                              padding: 5px 25px 5px 10px; /* Innerer Abstand */
-                              border-radius: 10px; /* Abgerundete Ecken */
-                              margin: 0 30px 0 0px; /* Außenabstand */
-                              }
+                                    .header-wrapper.scrolled .header__heading-logo-wrapper {
+                                    transform: translateX(0%);
+                                    }
+                                    @media screen and (max-width: 989px) {
+                                    .header-wrapper.scrolled .header__heading-logo-wrapper {
+                                    transform: translateX(15%);
+                                    }}
 
-                              .header__inline-menu .header__menu-item:not(:last-child) {
-                              margin-right: 10px; /* Zusätzlicher rechter Abstand */
-                              }
+                                    /* Stil für Menüpunkt-Hintergrund */
+                                    .header__inline-menu .header__menu-item {
+                                    background-color: transparent; /* Weißer Hintergrund */
+                                    padding: 5px 25px 5px 10px; /* Innerer Abstand */
+                                    border-radius: 10px; /* Abgerundete Ecken */
+                                    margin: 0 30px 0 0px; /* Außenabstand */
+                                    }
 
-                              /* Vor dem Scrollen */
-                              .list-menu--disclosure {
-                              background: #C19A6B; /* Transparenter Hintergrund */
-                              color: #FFFFFF; /* Weiße Schriftfarbe */
-                              }
+                                    .header__inline-menu .header__menu-item:not(:last-child) {
+                                    margin-right: 10px; /* Zusätzlicher rechter Abstand */
+                                    }
 
-                              .header__submenu .header__menu-item {
-                              color: #FFFFFF; /* Weiße Schriftfarbe */
-                              }
+                                    /* Vor dem Scrollen */
+                                    .list-menu--disclosure {
+                                    background: #C19A6B; /* Transparenter Hintergrund */
+                                    color: #FFFFFF; /* Weiße Schriftfarbe */
+                                    }
 
-                              /* Nach dem Scrollen */
-                              .header-wrapper.scrolled .list-menu--disclosure {
-                              background: #ffff; /* Dunkelblauer Hintergrund */
-                              }
+                                    .header__submenu .header__menu-item {
+                                    color: #FFFFFF; /* Weiße Schriftfarbe */
+                                    }
 
-                              .header-wrapper.scrolled .header__submenu .header__menu-item {
-                              color: #103948; /* Gelbe Schriftfarbe */
-                              }
+                                    /* Nach dem Scrollen */
+                                    .header-wrapper.scrolled .list-menu--disclosure {
+                                    background: #ffff; /* Dunkelblauer Hintergrund */
+                                    }
 
-                              .scrolled-icon {
-                              filter: brightness(0) invert(1);
-                              }
+                                    .header-wrapper.scrolled .header__submenu .header__menu-item {
+                                    color: #103948; /* Gelbe Schriftfarbe */
+                                    }
 
-                              .header-wrapper.scrolled {
-                              border-bottom: 1px solid #C19A6B; /* Eine leichte Linie für Kontrast */
-                              }
+                                    .scrolled-icon {
+                                    filter: brightness(0) invert(1);
+                                    }
 
-                              .announcement-bar-section {
-                              display: block; /* or whatever the default display should be */
-                              background-color: #fff; /* Add this line if it's not already present */
-                              }
-                              {% endif %}
+                                    .header-wrapper.scrolled {
+                                    border-bottom: 1px solid #C19A6B; /* Eine leichte Linie für Kontrast */
+                                    }
+
+                                    .announcement-bar-section {
+                                    display: block; /* or whatever the default display should be */
+                                    background-color: #fff; /* Add this line if it's not already present */
+                                    }
+                                    {% endif %}
     </style>
   </head>
 
