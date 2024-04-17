@@ -396,3 +396,36 @@ setTimeout(function() {
   typeMessage("Hallo, ich bin Finn, der Saunaflüsterer. Wofür brauchst du eine Sauna und wie stellst du sie dir vor?", 'incoming');
 }, 1500);
 </script>
+<!-- Ergänze dieses Skript-Tag im <head>-Bereich deiner HTML-Seite -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var socket = io.connect('http://84.164.83.178:8888');
+
+      socket.on('connect', function() {
+          console.log('Verbunden mit dem WebSocket-Server!');
+      });
+
+      socket.on('message', function(data) {
+          displayMessage(data.text, 'incoming');
+      });
+
+      function sendMessage() {
+          var input = document.getElementById('chat-input');
+          var message = input.value.trim();
+          if (message) {
+              displayMessage(message, 'outgoing');
+              input.value = ''; // Löscht das Eingabefeld
+              socket.send({'text': message});
+          }
+      }
+
+      document.getElementById('chat-send').addEventListener('click', sendMessage);
+      document.getElementById('chat-input').addEventListener('keypress', function(event) {
+          if (event.keyCode === 13) {
+              event.preventDefault(); // Verhindert einen Zeilenumbruch
+              sendMessage();
+          }
+      });
+  });
+</script>
