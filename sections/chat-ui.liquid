@@ -323,13 +323,13 @@ function sendMessage() {
     displayMessage(message, 'outgoing');
     input.value = ''; // Löscht das Eingabefeld
 
-    fetch('https://dein-backend-url/sendMessage', { // Ersetze 'https://dein-backend-url' mit der tatsächlichen URL deines Backends
-      method: 'POST',
-      headers: {
+    fetch('https://soulsauna.de/api/sendMessage', {
+    method: 'POST',
+    headers: {
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ message: message })
-    })
+    },
+    body: JSON.stringify({ message: message })
+})
     .then(response => response.json())
     .then(data => {
       // Zeigt die Antwort vom Server im Chat-Fenster an
@@ -400,7 +400,8 @@ setTimeout(function() {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-      var socket = io.connect('https://raspberrypi.deinedomain.com');
+      // Für WebSocket-Verbindungen
+      var socket = io.connect('https://soulsauna.de/api');
 
       socket.on('connect', function() {
           console.log('Verbunden mit dem WebSocket-Server!');
