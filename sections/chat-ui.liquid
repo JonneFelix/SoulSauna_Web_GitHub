@@ -251,34 +251,55 @@
 
 <!-- JavaScript, um die Nachrichten zu verwalten und mit dem Backend zu kommunizieren -->
 
-document.addEventListener('DOMContentLoaded', function() { var socket = io.connect('https://soulsauna.de/api');
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var socket = io.connect('https://soulsauna.de/api');
 
-socket.on('connect', function() { console.log('Verbunden mit dem WebSocket-Server!'); typeMessage("Hallo, ich bin Finn,
-der Saunaflüsterer. Wofür brauchst du eine Sauna und wie stellst du sie dir vor?", 'incoming'); });
+    socket.on('connect', function() {
+        console.log('Verbunden mit dem WebSocket-Server!');
+        typeMessage("Hallo, ich bin Finn, der Saunaflüsterer. Wofür brauchst du eine Sauna und wie stellst du sie dir vor?", 'incoming');
+    });
 
-socket.on('message', function(data) { displayMessage(data.text, 'incoming'); });
+    socket.on('message', function(data) {
+        displayMessage(data.text, 'incoming');
+    });
 
-socket.on('connect_error', function() { displayMessage("Es gab ein Problem bei der Verbindung zum Server.", 'incoming');
+    socket.on('connect_error', function() {
+        displayMessage("Es gab ein Problem bei der Verbindung zum Server.", 'incoming');
+    });
+
+    document.getElementById('chat-send').addEventListener('click', sendMessage);
+    document.getElementById('chat-input').addEventListener('keypress', function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault(); // Verhindert einen Zeilenumbruch
+            sendMessage();
+        }
+    });
+
+    function sendMessage() {
+        var input = document.getElementById('chat-input');
+        var message = input.value.trim();
+        if (message) {
+            displayMessage(message, 'outgoing');
+            input.value = ''; // Löscht das Eingabefeld
+            socket.emit('message', {'text': message});
+        }
+    }
+
+    function displayMessage(text, type) {
+        var messagesContainer = document.getElementById('chat-messages');
+        var messageDiv = document.createElement('div');
+        messageDiv.classList.add('chat-message', type);
+        if (type === 'incoming') {
+            const profilePicUrl = document.getElementById('chat-container').getAttribute('data-profile-pic-url');
+            messageDiv.innerHTML = `<img src="${profilePicUrl}" class="profile-pic"><span class="sender-name">Finn</span><span class="message-text">${text}</span>`;
+        } else {
+            const userPicUrl = "https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/User_1.png?v=1712841598";
+            messageDiv.innerHTML = `<img src="${userPicUrl}" class="profile-pic"><span class="sender-name">Du</span><span class="message-text">${text}</span>`;
+        }
+        messagesContainer.appendChild(messageDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
 });
-
-document.getElementById('chat-send').addEventListener('click', sendMessage);
-document.getElementById('chat-input').addEventListener('keypress', function(event) { if (event.keyCode === 13) {
-event.preventDefault(); // Verhindert einen Zeilenumbruch sendMessage(); } });
-
-function sendMessage() { var input = document.getElementById('chat-input'); var message = input.value.trim(); if
-(message) { displayMessage(message, 'outgoing'); input.value = ''; // Löscht das Eingabefeld socket.emit('message',
-{'text': message}); } }
-
-function displayMessage(text, type) { var messagesContainer = document.getElementById('chat-messages'); var messageDiv =
-document.createElement('div'); messageDiv.classList.add('chat-message', type); if (type === 'incoming') { const
-profilePicUrl = document.getElementById('chat-container').getAttribute('data-profile-pic-url'); messageDiv.innerHTML = `<img
-  src="${profilePicUrl}"
-  class="profile-pic"
-
-><span class="sender-name">Finn</span><span class="message-text">${text}</span>`; } else { const userPicUrl =
-"https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/User_1.png?v=1712841598"; messageDiv.innerHTML = `<img
-  src="${userPicUrl}"
-  class="profile-pic"
-
-><span class="sender-name">Du</span><span class="message-text">${text}</span>`; }
-messagesContainer.appendChild(messageDiv); messagesContainer.scrollTop = messagesContainer.scrollHeight; } });
+</script>
