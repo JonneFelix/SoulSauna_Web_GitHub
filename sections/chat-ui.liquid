@@ -254,37 +254,38 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-      var socket = io.connect('https://soulsauna.de/api');
+      // Make sure to include the correct port and check if you need http or https based on your server setup.
+      var socket = io('http://[Server-IP]:8888');
 
       socket.on('connect', function() {
-          console.log('Verbunden mit dem WebSocket-Server!');
-          displayMessage("Hallo, ich bin Finn, der Saunaflüsterer. Wofür brauchst du eine Sauna und wie stellst du sie dir vor?", 'incoming');
+          console.log('Connected to WebSocket server!');
+          socket.emit('add user', 'Username');  // Example to send username or any initial setup data.
       });
 
       socket.on('message', function(data) {
+          // Assuming 'data' is an object that contains a 'text' property
+          console.log('New message:', data.text);
           displayMessage(data.text, 'incoming');
       });
 
-      function sendMessage() {
-          var input = document.getElementById('chat-input');
-          var message = input.value.trim();
-          if (message) {
-              socket.emit('message', {'text': message}, function(response) {
-                  if (response.error) {
-                      displayMessage("Es gab ein Problem bei der Verbindung zum Server.", 'incoming');
-                  }
-              });
-              displayMessage(message, 'outgoing');
-              input.value = ''; // Löscht das Eingabefeld
-          }
-      }
-
-      document.getElementById('chat-send').addEventListener('click', sendMessage);
-      document.getElementById('chat-input').addEventListener('keypress', function(event) {
-          if (event.keyCode === 13) {
-              event.preventDefault(); // Verhindert einen Zeilenumbruch
-              sendMessage();
-          }
+      socket.on('disconnect', function() {
+          console.log('Disconnected from server');
       });
+
+      socket.on('error', function(error) {
+          console.log('Error:', error);
+          displayMessage("Unable to connect to chat service.", 'incoming');
+      });
+
+      // Ensure your send function and other interaction logic are correctly implemented.
   });
+
+  // Example function to display messages
+  function displayMessage(message, type) {
+      var messagesContainer = document.getElementById('chat-messages');
+      var messageDiv = document.createElement('div');
+      messageDiv.classList.add(type);  // 'incoming' or 'outgoing'
+      messageDiv.innerText = message;
+      messagesContainer.appendChild(messageDiv);
+  }
 </script>
