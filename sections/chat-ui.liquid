@@ -3,7 +3,6 @@
   id="chat-container"
   data-profile-pic-url="https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/Finn_robot.webp?v=1712743606"
 >
-  <!-- Header improved with a better visual hierarchy -->
   <div id="chat-header">
     <img
       src="https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/Finn_robot.webp?v=1712743606"
@@ -15,7 +14,6 @@
   <div id="chat-messages" role="log" aria-live="polite">
     <!-- Nachrichten werden hier über JavaScript eingefügt -->
   </div>
-  <!-- Input container improved for better usability -->
   <div id="chat-input-container">
     <textarea
       id="chat-input"
@@ -24,8 +22,7 @@
       onkeypress="checkForEnter(event)"
     ></textarea>
     <button id="chat-send" aria-label="Nachricht senden" onclick="sendMessage()">
-      <span class="send-icon">⇨</span>
-      <!-- Added span for better control over the icon -->
+      <span class="send-icon">?</span>
     </button>
   </div>
 </div>
@@ -253,180 +250,56 @@
 </style>
 
 <!-- JavaScript, um die Nachrichten zu verwalten und mit dem Backend zu kommunizieren -->
-<script>
-function typeMessage(fullText, type) {
-  let index = 0;
-  let container = document.getElementById('chat-messages');
-  let messageDiv = document.createElement('div');
-  messageDiv.classList.add('chat-message', type);
 
-  // Füge das Profilbild nur zu eingehenden Nachrichten hinzu
-  if (type === 'incoming') {
-    const profilePicUrl = document.getElementById('chat-container').getAttribute('data-profile-pic-url');
-    messageDiv.innerHTML = `
-      <img src="${profilePicUrl}" class="profile-pic">
-      <span class="sender-name">Finn</span>
-    `;
-    const textSpan = document.createElement('span');
-    textSpan.classList.add('message-text');
-    messageDiv.appendChild(textSpan);
-    container.appendChild(messageDiv);
-
-    // Tippeffekt für die Nachricht
-    function typeStep() {
-      if (index < fullText.length) {
-        textSpan.textContent += fullText[index++];
-        setTimeout(typeStep, 20);
-      }
-    }
-    typeStep();
-  }
-}
-
-  
-function displayMessage(text, type) {
-  var messagesContainer = document.getElementById('chat-messages');
-  var messageDiv = document.createElement('div');
-  messageDiv.classList.add('chat-message', type);
-
-  if (type === 'incoming') {
-    const profilePicUrl = document.getElementById('chat-container').getAttribute('data-profile-pic-url');
-    messageDiv.innerHTML = `
-      <img src="${profilePicUrl}" class="profile-pic">
-      <span class="sender-name">Finn</span>
-      <span class="message-text">${text}</span>
-    `;
-  } else {
-    // Add user profile picture and name for outgoing messages
-    const userPicUrl = "https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/User_1.png?v=1712841598"; // URL for user profile picture
-    messageDiv.innerHTML = `
-      <img src="${userPicUrl}" class="profile-pic">
-      <span class="sender-name">Du</span>
-      <span class="message-text">${text}</span>
-    `;
-  }
-
-  messagesContainer.appendChild(messageDiv);
-  messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to the newest message element
-}
-
-
-
-
-
-// sendMessage-Funktion, die Typewriter-Effekt für ausgehende Nachrichten verwendet
-function sendMessage() {
-  var input = document.getElementById('chat-input');
-  var message = input.value.trim();
-  
-  if (message) {
-    displayMessage(message, 'outgoing');
-    input.value = ''; // Löscht das Eingabefeld
-
-    fetch('https://soulsauna.de/api/sendMessage', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ message: message })
-})
-    .then(response => response.json())
-    .then(data => {
-      // Zeigt die Antwort vom Server im Chat-Fenster an
-      displayMessage(data.answer, 'incoming');
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      displayMessage("Es gab ein Problem bei der Verbindung zum Server.", 'incoming');
-    });
-  }
-}
-
-
-// onLoad, add a function to handle loading and error states
-window.onload = function() {
-  // Show loading state when waiting for a message
-  // Hide loading state and show message or error accordingly
-};
-
-// EventListener für das Senden bei Eingabe von Enter
-function checkForEnter(event) {
-  if (event.keyCode === 13) {
-    event.preventDefault(); // Verhindert einen Zeilenumbruch
-    sendMessage();
-  }
-}
-
-// Eventuell kannst du hier eine Logik hinzufügen, um "Schnelle Antworten" zu implementieren
-function addQuickReplies(options) {
-  const container = document.getElementById('chat-messages');
-  const repliesDiv = document.createElement('div');
-  repliesDiv.classList.add('quick-replies');
-
-  options.forEach(option => {
-    const button = document.createElement('button');
-    button.textContent = option.label;
-    button.onclick = function() { sendMessage(option.message); };
-    repliesDiv.appendChild(button);
-  });
-
-  container.appendChild(repliesDiv);
-}
-
-// Adjust this function to handle input field growth and shrinkage
-function adjustInputHeight() {
-  const input = document.getElementById('chat-input');
-  // Reset the height to minimum to allow for proper shrinkage
-  input.style.height = '42px'; // Set to your desired minimum height
-  if (input.scrollHeight > input.clientHeight) {
-    input.style.height = input.scrollHeight + 'px';
-  }
-}
-
-// Event listener for input event on the textarea
-document.getElementById('chat-input').addEventListener('input', adjustInputHeight);
-
-// Make sure this function is called after defining it to adjust the height on page load
-adjustInputHeight();
-
-document.getElementById('chat-send').addEventListener('click', sendMessage);
-
-// Zeige eine Begrüßungsnachricht beim Laden der Seite an
-setTimeout(function() {
-  typeMessage("Hallo, ich bin Finn, der Saunaflüsterer. Wofür brauchst du eine Sauna und wie stellst du sie dir vor?", 'incoming');
-}, 1500);
-</script>
-<!-- Ergänze dieses Skript-Tag im <head>-Bereich deiner HTML-Seite -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-      // Für WebSocket-Verbindungen
-      var socket = io.connect('https://soulsauna.de/api');
+document.addEventListener('DOMContentLoaded', function() {
+  var socket = io('https://soulsauna.de/api');
 
-      socket.on('connect', function() {
-          console.log('Verbunden mit dem WebSocket-Server!');
-      });
-
-      socket.on('message', function(data) {
-          displayMessage(data.text, 'incoming');
-      });
-
-      function sendMessage() {
-          var input = document.getElementById('chat-input');
-          var message = input.value.trim();
-          if (message) {
-              displayMessage(message, 'outgoing');
-              input.value = ''; // Löscht das Eingabefeld
-              socket.send({'text': message});
-          }
-      }
-
-      document.getElementById('chat-send').addEventListener('click', sendMessage);
-      document.getElementById('chat-input').addEventListener('keypress', function(event) {
-          if (event.keyCode === 13) {
-              event.preventDefault(); // Verhindert einen Zeilenumbruch
-              sendMessage();
-          }
-      });
+  socket.on('connect', function() {
+    console.log('Verbunden mit dem WebSocket-Server!');
   });
+
+  socket.on('message', function(data) {
+    displayMessage(data.text, 'incoming');
+  });
+
+  document.getElementById('chat-send').addEventListener('click', function() {
+    sendMessage();
+  });
+
+  document.getElementById('chat-input').addEventListener('keypress', function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault(); // Verhindert einen Zeilenumbruch
+      sendMessage();
+    }
+  });
+
+  function sendMessage() {
+    var input = document.getElementById('chat-input');
+    var message = input.value.trim();
+    if (message) {
+      displayMessage(message, 'outgoing');
+      input.value = ''; // Löscht das Eingabefeld
+      socket.send({'text': message});
+    }
+  }
+
+  function displayMessage(text, type) {
+    var messagesContainer = document.getElementById('chat-messages');
+    var messageDiv = document.createElement('div');
+    messageDiv.classList.add('chat-message', type);
+
+    const profilePicUrl = type === 'incoming' ? document.getElementById('chat-container').getAttribute('data-profile-pic-url') : "https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/User_1.png?v=1712841598";
+
+    messageDiv.innerHTML = `
+      <img src="${profilePicUrl}" class="profile-pic">
+      <span class="sender-name">${type === 'incoming' ? 'Finn' : 'Du'}</span>
+      <span class="message-text">${text}</span>
+    `;
+
+    messagesContainer.appendChild(messageDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to the newest message element
+  }
+});
 </script>
