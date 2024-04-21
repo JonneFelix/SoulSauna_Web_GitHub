@@ -258,10 +258,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     socket.on('connect', function() {
         console.log('Verbunden mit dem WebSocket-Server!');
-        typeMessage("Hallo, ich bin Finn, der Saunaflüsterer. Wofür brauchst du eine Sauna und wie stellst du sie dir vor?", 'incoming');
+        // Begrüßungsnachricht verzögert senden, um sicherzustellen, dass die Verbindung besteht
+        setTimeout(function() {
+            typeMessage("Hallo, ich bin Finn, der Saunaflüsterer. Wofür brauchst du eine Sauna und wie stellst du sie dir vor?", 'incoming');
+        }, 1500);
     });
 
     socket.on('message', function(data) {
+        console.log('Nachricht empfangen:', data);
         displayMessage(data.text, 'incoming');
     });
 
@@ -282,7 +286,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (message) {
             displayMessage(message, 'outgoing');
             input.value = ''; // Löscht das Eingabefeld
-            socket.send({'text': message});
+            socket.emit('message', {'text': message}); // Verwendung von 'emit' statt 'send' mit korrekter Nachrichtenstruktur
         }
     }
 
