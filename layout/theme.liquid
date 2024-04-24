@@ -387,19 +387,26 @@
                                                             color: #103948; /* Gelbe Schriftfarbe */
                                                             }
 
-                                                            .scrolled-icon {
-                                                            filter: brightness(0) invert(1);
-                                                            }
+.scrolled-icon {
+filter: brightness(0) invert(1);
+}
 
-                                                            .header-wrapper.scrolled {
-                                                            border-bottom: 1px solid #C19A6B; /* Eine leichte Linie für Kontrast */
-                                                            }
+.header-wrapper.scrolled {
+border-bottom: 1px solid #C19A6B; /* Eine leichte Linie für Kontrast */
+}
 
-                                                            .announcement-bar-section {
-                                                            display: block; /* or whatever the default display should be */
-                                                            background-color: #fff; /* Add this line if it's not already present */
-                                                            }
-                                                            {% endif %}
+.announcement-bar-section {
+display: block; /* or whatever the default display should be */
+background-color: #fff; /* Add this line if it's not already present */
+}
+
+@media screen and (min-width: 1700px) {
+  .header-wrapper {
+    background-position: top center;
+  }
+}
+
+{% endif %}
     </style>
   </head>
 
