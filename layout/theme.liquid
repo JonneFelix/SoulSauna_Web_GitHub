@@ -368,18 +368,6 @@
                                                             margin-right: 5px; /* Zusätzlicher rechter Abstand */
                                                             }
 
-                                                            .header__inline-menu {
-  display: flex;
-  flex-wrap: wrap; /* Erlaubt das Umfließen der Menüpunkte */
-  justify-content: center; /* Zentriert die Menüelemente, wenn Platz vorhanden */
-}
-
-.header__menu-item {
-  flex-grow: 1; /* Erlaubt jedem Menüpunkt, den verfügbaren Platz zu nutzen */
-  text-align: center;
-}
-
-
                                                             /* Vor dem Scrollen */
                                                             .list-menu--disclosure {
                                                             background: #C19A6B; /* Transparenter Hintergrund */
@@ -416,6 +404,17 @@ background-color: #fff; /* Add this line if it's not already present */
   .header-wrapper {
     background-position: top center;
   }
+  
+@media screen and (max-width: 1150px) {
+  .header__inline-menu {
+    display: none; /* Versteckt das normale Menü */
+  }
+
+  .mobile-menu-icon {
+    display: block; /* Zeigt das Hamburger-Icon */
+  }
+}
+
 }
 
 {% endif %}
