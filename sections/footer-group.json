@@ -9,7 +9,7 @@
           "type": "text",
           "settings": {
             "heading": "Kontaktinformation",
-            "subtext": "<h6>E-Mail: <a href=\"mailto:kundenservice@soulsauna.de\" target=\"_blank\" title=\"mailto:kundenservice@soulsauna.de\">kundenservice@soulsauna.de<\/a> <\/h6><h6>Telefonnummer: +49 <\/h6>"
+            "subtext": "<h6>E-Mail: <a href=\"mailto:kundenservice@soulsauna.de\" target=\"_blank\" title=\"mailto:kundenservice@soulsauna.de\">kundenservice@soulsauna.de<\/a> <\/h6><h6>Telefonnummer: <a href=\"tel:+49 4131 6847159\" target=\"_blank\" title=\"tel:+49 4131 6847159\">+49 4131 6847159<\/a><\/h6>"
           }
         },
         "text_3pWRAn": {
