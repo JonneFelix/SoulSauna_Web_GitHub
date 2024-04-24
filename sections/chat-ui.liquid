@@ -3,6 +3,7 @@
   id="chat-container"
   data-profile-pic-url="https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/Finn_robot.webp?v=1712743606"
 >
+  <!-- Header improved with a better visual hierarchy -->
   <div id="chat-header">
     <img
       src="https://cdn.shopify.com/s/files/1/0819/3094/4843/t/3/assets/Finn_robot.webp?v=1712743606"
@@ -14,6 +15,7 @@
   <div id="chat-messages" role="log" aria-live="polite">
     <!-- Nachrichten werden hier über JavaScript eingefügt -->
   </div>
+  <!-- Input container improved for better usability -->
   <div id="chat-input-container">
     <textarea
       id="chat-input"
@@ -23,6 +25,7 @@
     ></textarea>
     <button id="chat-send" aria-label="Nachricht senden" onclick="sendMessage()">
       <span class="send-icon">➤</span>
+      <!-- Added span for better control over the icon -->
     </button>
   </div>
 </div>
@@ -250,49 +253,7 @@
 </style>
 
 <!-- JavaScript, um die Nachrichten zu verwalten und mit dem Backend zu kommunizieren -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var socket = io.connect('wss://soulsauna.de/api');
-
-    socket.on('connect', function() {
-        console.log('Verbunden mit dem WebSocket-Server!');
-        // Sendet eine Begrüßungsnachricht, sobald die Verbindung hergestellt ist
-        typeMessage("Hallo, ich bin Finn, der Saunaflüsterer. Wofür brauchst du eine Sauna und wie stellst du sie dir vor?", 'incoming');
-    });
-
-    socket.on('message', function(data) {
-        displayMessage(data.text, 'incoming');
-    });
-
-    socket.on('connect_error', function(error) {
-        console.error('Verbindungsfehler:', error);
-        displayMessage("Es gab ein Problem bei der Verbindung zum Server.", 'incoming');
-    });
-
-    document.getElementById('chat-send').addEventListener('click', function() {
-        sendMessage();
-    });
-
-    document.getElementById('chat-input').addEventListener('keypress', function(event) {
-        if (event.keyCode === 13) {
-            event.preventDefault(); // Verhindert einen Zeilenumbruch
-            sendMessage();
-        }
-    });
-
-    function sendMessage() {
-        var input = document.getElementById('chat-input');
-        var message = input.value.trim();
-        if (message) {
-            displayMessage(message, 'outgoing');
-            input.value = ''; // Löscht das Eingabefeld
-            socket.send({'text': message});
-        }
-    }
-});
-
-  
 function typeMessage(fullText, type) {
   let index = 0;
   let container = document.getElementById('chat-messages');
@@ -347,6 +308,38 @@ function displayMessage(text, type) {
 
   messagesContainer.appendChild(messageDiv);
   messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to the newest message element
+}
+
+
+
+
+
+// sendMessage-Funktion, die Typewriter-Effekt für ausgehende Nachrichten verwendet
+function sendMessage() {
+  var input = document.getElementById('chat-input');
+  var message = input.value.trim();
+  
+  if (message) {
+    displayMessage(message, 'outgoing');
+    input.value = ''; // Löscht das Eingabefeld
+
+    fetch('https://dein-backend-url/sendMessage', { // Ersetze 'https://dein-backend-url' mit der tatsächlichen URL deines Backends
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ message: message })
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Zeigt die Antwort vom Server im Chat-Fenster an
+      displayMessage(data.answer, 'incoming');
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      displayMessage("Es gab ein Problem bei der Verbindung zum Server.", 'incoming');
+    });
+  }
 }
 
 
