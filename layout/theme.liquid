@@ -368,6 +368,18 @@
                                                             margin-right: 5px; /* Zusätzlicher rechter Abstand */
                                                             }
 
+                                                            .header__inline-menu {
+  display: flex;
+  flex-wrap: wrap; /* Erlaubt das Umfließen der Menüpunkte */
+  justify-content: center; /* Zentriert die Menüelemente, wenn Platz vorhanden */
+}
+
+.header__menu-item {
+  flex-grow: 1; /* Erlaubt jedem Menüpunkt, den verfügbaren Platz zu nutzen */
+  text-align: center;
+}
+
+
                                                             /* Vor dem Scrollen */
                                                             .list-menu--disclosure {
                                                             background: #C19A6B; /* Transparenter Hintergrund */
